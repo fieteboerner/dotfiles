@@ -1,0 +1,35 @@
+set number
+set autoindent
+set foldmethod=indent
+set nofoldenable
+set clipboard+=unnamed
+
+syntax on
+
+colorscheme desert
+
+"setting up tmp directories for swp files
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" enables statusbar
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [LEN=%L]
+"set laststatus=2
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+	Plugin 'VundleVim/Vundle.vim'
+	Plugin 'powerline/powerline'
+	Plugin 'scrooloose/nerdtree'
+"Plugin 'c9s/perlomni.vim'
+"Plugin 'c9s/cpan.vim'
+"Plugin 'Valloric/YouCompleteMe'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" ctrl+n toggles nerd tree
+map <C-n> :NERDTreeToggle<CR>

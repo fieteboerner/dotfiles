@@ -1,83 +1,115 @@
+# Path to your oh-my-zsh installation.
 export DOTFILES=$HOME/.dotfiles
-export ZSH=$DOTFILES/zsh
-
-# display how long all tasks over 10 seconds take
+export ZSH=$DOTFILES/zsh/oh-my-zsh
+autoload -U zmv
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="cloud"
+ZSH_CUSTOM=$DOTFILES/zsh/custom
 export REPORTTIME=10
 
-[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+#Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# define the code directory
-# This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/code ]]; then
-    export CODE_DIR=~/code
-fi
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# source all .zsh files inside of the zsh/ directory
-for config ($ZSH/**/*.zsh) source $config
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-if [[ -a ~/.localrc ]]; then
-    source ~/.localrc
-fi
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# initialize autocomplete
-autoload -U compinit
-compinit
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
 
-for config ($ZSH/**/*completion.sh) source $config
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
-export EDITOR='nvim'
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-export PATH=/usr/local/bin:$PATH
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
 
-# add /usr/local/sbin
-if [[ -d /usr/local/sbin ]]; then
-    export PATH=/usr/local/sbin:$PATH
-fi
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# adding path directory for custom scripts
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+	artisan 
+	bower
+	composer
+	django
+	git
+	laravel
+	npm
+	pip
+	python
+	sublime
+	sudo
+	tmux
+	ubuntu
+	vagrant
+	zsh-syntax-highlighting
+)
+
+# User configuration
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:"/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin:/usr/lib/dart/bin/"
+export IBUS_ENABLE_SYNC_MODE=1
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+export EDITOR='vim'
+
 export PATH=$DOTFILES/bin:$PATH
 
-# check for custom bin directory and add to path
-if [[ -d ~/bin ]]; then
-    export PATH=~/bin:$PATH
-fi
+# export ARCHFLAGS="-arch x86_64"
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# install rbenv
-if hash rbenv 2>/dev/null; then
-    eval "$(rbenv init -)"
-fi
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ll='ls -alh'
 
-if [[ -d ~/.rvm ]]; then
-    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-    source ~/.rvm/scripts/rvm
-fi
-
-# alias git to hub
-if hash hub 2>/dev/null; then
-    eval "$(hub alias -s)"
-fi
-
-# source nvm
-export NVM_DIR=~/.nvm
-
-if hash brew 2>/dev/null; then
-    source $(brew --prefix nvm)/nvm.sh
-    source `brew --prefix`/etc/profile.d/z.sh
-fi
+# override key bindings
+bindkey -e
+bindkey -r "^[[5~"
+bindkey -r "^[[6~"
+bindkey "${key[PageUp]}" history-beginning-search-backward
+bindkey "${key[PageDown]}" history-beginning-search-forward
+bindkey "${key[Up]}" up-line-or-history
+bindkey "${key[Down]}" down-line-or-history
 
 
-# Base16 Shell
-# if [ -z "$THEME" ]; then
-    export THEME="base16-chalk"
-# fi
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
-fi
+zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/my_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-source $BASE16_SHELL
+export PERL5LIB="/home/fieteborner/eclipse/ums/lib"
 
+[[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
