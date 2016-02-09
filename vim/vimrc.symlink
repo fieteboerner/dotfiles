@@ -20,6 +20,7 @@ set expandtab
 syntax on
 
 "colorscheme desert
+set t_Co=256
 colorscheme atom-dark-256
 
 "-------Search-------"
