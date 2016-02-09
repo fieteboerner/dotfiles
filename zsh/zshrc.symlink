@@ -110,6 +110,6 @@ bindkey "${key[Down]}" down-line-or-history
 
 zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/my_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-export PERL5LIB="/home/fieteborner/eclipse/ums/lib"
+export PERL5LIB="/home/fieteborner/eclipse/ums-svn/lib"
 
 [[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
