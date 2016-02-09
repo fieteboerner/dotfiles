@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 
 source $DOTFILES/vim/plugins.vim
 
-set number
+set nonumber
 set autoindent
 set foldmethod=indent
 set nofoldenable
@@ -20,12 +20,11 @@ set expandtab
 syntax on
 
 "colorscheme desert
-colorscheme atom-dark-256
 
 "-------Search-------"
 set incsearch
 
-"-------------Split Management--------------"
+"-------Split Management-------"
 set splitbelow                              "Make splits default to below...
 set splitright                              "And to the right. This feels more natural.
 
@@ -40,6 +39,14 @@ augroup autosourcing
         autocmd!
         autocmd BufWritePost .vimrc source %
 augroup END
+
+"-------Visuals-------"
+colorscheme atom-dark-256
+set t_CO=256
+
+hi LineNr ctermbg=bg
+set foldcolumn=2
+hi foldcolumn ctermbg=bg
 
 
 "setting up tmp directories for swp files
@@ -58,3 +65,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " ctrl+n toggles nerd tree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeHijackNetrw = 0
+"/
+"/ Greplace 
+"/
+set grepprg=ag                  "Ag for search

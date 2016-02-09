@@ -8,6 +8,8 @@ call vundle#begin()
 	Plugin 'scrooloose/nerdtree'
     Plugin 'tpope/vim-vinegar'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'rking/ag.vim'
+    Plugin 'skwp/greplace.vim'
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
 "Plugin 'Valloric/YouCompleteMe'

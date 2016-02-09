@@ -92,3 +92,4 @@ buffer & split
 	b[0-9]+			- change to buffer \d
 	^w|			- set current split in fullscreen
 	^w=			- set all splits in equal size
+    ^wo         - set current buffer to fullscreen

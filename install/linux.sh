@@ -28,7 +28,7 @@ echo "Update system packages"
 sudo apt-get upgrade -y
 
 echo "Installing system packages"
-sudo apt-get install -y ffmpeg vlc apache2 php5 php5-sqlite php5-xdebug mariadb-server php5-mysql openssh-server phpmyadmin sqlite3 npm nodejs dkms gimp git-core gpick gzip imagemagick keepassx needrestart inkscape oracle-java8-installer scribus language-pack-de language-pack-gnome-de laptop-detect lm-sensors make meld google-chrome-stable gparted markdown mysql-workbench nmap vim zsh screenruler steam thunderbird thunderbird-locale-de vagrant wireshark pavucontrol ubuntu-restricted-extras virtualbox-5.0 nautilus-dropbox clementine djmount libreoffice-l10n-de pidgin pidgin-encryption htop php5-ldap nodejs-legacy spotify-client sqliteman sublime-text-installer subversion sshfs tmux cmake python-dev exuberant-ctags
+sudo apt-get install -y ffmpeg vlc apache2 php5 php5-sqlite php5-xdebug mariadb-server php5-mysql openssh-server phpmyadmin sqlite3 npm nodejs dkms gimp git-core gpick gzip imagemagick keepassx needrestart inkscape oracle-java8-installer scribus language-pack-de language-pack-gnome-de laptop-detect lm-sensors make meld google-chrome-stable gparted markdown mysql-workbench nmap vim zsh screenruler steam thunderbird thunderbird-locale-de vagrant wireshark pavucontrol ubuntu-restricted-extras virtualbox-5.0 nautilus-dropbox clementine djmount libreoffice-l10n-de pidgin pidgin-encryption htop php5-ldap nodejs-legacy spotify-client sqliteman sublime-text-installer subversion sshfs tmux cmake python-dev exuberant-ctags silversearcher-ag
 
 # virtualbox
 echo "Adding user to vboxusers group"
