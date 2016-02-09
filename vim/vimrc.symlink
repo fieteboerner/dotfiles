@@ -1,12 +1,46 @@
+set nocompatible              " be iMproved, required
+
+source $DOTFILES/vim/plugins.vim
+
 set number
 set autoindent
 set foldmethod=indent
 set nofoldenable
 set clipboard+=unnamed
 
+" size of a hard tabstop
+set tabstop=4
+" size of an "indent"
+set shiftwidth=4
+" a combination of spaces and tabs are used to simulate tab stops at a width
+" other than the (hard)tabstop
+set softtabstop=4
+set smarttab
+set expandtab
 syntax on
 
-colorscheme desert
+"colorscheme desert
+colorscheme atom-dark-256
+
+"-------Search-------"
+set incsearch
+
+"-------------Split Management--------------"
+set splitbelow                              "Make splits default to below...
+set splitright                              "And to the right. This feels more natural.
+
+"We'll set simpler mappings to switch between splits.
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-H> <C-W><C-H>
+nmap <C-L> <C-W><C-L>
+
+"-------Auto-Command-------"
+augroup autosourcing
+        autocmd!
+        autocmd BufWritePost .vimrc source %
+augroup END
+
 
 "setting up tmp directories for swp files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -16,20 +50,11 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [LEN=%L]
 "set laststatus=2
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-	Plugin 'VundleVim/Vundle.vim'
-	Plugin 'powerline/powerline'
-	Plugin 'scrooloose/nerdtree'
-"Plugin 'c9s/perlomni.vim'
-"Plugin 'c9s/cpan.vim'
-"Plugin 'Valloric/YouCompleteMe'
-call vundle#end()            " required
-filetype plugin indent on    " required
-
+"unmap <C-a>
+"-------Plugins-------"
+"/
+"/ NERDTree
+"/
 " ctrl+n toggles nerd tree
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeHijackNetrw = 0
