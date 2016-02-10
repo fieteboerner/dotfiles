@@ -1,37 +1,40 @@
-navigation
-	^e - down
-	^y - up
+#### navigation
+	`^e`	- down
+	`^y`	- up
 
-	^f - page down (forward)
-	^b - page up (backward)
-	
-	H - move cursor to top
-	M - move cursor to middle
-	L - move cursor to bottom
+	`^f`	- page down (forward)
+	`^b`	- page up (backward)
 
-	^/0 - move to beginning of line
-	$   - move to end of line
-	I/A - move to beginning/end of line and insert
-	o/O - insert new line below/above and insert
+	`H`		- move cursor to top
+	`M`		- move cursor to middle
+	`L`		- move cursor to bottom
 
-	gg - go top of file
-	G - go to bottom of file
+	`^/0`	- move to beginning of line
+	`$`		- move to end of line
+	`I/A`	- move to beginning/end of line and insert
+	`o/O`	- insert new line below/above and insert
 
-text objects
+	`gg`	- go top of file
+	`G`		- go to bottom of file
+
+#### ext objects
 	w - beginning of next word
+    b - beginning of word
 	e - end of word
+    ge - end of previous word
 	s - sentences
 	p - paragraphs
 	t - tags
+    :help word-motions
 
-motions
+#### motions
 	a - all
 	i - in
 	t - 'til
 	f - find forward
 	F - find backward
 
-commands
+#### commands
 	d   - delete
 	c   - delete and enable insert
 	y   - copy (yank)
@@ -44,8 +47,12 @@ commands
 	D   - delete until end of line
 	C   - delete until end of line and enter insert mode
 	p/P - paste below/above
+	r	- replace one character
+	R	- enter replace mode
+	x	- delete one character (under cursor)
+	X	- delete one character (before cursor)
 
-combination
+#### combination
 	diw - delete inside word (deletes current wird under cursor)
 	caw - same like above + enter insert mode
 	yaw - copy in word
@@ -56,10 +63,10 @@ combination
 	vi" - selects all in "
 
 
-dot command
+#### dot command
 	. - repeats last motion
 
-macro
+#### macro
 	q{register}
 	commands ... do things
 	q
@@ -67,27 +74,27 @@ macro
 	@{register} - execute macro
 
 
-stuff
+#### stuff
 	m{register} - create a mark in file
 	`{register} - jump to mark {register}
 
 	^a - increments next int
 
 
-:commands
+#### :commands
 	:split [filename] - split window horizontally and open file
 	:vsplit [filename] - split window vertically and open file
 	:ls - show current buffers
 
-tabs
+#### tabs
 	tabedit [filename] 	- open file in new tab
 	tabclose 		    - close current tab
     gt                  - go to next tab
     gT                  - go to previous tab
     [0-9]+gt            - go to specific tab
-buffer & split
+#### buffer & split
 	bd 			- buffer delete close all files
-	bp, ^^, ^6	- buffer previous 
+	bp, ^^, ^6	- buffer previous
 	ls			- list all buffers
 	b[0-9]+			- change to buffer \d
 	^w|			- set current split in fullscreen

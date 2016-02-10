@@ -1,32 +1,83 @@
 set nocompatible              " be iMproved, required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source $DOTFILES/vim/plugins.vim
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => User Interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
 set nonumber
 set autoindent
-set foldmethod=indent
-set nofoldenable
-set clipboard+=unnamed
+set smartindent
+set autoread								" read files if changed on filesystem
+set ttyfast									" faster rendering
+set encoding=utf8
 
-" size of a hard tabstop
-set tabstop=4
-" size of an "indent"
-set shiftwidth=4
-" a combination of spaces and tabs are used to simulate tab stops at a width
-" other than the (hard)tabstop
-set softtabstop=4
-set smarttab
-set expandtab
-syntax on
+"-------Visuals-------"
+set title                                   " set terminal title
+colorscheme atom-dark-256
+set t_CO=256
 
-"colorscheme desert
+hi LineNr ctermbg=bg
+set foldcolumn=2                            " set foldcolumn for left padding    
+hi foldcolumn ctermbg=bg
+
+"-------command line--------"
+set wildmenu								" enhanced command line completion
+set hidden									" current buffer can be put into background
+set showcmd									" show incomplete commands
+set noshowmode								" don't show which mode disabled for PowerLine
+set wildmode=list:longest 					" complete files like a shell
+
+"-------tab stops-------"
+set tabstop=4								" size of a hard tabstop
+set shiftwidth=4							" size of an indent
+set softtabstop=4							" a combination of spaces and tabs are used to simulate tabstops at a width
+
+"-------code folding-------"
+set foldmethod=syntax                       " fold based on indent
+set foldnestmax=10                          " deepest fold is 10 levels
+set nofoldenable                            " don't fold by default
+set foldlevel=1
+
+"-------line wrapping-------"
+set wrap                                    " turn on line wrapping
+set wrapmargin=8                            " wrap lines when coming within n characters from side
+set linebreak                               " set soft wrapping
+set showbreak=…                             " show ellipsis at breaking
 
 "-------Search-------"
-set incsearch
+set incsearch                               " start search by typing
+set showmatch                               " show matching braces
 
 "-------Split Management-------"
-set splitbelow                              "Make splits default to below...
-set splitright                              "And to the right. This feels more natural.
+set splitbelow                              " Make splits default to below...
+set splitright                              " And to the right. This feels more natural.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"-------Auto-Command-------"
+augroup autosourcing
+
+    "reload .vimrc
+    autocmd!
+    autocmd BufWritePost .vimrc source %
+
+augroup END
+
+augroup fileType
+
+    "-------file type specific-------"
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
+    autocmd FileType markdown,textile setlocal textwidth=0 wrapmargin=0 wrap spell
+
+augroup END
 
 "We'll set simpler mappings to switch between splits.
 nmap <C-J> <C-W><C-J>
@@ -34,38 +85,21 @@ nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
-"-------Auto-Command-------"
-augroup autosourcing
-        autocmd!
-        autocmd BufWritePost .vimrc source %
-augroup END
-
-"-------Visuals-------"
-colorscheme atom-dark-256
-set t_CO=256
-
-hi LineNr ctermbg=bg
-set foldcolumn=2
-hi foldcolumn ctermbg=bg
-
 
 "setting up tmp directories for swp files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" enables statusbar
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [LEN=%L]
-"set laststatus=2
-
-"unmap <C-a>
-"-------Plugins-------"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "/
 "/ NERDTree
 "/
-" ctrl+n toggles nerd tree
+"ctrl+n toggles nerd tree
 map <C-n> :NERDTreeToggle<CR>
-let NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 0				"disable highjacking filebrowser
 "/
 "/ Greplace 
 "/
-set grepprg=ag                  "Ag for search
+set grepprg=ag                  " Ag for search
