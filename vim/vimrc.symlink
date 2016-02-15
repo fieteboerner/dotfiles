@@ -109,3 +109,7 @@ let NERDTreeHijackNetrw = 0				"disable highjacking filebrowser
 "/ Greplace 
 "/
 set grepprg=ag                  " Ag for search
+"/
+"/ CtrlP 
+"/
+let g:ctrlp_show_hidden = 1					"enable hidden files
