@@ -1,5 +1,9 @@
 set nocompatible              " be iMproved, required
 
+if empty($DOTFILES)
+	let $DOTFILES = '/home/fieteborner/.dotfiles'
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -15,6 +19,7 @@ set smartindent
 set autoread								" read files if changed on filesystem
 set ttyfast									" faster rendering
 set encoding=utf8
+let mapleader = ','							" replaces / as default 
 
 "-------Visuals-------"
 set title                                   " set terminal title
@@ -64,29 +69,30 @@ set splitright                              " And to the right. This feels more 
 "-------Auto-Command-------"
 augroup autosourcing
 
-    "reload .vimrc
+    "reload .vimrc on save
     autocmd!
     autocmd BufWritePost .vimrc source %
 
 augroup END
 
+"-------file type specific-------"
 augroup fileType
 
-    "-------file type specific-------"
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
     autocmd FileType markdown,textile setlocal textwidth=0 wrapmargin=0 wrap spell
+    autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
 
 augroup END
 
-"We'll set simpler mappings to switch between splits.
+" We'll set simpler mappings to switch between splits.
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
 
-"setting up tmp directories for swp files
+" setting up tmp directories for swp files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
