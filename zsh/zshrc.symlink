@@ -113,3 +113,4 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
 export PERL5LIB="/home/fieteborner/eclipse/ums-svn/lib"
 
 [[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
+[[ -e "$DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
