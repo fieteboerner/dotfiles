@@ -136,3 +136,5 @@
 	tool = meld
 [rebase]
 	instructionFormat = "[%an - %ar] %s"
+[http]
+	sslVerify = false
