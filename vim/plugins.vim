@@ -10,6 +10,8 @@ call vundle#begin()
     Plugin 'ctrlpvim/ctrlp.vim'             " file browser
     Plugin 'rking/ag.vim'                   " directory serch
     Plugin 'skwp/greplace.vim'              " directory replace
+	Plugin 'msanders/snipmate.vim'			" add snippet funtionality
+	Plugin 'tpope/vim-surround'				" surrounding control 's' and 'S' to operate (rename, delete, add) with parentheses, HTML tags ...
     "Plugin 'terryma/vim-multiple-cursors'   "multiple cursors
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
