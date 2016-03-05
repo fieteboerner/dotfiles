@@ -30,3 +30,8 @@ echo "Linking .zshrc"
 ZSH_DST=$HOME/.zshrc
 link $DOTFILES/zsh/zshrc.symlink $ZSH_DST
 
+echo "Linking .tmux.conf"
+TMUX_DST=$HOME/.tmux.conf
+link $DOTFILES/tmux/tmux.conf.symlink $TMUX_DST
+
+

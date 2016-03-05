@@ -13,22 +13,46 @@ source $DOTFILES/vim/plugins.vim
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
-set nonumber
+"set nonumber
+set number
+nnoremap <leader>n :set number!<cr>			"toggle number
+set relativenumber
+nnoremap <leader>rn :set relativenumber!<cr>	"toggle relative number
 set autoindent
 set smartindent
-set autoread								" read files if changed on filesystem
+set autoread								" read files if changed on file system
 set ttyfast									" faster rendering
 set encoding=utf8
 let mapleader = ','							" replaces / as default 
 
+" unmap arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <PageUp> <Nop>
+noremap <PageDown> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
 "-------Visuals-------"
+set cursorline
+hi CursorLine cterm=NONE ctermbg=236
+" toggle cursor line
+nnoremap <leader>cl :set cursorline!<cr>
 set title                                   " set terminal title
 colorscheme atom-dark-256
 set t_CO=256
+set scrolloff=2								" minimum lines above/below cursor
+set list listchars=tab:»·,trail:·			" show extra space characters
 
 hi LineNr ctermbg=bg
-set foldcolumn=2                            " set foldcolumn for left padding    
-hi foldcolumn ctermbg=bg
+"set foldcolumn=2                            " set foldcolumn for left padding    
+" hi foldcolumn ctermbg=bg
 
 "-------command line--------"
 set wildmenu								" enhanced command line completion
@@ -57,10 +81,17 @@ set showbreak=…                             " show ellipsis at breaking
 "-------Search-------"
 set incsearch                               " start search by typing
 set showmatch                               " show matching braces
+set hlsearch								" show all search occurrences
+" toggle current highlighting
+noremap <leader>l	:set hlsearch!<CR>
 
 "-------Split Management-------"
 set splitbelow                              " Make splits default to below...
 set splitright                              " And to the right. This feels more natural.
+
+"-------spelling------"
+set complete+=kspell						" enable dictionary completion if spelling is enabled
+map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
