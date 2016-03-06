@@ -98,14 +98,16 @@ export PATH=$DOTFILES/bin:$PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -alh'
 
+# enable vim mode
+bindkey -v
 # override key bindings
-bindkey -e
+# bindkey -e
 bindkey -r "^[[5~"
 bindkey -r "^[[6~"
 bindkey "${key[PageUp]}" history-beginning-search-backward
 bindkey "${key[PageDown]}" history-beginning-search-forward
-bindkey "${key[Up]}" up-line-or-history
-bindkey "${key[Down]}" down-line-or-history
+# # bindkey "${key[Up]}" up-line-or-history
+# bindkey "${key[Down]}" down-line-or-history
 
 
 zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/my_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'

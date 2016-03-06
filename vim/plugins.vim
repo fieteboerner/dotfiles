@@ -14,7 +14,10 @@ call vundle#begin()
 	Plugin 'tpope/vim-surround'				" surrounding control 's' and 'S' to operate (rename, delete, add) with parentheses, HTML tags ...
 	Plugin 'tpope/vim-repeat'				" enables repeat of plugin action not only built in action
 	Plugin 'tpope/vim-commentary'			" gc for toggle comment selection
+	Plugin 'tpope/vim-fugitive'				" git integration
 	Plugin 'christoomey/vim-system-copy'	" cp can copy to system clipboard (xsel needed on linux)
+	Plugin 'easymotion/vim-easymotion'		" better moving in files
+	Plugin 'vim-ruby/vim-ruby'				" ruby support (omni, ... )
 
 	Plugin 'kana/vim-textobj-user'			" base plugin for textobjects
 	Plugin 'kana/vim-textobj-line'			" textobject line - l

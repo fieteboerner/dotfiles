@@ -25,8 +25,10 @@
 	* gf	- go to file under cursor
 	* ]]	- next section (depending on current filetype) (php next function)
 	* [[	- previous section
-	* }}	- next paragraph (blank line)
-	* {{	- previous paragraph
+	* }		- next paragraph (blank line)
+	* {		- previous paragraph
+	* }}	- next block
+	* {{	- previous block
 
 	* 0		- front of line
 	* ^		- first non-blank character of line
@@ -88,7 +90,7 @@
 	* yaw - copy in word
 	* yi) - copy all text inside parantheses (brackets)
 	* da[ - delete all text inclusive brackets
-	* dt_ - detele til _
+	* dt_ - detele til "_"
 	* va" - selects all in " and double quotes itself
 	* vi" - selects all in "
 
@@ -109,6 +111,7 @@
 	* `{register} - jump to mark {register}
 
 	* ^a - increments next int
+	* ^x - decrease next int
 
 
 ## :commands
