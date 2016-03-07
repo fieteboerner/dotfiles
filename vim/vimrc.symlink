@@ -173,3 +173,8 @@ set grepprg=ag							" Ag for search
 "/ CtrlP 
 "/
 let g:ctrlp_show_hidden = 1				"enable hidden files
+"/
+"/ easymotion
+"/
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
