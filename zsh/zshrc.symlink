@@ -99,9 +99,9 @@ export PATH=$DOTFILES/bin:$PATH
 alias ll='ls -alh'
 
 # enable vim mode
-bindkey -v
-# override key bindings
-# bindkey -e
+# bindkey -v
+# override key bindings (emacs) (emacs)
+bindkey -e
 bindkey -r "^[[5~"
 bindkey -r "^[[6~"
 bindkey "${key[PageUp]}" history-beginning-search-backward
