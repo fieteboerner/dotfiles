@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh installation.
+export TERM="xterm-256color"
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/oh-my-zsh
 autoload -U zmv

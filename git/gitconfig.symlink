@@ -137,4 +137,4 @@
 [rebase]
 	instructionFormat = "[%an - %ar] %s"
 [http]
-	sslVerify = false
+	sslVerify = true
