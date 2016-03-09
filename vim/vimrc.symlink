@@ -121,6 +121,15 @@ noremap <leader>/	:set hlsearch!<CR>
 " toggle spell checking
 map <leader>sp :setlocal spell! spelllang=en_us<CR>
 
+" open .vimrc in new tab
+map <leader>vrc :tabe ~/.vimrc<CR>
+
+" open vim cheat sheet in new tab
+map <leader>vcs :tabe ~/.dotfiles/vim/cheat-sheet.md<CR>
+
+" open .zshrc in new tab
+map <leader>zrc :tabe ~/.zshrc<CR>
+
 " toggle list characters
 noremap <leader>l :set list!<CR>
 
@@ -178,3 +187,8 @@ let g:ctrlp_show_hidden = 1				"enable hidden files
 "/
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
+"/
+"/ taglist
+"/
+" toggle taglist of open buffers
+map  <Leader>tl :TlistToggle<CR>

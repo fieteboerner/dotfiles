@@ -1,4 +1,5 @@
 # Vim Cheat Sheet
+> Fiete Börner
 
 ## navigation
 	* `^e`	- down
@@ -23,7 +24,7 @@
 	* `G`	- go to bottom of file
 	* #G	- go to line #
 	* gf	- go to file under cursor
-	* ]]	- next section (depending on current filetype) (php next function)
+	* ]]	- next section (depending on current file type) (php next function)
 	* [[	- previous section
 	* }		- next paragraph (blank line)
 	* {		- previous paragraph
@@ -57,7 +58,7 @@
 	* t - 'til
 	* f - find forward
 	* F - find backward
-	* / - find next sequenze
+	* / - find next sequence
 
 ## commands
 	* I/A		- move to beginning/end of line and insert
@@ -85,10 +86,10 @@
 	* yy  - copy line
 
 ## combination
-	* diw - delete inside word (deletes current wird under cursor)
+	* diw - delete inside word (deletes current under cursor)
 	* caw - same like above + enter insert mode
 	* yaw - copy in word
-	* yi) - copy all text inside parantheses (brackets)
+	* yi) - copy all text inside parentheses (brackets)
 	* da[ - delete all text inclusive brackets
 	* dt_ - detele til "_"
 	* va" - selects all in " and double quotes itself
@@ -164,13 +165,13 @@
 
 ## spell checking
 	* :setlocal spell! spelllang=en_us
-	* ]s	- Gehe zum nächsten falschen Wort
-	* [s	- Gehe zum vorherigen falschen Wort
-	* zg	- Fügt das Wort unter dem Cursor dem Wörterbuch hinzu, das in der Variable spellfile steht.
-	* zG	- Speichert Wort unter Cursor in interner Wortliste, diese geht nach dem Schließen von Vim verloren
-	* zw	- Fügt das Wort als falsch der Wörterbuchdatei aus der spellfile-Variable hinzu
-	* zW	- Speichert Wort als falsch in interner Wortliste
-	* z=	- Bietet eine Auswahl von Korrekturvorschlägen an
+	* ]s	- go to next misspelling
+	* [s	- go to previous misspelling
+	* zg	- add the current misspelling to the dictonary in spellfile variable
+	* zG	- add current word to internal word list (all changes are lost after closing vim)
+	* zw	- add current word as misspelled to the dictonary in spellfile variable
+	* zW	- add current word as misspelled to internal word list
+	* z=	- show a list of possible ment words
 	* zug	- zuw zuG zuW	Löscht das Wort unter dem Cursor aus der entsprechenden Liste
 
 
@@ -183,8 +184,8 @@
 	* d'a		- delete all from cursor to (including) marked line
 
 ## plug ins
-	*	vim surrounding
-	*	ysiw"	- set current word in " qoutes
+	*	**vim surrounding**
+	*	ysiw"	- set current word in " quotes
 	*	ys$"	- set from cursor to line end in " quotes
 	*	VS<html>- set the <html> tag around current line
 	*	cs"'	- change " quotes to ' quotes
