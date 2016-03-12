@@ -24,6 +24,9 @@ call vundle#begin()
 	Plugin 'kana/vim-textobj-line'			" textobject line - l
 	Plugin 'kana/vim-textobj-entire'		" textobject entire document - e
 	Plugin 'kana/vim-textobj-indent'		" textobject indent - i
+
+	" languages
+	Plugin 'kchmck/vim-coffee-script'		" coffeescript support
 	" Plugin 'terryma/vim-multiple-cursors'	"multiple cursors
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
