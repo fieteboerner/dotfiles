@@ -13,6 +13,9 @@ if [ "$(uname)" == "Linux" ]; then
 
 fi
 
+echo "Setting up dev utilities"
+source install/dev-tools.sh
+
 echo "Configure vim"
 source install/vim.sh
 
