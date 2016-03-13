@@ -19,6 +19,7 @@ call vundle#begin()
 	Plugin 'easymotion/vim-easymotion'		" better moving in files
 	Plugin 'vim-ruby/vim-ruby'				" ruby support (omni, ... )
 	Plugin 'vim-scripts/taglist.vim'		" list tags of file
+	Plugin 'dhruvasagar/vim-table-mode'		" table plugin
 
 	Plugin 'kana/vim-textobj-user'			" base plugin for textobjects
 	Plugin 'kana/vim-textobj-line'			" textobject line - l

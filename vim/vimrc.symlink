@@ -192,3 +192,9 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 "/
 " toggle taglist of open buffers
 map  <Leader>tl :TlistToggle<CR>
+
+"/
+"/ vim table
+"/
+" for md syntax
+let g:table_mode_corner="|"
