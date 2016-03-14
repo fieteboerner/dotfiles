@@ -52,7 +52,7 @@ The git info shown on the `RPROMPT` displays the current branch name, and whethe
 
 [`link.sh`](install/link.sh) will symlink the XDG configuration directory into your home directory and will then create symlinks for `.vimrc` and `.vim`.
 
-Inside of [`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `nvim`, defaulting to Neovim for editor tasks, such as git commit messages. Additionally, I have aliased `vim` in [`aliases.zsh`](zsh/aliases.zsh)
+Inside of [`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `vim`, defaulting to Vim for editor tasks, such as git commit messages. Additionally, I have aliased `vim` in [`aliases.zsh`](zsh/custom/aliases.zsh)
 
 vim should just work once the correct plugins are installed. To install the plugins, you will need to open vim in the following way:
 
