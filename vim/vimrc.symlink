@@ -48,6 +48,7 @@ set wildmode=list:longest 					" complete files like a shell
 set tabstop=4								" size of a hard tabstop
 set shiftwidth=4							" size of an indent
 set softtabstop=4							" a combination of spaces and tabs are used to simulate tabstops at a width
+set noexpandtab								" tabs are tabs (no spaces)
 
 "-------code folding-------"
 set foldmethod=syntax                       " fold based on indent
@@ -89,9 +90,12 @@ augroup END
 "-------file type specific-------"
 augroup fileType
 
+    autocmd!
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
-    autocmd FileType markdown,textile setlocal textwidth=0 wrapmargin=0 wrap spell
+    autocmd FileType markdown
+		\ setlocal textwidth=0 wrapmargin=0 wrap spell |
+		\ TableModeEnable
     autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
 
 augroup END
