@@ -100,6 +100,8 @@ augroup fileType
 		\ setlocal textwidth=0 wrapmargin=0 wrap spell |
 		\ TableModeEnable
     autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
+    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
 augroup END
 
@@ -207,3 +209,7 @@ map  <Leader>tl :TlistToggle<CR>
 "/
 " for md syntax
 let g:table_mode_corner="|"
+"/
+"/ vim-php-namespace
+"/
+
