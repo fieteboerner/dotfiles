@@ -6,7 +6,7 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source $DOTFILES/vim/plugins.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -210,6 +210,11 @@ map  <Leader>tl :TlistToggle<CR>
 " for md syntax
 let g:table_mode_corner="|"
 "/
-"/ vim-php-namespace
+"/ vdebug
 "/
+let g:vdebug_options = { 'break_on_open': 0, 'ide_key': 'PHPSTORM' }    " no stop on first line
 
+"/
+"/ phpqa
+"/
+let g:phpqa_open_loc = 0
