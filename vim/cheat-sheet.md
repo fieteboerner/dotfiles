@@ -224,6 +224,27 @@ Marks
 | ``a`        | jump to cursor position of mark a                                |
 | `d'a`       | delete all from cursor to (including) marked line                |
 
+Folding
+-------
+
+| Key    | Description                                                                 |
+|--------|-----------------------------------------------------------------------------|
+| `zi`   | toggle folding                                                              |
+| `zj`   | jump to next folding                                                        |
+| `zk`   | jump to previous folding                                                    |
+| `za`   | toggles current folded section                                              |
+| `zA`   | toggles recursively current folded section                                  |
+| `zc`   | close fold                                                                  |
+| `zC`   | recursivly close current fold                                               |
+| `zo`   | open fold                                                                   |
+| `zO`   | recursively open current fold                                               |
+| `zM`   | close all folds                                                             |
+| `zR`   | open all folds                                                              |
+| `zv`   | open all folds to show the current cursor                                   |
+| `zMzv` | close all folds and open only all necessary folds to see the current cursor |
+
+folded sections behaves like normal lines
+
 Miscellaneous
 -------------
 
