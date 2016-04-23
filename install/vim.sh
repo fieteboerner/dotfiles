@@ -2,6 +2,7 @@
 
 echo "Creating vim temp directory"
 mkdir -p ~/.vim-tmp
+mkdir -p ~/.vim/undo
 
 echo "Installing vundle"
 mkdir -p ~/vim/bundle

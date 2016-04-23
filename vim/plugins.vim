@@ -18,17 +18,18 @@ call vundle#begin()
     Plugin 'easymotion/vim-easymotion'      " better moving in files <leader>f
     Plugin 'vim-scripts/taglist.vim'        " list tags of file
     Plugin 'dhruvasagar/vim-table-mode'     " table plugin
+    Plugin 'terryma/vim-multiple-cursors'   " multiple cursor support
 
     " textobjects
     Plugin 'kana/vim-textobj-user'          " base plugin for textobjects
     Plugin 'kana/vim-textobj-line'          " textobject line - l
     Plugin 'kana/vim-textobj-entire'        " textobject entire document - e
     Plugin 'kana/vim-textobj-indent'        " textobject indent - i
-
+    Plugin 'scrooloose/syntastic'           " linter
     " languages
     Plugin 'joonty/vdebug.git'              " debugger for php, ruby, python
-    "   ruby
     Plugin 'kchmck/vim-coffee-script'        " coffeescript support
+    "   ruby
     Plugin 'vim-ruby/vim-ruby'               " ruby support (omni, ... )
     "   php
     Plugin 'StanAngeloff/php.vim'           " PHP autocomplete, syntax, ...
