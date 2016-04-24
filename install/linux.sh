@@ -61,6 +61,7 @@ sudo usermod -a -G wireshark $USER
 # zsh
 echo "Configuring zsh as default shell"
 sudo chsh -s $(which zsh) $USER
+sudo chmod -R 755 /usr/local/share/zsh/site-functions/
 
 # hosts
 echo "Adding 'lin' as alias for localhost in hosts file"
