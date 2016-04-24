@@ -2,7 +2,10 @@
 
 # installing dev tools <non debian packages>
 echo "Installing dev tools"
-sudo npm install -g bower gulp jslint jshint
+sudo mkdir $(npm config get prefix)/lib/node_modules
+# fix permission
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+npm install -g bower gulp jslint jshint
 sudo gem install sass
 # composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
