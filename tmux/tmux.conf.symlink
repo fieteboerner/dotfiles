@@ -107,7 +107,7 @@ set -g mode-bg colour33
 set -g window-status-format "#[fg=colour248] #I #W "
 set -g window-status-current-format "#[fg=colour15,noreverse,bg=colour235] #I #W "
 
-set-option -g status-right " %A - %d.%m.%y %I:%M:%S "
+set-option -g status-right " %A - %d.%m.%y %H:%M:%S "
 
 # show hostname, date, time, and battery in right status bar
  #[fg=red]#(battery discharging)#[default]#(battery charging)'

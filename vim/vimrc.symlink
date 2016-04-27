@@ -6,7 +6,7 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source $DOTFILES/vim/plugins.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -21,6 +21,7 @@ set smartindent
 set autoread								" read files if changed on file system
 set ttyfast									" faster rendering
 set encoding=utf8
+set noesckeys                               " speedup O (insert line above)
 
 
 "-------Visuals-------"
@@ -48,6 +49,7 @@ set wildmode=list:longest 					" complete files like a shell
 set tabstop=4								" size of a hard tabstop
 set shiftwidth=4							" size of an indent
 set softtabstop=4							" a combination of spaces and tabs are used to simulate tabstops at a width
+set expandtab								" tabs are spaces
 
 "-------code folding-------"
 set foldmethod=syntax                       " fold based on indent
@@ -64,7 +66,7 @@ set showbreak=…                             " show ellipsis at breaking
 "-------Search-------"
 set incsearch                               " start search by typing
 set showmatch                               " show matching braces
-set hlsearch								" show all search occurrences -> see key mapping for toggle
+set nohlsearch								" don't show all occurrences of search term -> see mapping for toggle
 
 "-------Split Management-------"
 set splitbelow                              " Make splits default to below...
@@ -72,6 +74,8 @@ set splitright                              " And to the right. This feels more 
 
 "-------spelling------"
 set complete+=kspell						" enable dictionary completion if spelling is enabled
+" get spell files from http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+set spelllang=en_us                         " default en language, for toggling language see mappings
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -89,16 +93,24 @@ augroup END
 "-------file type specific-------"
 augroup fileType
 
+    autocmd!
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
-    autocmd FileType markdown,textile setlocal textwidth=0 wrapmargin=0 wrap spell
+    autocmd FileType markdown
+		\ setlocal textwidth=0 wrapmargin=0 wrap spell |
+		\ TableModeEnable
     autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
+    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
 augroup END
 
 " setting up tmp directories for swp files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" set undo dir
+set undofile
+set undodir=~/.vim/undo
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Key Mappings
@@ -119,7 +131,9 @@ nnoremap <leader>cl :set cursorline!<cr>
 noremap <leader>/	:set hlsearch!<CR>
 
 " toggle spell checking
-map <leader>sp :setlocal spell! spelllang=en_us<CR>
+map <leader>sp :setlocal spell!<CR>
+map <leader>spd :setlocal spelllang=de<CR>
+map <leader>spe :setlocal spelllang=en_us<CR>
 
 " open .vimrc in new tab
 map <leader>vrc :tabe ~/.vimrc<CR>
@@ -139,7 +153,10 @@ nmap <C-K> <C-W><C-K>
 nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
-" center cursor
+" keeps selection on indent
+vmap < <gv
+vmap > >gv
+
 nmap G Gzz
 nmap n nzz
 nmap N Nzz
@@ -198,3 +215,39 @@ map  <Leader>tl :TlistToggle<CR>
 "/
 " for md syntax
 let g:table_mode_corner="|"
+"/
+"/ vdebug
+"/
+let g:vdebug_options = { 'break_on_open': 0, 'ide_key': 'PHPSTORM' }    " no stop on first line
+
+"/
+"/ phpqa
+"/
+let g:phpqa_open_loc = 0
+
+"/
+"/ multiple cursors
+"/
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+
+"/
+"/ Syntastic
+"/
+" general
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs=1
+
+" JavaScript
+let g:syntastic_javascript_checkers = ['jshint']
+

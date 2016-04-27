@@ -4,99 +4,104 @@ Vim Cheat Sheet
 Navigation
 ----------
 
-| Key     | Description                                                       |
-|---------|-------------------------------------------------------------------|
-| `^e`    | down                                                              |
-| `^y`    | up                                                                |
-| `^f`    | page down (forward)                                               |
-| `^b`    | page up (backward)                                                |
-| `^d`    | page down (forward)                                               |
-| `^u`    | page up (backward)                                                |
-| `H`     | move cursor to top                                                |
-| `M`     | move cursor to middle                                             |
-| `L`     | move cursor to bottom                                             |
-| `zz`    | show current line in middle of screen                             |
-| `^/0`   | move to beginning of line                                         |
-| `$`     | move to end of line                                               |
-| `gg`    | go top of file                                                    |
-| `G`     | go to bottom of file                                              |
-| `#G`    | go to line #                                                      |
-| `gf`    | go to file under cursor                                           |
-| `]]`    | next section (depending on current file type) (php next function) |
-| `[[`    | previous section                                                  |
-| `}`     | next paragraph (blank line)                                       |
-| `{`     | previous paragraph                                                |
-| `}}`    | next block                                                        |
-| `{{`    | previous block                                                    |
-| `0`     | front of line                                                     |
-| `^`     | first non-blank character of line                                 |
-| `$`     | end of line                                                       |
-| `%`     | matching brackets/parent/tag                                      |
-| `<C-i>` | jump to previous file/cursor location                             |
-| `<C-o>` | jump to nwxt file/cursor location                                 |
+| Key     | Description                                         |
+|---------|-----------------------------------------------------|
+| `^e`    | scroll line down                                    |
+| `^y`    | scroll line up                                      |
+| `^f`    | scroll page forward                                 |
+| `^b`    | scroll page upwards                                 |
+| `^d`    | scroll (half) page downwards                        |
+| `^u`    | scroll (half) page upwards                          |
+| `H`     | move cursor to top of screen                        |
+| `M`     | move cursor to middle of screen                     |
+| `L`     | move cursor to bottom of screen                     |
+| `zz`    | show current line in middle of screen               |
+| `zt`    | show current line on top of screen                  |
+| `zb`    | show current line on bottom of screen               |
+| `gg`    | go top of file                                      |
+| `G`     | go to bottom of file                                |
+| `#G`    | go to line #                                        |
+| `gf`    | go to file under cursor                             |
+| `%`     | jump between matching bracket/brace/parentheses/tag |
+| `<C-i>` | jump to previous file/cursor location               |
+| `<C-o>` | jump to next file/cursor location                   |
 
 Manipulation
 ------------
 
-| Key   | Description                                             |
-|-------|---------------------------------------------------------|
-| `I/A` | move to beginning/end of line and insert                |
-| `o/O` | insert new line below/above and insert                  |
-| `x/X` | delete char under/before cursor                         |
-| `s/S` | delete char/line under cursor and end enter insert mode |
-| `D`   | delete until end of line                                |
-| `C`   | delete until end of line and enter insert mode          |
-| `p/P` | paste below/above                                       |
-| `r`   | replace one character                                   |
-| `R`   | enter replace mode                                      |
-| `dd`  | delete/cut line                                         |
-| `yy`  | copy line                                               |
+| Key   | Description                                                |
+|-------|------------------------------------------------------------|
+| `I/A` | move to beginning/end of line and enter insert  mode       |
+| `o/O` | insert new line below/above and enter insert mode          |
+| `x/X` | delete char under/before cursor                            |
+| `s/S` | delete char/line under cursor and end enter insert mode    |
+| `D`   | delete from cursor until end of line                       |
+| `C`   | delete from cursor until end of line and enter insert mode |
+| `p/P` | paste (before/below)/(after/above) cursor                  |
+| `r`   | replace one character with the following character         |
+| `R`   | enter replace mode                                         |
+| `dd`  | delete/cut line                                            |
+| `yy`  | copy line                                                  |
+
+Commands
+--------
+
+| Key  | Description                |
+|------|----------------------------|
+| `d`  | delete                     |
+| `c`  | delete and enable insert   |
+| `y`  | copy (yank)                |
+| `v`  | visual select              |
+| `V`  | visual line select         |
+| `^v` | visual column/block select |
+| `gu` | lower case                 |
+| `gU` | upper case                 |
+| `g~` | toggle case                |
+| `g?` | rot13                      |
+
+Word, Object and left right Motion
+----------------------------------
+
+:help word-motions
+
+:help object-motions
+
+:help left-right-motion
+
+| Key  | Description                                                       |
+|------|-------------------------------------------------------------------|
+| `w`  | beginning of next word                                            |
+| `b`  | beginning of word                                                 |
+| `e`  | end of word                                                       |
+| `ge` | end of previous word                                              |
+| `s`  | sentences                                                         |
+| `p`  | paragraphs                                                        |
+| `t`  | tags                                                              |
+| `]]` | next section (depending on current file type) (php next function) |
+| `[[` | previous section                                                  |
+| `}`  | next paragraph (blank line)                                       |
+| `{`  | previous paragraph                                                |
+| `0`  | front of line                                                     |
+| `^`  | first non-blank character of line                                 |
+| `$`  | to end of line                                                    |
+| `l`  | line (plugin)                                                     |
+| `i`  | indent (plugin)                                                   |
+| `e`  | entire document (plugin)                                          |
 
 Text Objects
 ------------
 
-:help word-motions
-
-| Key  | Description              |
-|------|--------------------------|
-| `w`  | beginning of next word   |
-| `b`  | beginning of word        |
-| `e`  | end of word              |
-| `ge` | end of previous word     |
-| `s`  | sentences                |
-| `p`  | paragraphs               |
-| `t`  | tags                     |
-| `l`  | line (plugin)            |
-| `i`  | indent (plugin)          |
-| `e`  | entire document (plugin) |
-
-Motions
--------
+:help text-objects
 
 | Key | Description        |
 |-----|--------------------|
 | `a` | all                |
 | `i` | in                 |
-| `t` | 'til               |
+| `t` | 'un**t**il         |
 | `f` | find forward       |
 | `F` | find backward      |
 | `/` | find next sequence |
 
-Commands
---------
-
-| Key  | Description              |
-|------|--------------------------|
-| `d`  | delete                   |
-| `c`  | delete and enable insert |
-| `y`  | copy (yank)              |
-| `v`  | visually select          |
-| `V`  | visually line select     |
-| `^v` | visually column select   |
-| `gu` | lower case movement      |
-| `gU` | upper case movement      |
-| `g~` | toggle case of movement  |
-| `g?` | rot13 of movement        |
 
 
 Combination (Examples)
@@ -109,14 +114,15 @@ Combination (Examples)
 | `aw`  | copy in word                                      |
 | `yi)` | copy all text inside parentheses (brackets)       |
 | `da[` | delete all text inclusive brackets                |
-| `dt_` | detele til "_"                                    |
+| `dt_` | delete un**t**il `_`                              |
 | `va"` | selects all in " and double quotes itself         |
 | `vi"` | selects all in "                                  |
 
 
-dot command
+Dot command
 -----------
 
+The `.` command repeats the last change made in normal mode.
 
 | Key | Description        |
 |-----|--------------------|
@@ -133,36 +139,17 @@ Record macro:
 
 `@{register}` "execute macro
 
-
-Stuff
------
-
-| Key           | Description             |
-|---------------|-------------------------|
-| `m{register}` | create a mark in file   |
-| `{register}`  | jump to mark {register} |
-| `^a`          | increments next int     |
-| `^x`          | decrease next int       |
-
-
-:commands
----------
-
-| Key                | Description                             |
-|--------------------|-----------------------------------------|
-| :split [filename]  | split window horizontally and open file |
-| :vsplit [filename] | split window vertically and open file   |
-| :ls                | show current buffers                    |
-
 Completion
 ----------
 
+The completion mode works only in insert mode.
+
 | Key      | Description                                                  |
 |----------|--------------------------------------------------------------|
-| `^p`     | previous completion (tag) (disabled if ctrlp is installed)   |
+| `^p`     | previous completion (tag)                                    |
 | `^n`     | next completion                                              |
-| `^x^f`   | complete filepath                                            |
-| `^x^o`   | complete prgramming lanuguage specific tag (omni-completion) |
+| `^x^f`   | complete file path                                           |
+| `^x^o`   | complete programming language specific tag (omni-completion) |
 | `^x^l`   | line completion                                              |
 | `^x^p`   | previous in context                                          |
 | `^x^n`   | next in context                                              |
@@ -173,55 +160,57 @@ Completion
 Buffer & Split
 --------------
 
-| Key        | Description                      |
-|------------|----------------------------------|
-| `bd`       | buffer delete close all files    |
-| `bp,^^,^6` | buffer previous                  |
-| `ls`       | list all buffers                 |
-| `b[0-9]+`  | change to buffer \d              |
-| `^w`       | set current split in fullscreen  |
-| `^w=`      | set all splits in equal size     |
-| `^wo`      | set current buffer to fullscreen |
+| Key                | Description                             |
+|--------------------|-----------------------------------------|
+| `:bd`              | buffer delete close all files           |
+| `:bp,^^,^6`        | buffer previous                         |
+| `:ls`              | list all buffers                        |
+| `:b[0-9]+`         | change to buffer \d                     |
+| :split [filename]  | split window horizontally and open file |
+| :vsplit [filename] | split window vertically and open file   |
+| `^w`               | set current split in full screen        |
+| `^w=`              | set all splits in equal size            |
+| `^wo`              | set current buffer to full screen       |
 
 Register
 --------
 
-| Key    | Description              |
-|--------|--------------------------|
-| :reg   | list all registers       |
-| `"<#>` | change to register #     |
-| `"ayy` | yank line to register a  |
-| `"bp`  | paste register b content |
+| Key    | Description                |
+|--------|----------------------------|
+| `:reg` | list all registers         |
+| `"<#>` | change to register #       |
+| `"ayy` | yank line to register a    |
+| `"bp`  | paste register `b` content |
 
 Tabs
 ----
 
-| Key                    | Description                         |
-|------------------------|-------------------------------------|
-| :tabnew <filename>     | open tab and create new file        |
-| :tabe[dit] <filename>  | open tab and edit file              |
-| `gt` or :tabn[ext]     | next tab                            |
-| `gT` or :tabp[revious] | previous tab                        |
-| `[0-9]+gt`             | go to specific tab                  |
-| tabm[ove] #            | move tab to position (zero-index)   |
-| tabo[nly]              | close all other tabs except current |
-| tabc[lose]             | close current tab                   |
+| Key                      | Description                         |
+|--------------------------|-------------------------------------|
+| `:tabnew <filename>`     | open tab and create new file        |
+| `:tabe[dit] <filename>`  | open tab and edit file              |
+| `:tabm[ove] #`           | move tab to index # (zero-index)    |
+| `:tabo[nly]`             | close all other tabs except current |
+| `:tabc[lose]`            | close current tab                   |
+| `gt` or `:tabn[ext]`     | next tab                            |
+| `gT` or `:tabp[revious]` | previous tab                        |
+| `#gt`                    | go to specific tab                  |
 
 Spell Checking
 --------------
-´:setlocal spell! spelllang=en_us`
+
+`:setlocal spell! spelllang=en_us`
 
 | Key   | Description                                                                     |
 |-------|---------------------------------------------------------------------------------|
 | `]s`  | go to next misspelling                                                          |
 | `[s`  | go to previous misspelling                                                      |
-| `zg`  | add the current misspelling to the dictonary in spellfile variable              |
+| `zg`  | add the current misspelling to the dictionary in spell file variable            |
 | `zG`  | add current word to internal word list (all changes are lost after closing vim) |
-| `zw`  | add current word as misspelled to the dictonary in spellfile variable           |
+| `zw`  | add current word as misspelled to the dictionary in spell file variable         |
 | `zW`  | add current word as misspelled to internal word list                            |
-| `z=`  | show a list of possible ment words                                              |
-| `zug` | zuw zuG zuW	Löscht das Wort unter dem Cursor aus der entsprechenden Liste       |
-
+| `z=`  | show a list of possible meant words                                             |
+| `zug` | `zuw zuG zuW` deletes the word under cursor and from spell list                 |
 
 Marks
 -----
@@ -235,8 +224,40 @@ Marks
 | ``a`        | jump to cursor position of mark a                                |
 | `d'a`       | delete all from cursor to (including) marked line                |
 
+Folding
+-------
+
+| Key    | Description                                                                 |
+|--------|-----------------------------------------------------------------------------|
+| `zi`   | toggle folding                                                              |
+| `zj`   | jump to next folding                                                        |
+| `zk`   | jump to previous folding                                                    |
+| `za`   | toggles current folded section                                              |
+| `zA`   | toggles recursively current folded section                                  |
+| `zc`   | close fold                                                                  |
+| `zC`   | recursivly close current fold                                               |
+| `zo`   | open fold                                                                   |
+| `zO`   | recursively open current fold                                               |
+| `zM`   | close all folds                                                             |
+| `zR`   | open all folds                                                              |
+| `zv`   | open all folds to show the current cursor                                   |
+| `zMzv` | close all folds and open only all necessary folds to see the current cursor |
+
+folded sections behaves like normal lines
+
+Miscellaneous
+-------------
+
+| Key  | Description            |
+|------|------------------------|
+| `u`  | undo                   |
+| `U`  | undo last changed line |
+| `^r` | redo                   |
+| `^a` | increments next int    |
+| `^x` | decrease next int      |
+
 Plugins
---------
+-------
 
 ### Vim Surrounding
 
