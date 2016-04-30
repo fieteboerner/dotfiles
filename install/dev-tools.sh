@@ -1,5 +1,14 @@
 #!/bin/bash
 
+echo "Installing dev-tools"
+
+if isLinux; then
+   sudo apt-get install npm
+elif isOsX; then
+    sudo brew install npm
+else
+    exit
+fi
 # installing dev tools <non debian packages>
 echo "Installing dev tools"
 sudo mkdir $(npm config get prefix)/lib/node_modules
@@ -8,6 +17,7 @@ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
 npm install -g bower gulp jslint jshint
 sudo gem install sass
 # composer
+echo "Installing Composer"
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 # php-cs-fixer
 sudo wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer

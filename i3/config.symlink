@@ -1,0 +1,211 @@
+# mod windows key
+set $mod Mod4
+set $DOTFILES "/home/fieteborner/.dotfiles"
+
+# font
+font pango: System San Francisco Display 10
+
+# thin borders
+hide_edge_borders both
+
+# drag windows
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# lock screen
+bindsym Control+Mod1+l exec i3lock --color 475263
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation use |
+bindsym $mod+plus split h
+
+# split in vertical orientation
+bindsym $mod+minus split v
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4 "
+set $workspace5 "5 "
+set $workspace6 "6 "
+set $workspace7 "7 "
+set $workspace8 "8 "
+set $workspace9 "9 "
+set $workspace10 "10 "
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+# toggle between last two workspaces
+bindsym $mod+t workspace back_and_forth
+bindsym Control+Mod1+Left workspace prev
+bindsym Control+Mod1+Right workspace next
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec $DOTFILES/i3/scripts/exit_menu
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h resize grow width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# resize mode
+bindsym $mod+r mode "resize"
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+# bar
+bar {
+    status_command i3blocks -c $DOTFILES/i3/i3blocks.conf
+	colors {
+		background $bg-color
+	    	separator #757575
+		#                  border             background         text
+		focused_workspace  $bg-color          $bg-color          $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
+}
+
+
+# sticky window
+bindsym $mod+Shift+s sticky toggle
+
+# floating windows
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Gnome-tweak-tool"] floating enable
+for_window [class="Keepassx"] floating enable
+
+# default workspaces
+assign [class="Thunderbird"] $workspace1
+assign [class="google-chrome"] $workspace2
+assign [class="spotify"] $workspace10
+
+# workspace default monitors
+workspace $workspace1 output DVI-I-2
+workspace $workspace2 output DVI-I-2
+workspace $workspace3 output DVI-I-2
+workspace $workspace4 output DVI-I-2
+workspace $workspace5 output DVI-I-2
+workspace $workspace6 output DVI-I-2
+workspace $workspace9 output DVI-I-2
+workspace $workspace10 output DVI-I-2
+
+# key-bindings
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+# media control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+# program shortcuts
+bindsym XF86Calculator exec gnome-calculator
+bindsym XF86HomePage exec x-www-browser
+bindsym $mod+Shift+f exec x-www-browser
+bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Shift+q kill
+# close with alt+f4
+bindsym Mod1+XF86AudioMicMute kill
+bindsym Print exec --no-startup-id gnome-screenshot
+bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
+
+# startup
+exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
+#exec_always --no-startup-id xrandr --output HDMI-0 --off --output DVI-I-1 --off --output DVI-I-0 --off --output DVI-I-3 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-2 --mode 1920x1080 --pos 1920x0 --rotate normal
+#exec --no-startup-id spotify
+#exec --no-startup-id skype
+
+# Keys
+exec_always xmodmap -e "clear lock" #disable caps lock switch
+exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+
+# toggle keymaps with alt + shift
+exec --no-startup-id setxkbmap -option grp:alt_shift_toggle de,us
+# disable standby if fullscreen is active
+exec --no-startup-id python $DOTFILES/i3/scripts/disable-standby-fs.py
+# enables fade trasitions
+exec --no-startup-id compton -f
+# edit server for TextAid Plogin in Chrome
+exec --no-startup-id ~/edit-server.pl &
