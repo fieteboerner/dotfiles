@@ -2,9 +2,9 @@
 
 echo "Installing dev-tools"
 
-if isLinux; then
+if [ $OS == "linux" ]; then
    sudo apt-get install npm
-elif isOsX; then
+elif [ $OS == "osx" ]; then
     sudo brew install npm
 else
     exit
