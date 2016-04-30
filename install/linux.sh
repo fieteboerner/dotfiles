@@ -21,7 +21,7 @@ fi
 
 # arc gnome theme
 if [ ! -f /etc/apt/sources.list.d/arc-theme.list ]; then
-    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.10/ /' >> /etc/apt/sources.list.d/arc-theme.list"
+    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
     wget -q -O - http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_15.10/Release.key | sudo apt-key add -
 fi
 
@@ -70,3 +70,4 @@ sudo sh -c "echo 127.0.0.1 lin >> /etc/hosts"
 # theme
 echo "Setting up shell theme"
 gsettings set org.gnome.desktop.interface gtk-theme "Arc"
+gsettings set org.gnome.desktop.wm.preferences theme "Arc"
