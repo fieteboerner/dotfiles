@@ -1,25 +1,50 @@
 #!/bin/bash
 
-echo "Installing dotfiles"
+source install/helper.sh
 
-echo "Initializing submodule(s)"
-git submodule update --init --recursive
+echo "Installing dotfiles"
 
 if [ "$(uname)" == "Linux" ]; then
     echo "Running on Linux"
+    OS="linux"
 
-    echo "Update and install system packages"
-    source install/linux.sh
-
+elif [ "$(uname)" == "Darwin" ]; then
+    echo "Running on Mac OS X"
+    OS="osx"
+else
+    echo "Unknown Operating System"
+    exit
 fi
 
-echo "Setting up dev utilities"
-source install/dev-tools.sh
+ACTION=${1:-"ALL"}
 
-echo "Configure vim"
-source install/vim.sh
-
-echo "Setting up dotfiles"
-source install/link.sh
+case $ACTION in
+    "ALL")
+        source install/base.sh
+        source install/zsh.sh
+        source install/vim.sh
+        source install/dev-tools.sh
+        source install/i3.sh
+        ;;
+    "base")
+        source install/base.sh
+        ;;
+    "zsh")
+        source install/zsh.sh
+        ;;
+    "vim")
+        source install/vim.sh
+        ;;
+    "dev-tools")
+        source install/dev-tools.sh
+        ;;
+    "i3")
+        source install/i3.sh
+        ;;
+    *)
+        echo "unknown ACTION"
+        exit
+        ;;
+esac
 
 echo "Done."
