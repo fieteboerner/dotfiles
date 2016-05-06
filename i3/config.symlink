@@ -96,7 +96,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3
-bindsym $mod+Shift+e exec $DOTFILES/i3/scripts/exit_menu
+bindsym $mod+Shift+e exec /home/fieteborner/.dotfiles/i3/scripts/i3exit
 
 
 # resize window (you can also use the mouse for that)
