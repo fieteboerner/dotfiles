@@ -152,6 +152,9 @@ bindsym $mod+Shift+s sticky toggle
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Gnome-tweak-tool"] floating enable
 for_window [class="Keepassx"] floating enable
+for_window [class="Blueman-manager"] floating enable
+# Remmina main window
+for_window [title="Zugriff auf entfernte Arbeitsflächen"] floating enable
 
 # default workspaces
 assign [class="Thunderbird"] $workspace1
