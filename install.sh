@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source install/helper.sh
+export DOTFILES=$HOME/.dotfiles
+source $DOTFILES/install/helper.sh
 
 echo "Installing dotfiles"
 
@@ -20,26 +21,26 @@ ACTION=${1:-"ALL"}
 
 case $ACTION in
     "ALL")
-        source install/base.sh
-        source install/zsh.sh
-        source install/vim.sh
-        source install/dev-tools.sh
-        source install/i3.sh
+        source $DOTFILES/install/base.sh
+        source $DOTFILES/install/zsh.sh
+        source $DOTFILES/install/vim.sh
+        source $DOTFILES/install/dev-tools.sh
+        source $DOTFILES/install/i3.sh
         ;;
     "base")
-        source install/base.sh
+        source $DOTFILES/install/base.sh
         ;;
     "zsh")
-        source install/zsh.sh
+        source $DOTFILES/install/zsh.sh
         ;;
     "vim")
-        source install/vim.sh
+        source $DOTFILES/install/vim.sh
         ;;
     "dev-tools")
-        source install/dev-tools.sh
+        source $DOTFILES/install/dev-tools.sh
         ;;
     "i3")
-        source install/i3.sh
+        source $DOTFILES/install/i3.sh
         ;;
     *)
         echo "unknown ACTION"
