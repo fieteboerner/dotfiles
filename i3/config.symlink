@@ -42,7 +42,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+space floating toggle
+bindsym $mod+t floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space focus mode_toggle
@@ -85,7 +85,7 @@ bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 # toggle between last two workspaces
-bindsym $mod+t workspace back_and_forth
+# bindsym $mod+t workspace back_and_forth
 bindsym Control+Mod1+Left workspace prev
 bindsym Control+Mod1+Right workspace next
 
@@ -192,7 +192,7 @@ bindsym $mod+Shift+q kill
 # close with alt+f4
 bindsym Mod1+XF86AudioMicMute kill
 bindsym Print exec --no-startup-id gnome-screenshot
-bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
 
 # startup
 exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
