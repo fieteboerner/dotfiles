@@ -8,6 +8,10 @@ my $sink=$ARGV[0] || 0;
 ## that argument will be the volume threshold we are checking
 my $volume_limit=$ARGV[1]||undef;
 
+my @activeSinks = ($sink);
+push(@activeSinks, split(/\n/, qx(pactl list short sinks | grep RUNNING | grep -Po \'^\\d+\')));
+@activeSinks = uniq(@activeSinks);
+
 ## Run the pactl command and save the output in 
 ## ther filehandle $fh
 open(my $fh, '-|', 'pactl list sinks');
@@ -16,19 +20,31 @@ open(my $fh, '-|', 'pactl list sinks');
 ## this means we read the info for each sink as a single "line".
 $/="\n\n";
 
+my $sinkVolume;
+my @runningVolumes = ();
 ## Go through the pactl output
 while (<$fh>) {
     ## If this is the sink we are interested in
-    if (/#$sink/) {
-        ## Extract the current colume of this sink
-        /Volume:.*?(\d+)%/;
-        my $volume=$1;
-        print "$volume%\n";
-        print "$volume%\n";
-        ## If the script has been run with a second argument,
-        ## check whether the volume is above or below that
-        if ($volume_limit and $volume > $volume_limit) {
-            print  "#FF0000";
+    foreach my $currentSink (@activeSinks){
+        if (/#$currentSink/) {
+            ## extract the current colume of this sink
+            /Volume:.*?(\d+)%/;
+            my $volume=$1 . '%';
+            
+            $sinkVolume = $volume if($currentSink == $sink);
+            push(@runningVolumes, $volume) if($currentSink != $sink);
         }
-    }#
+    }
+}
+my $output = "$sinkVolume";
+$output .= " (" . join(' ', @runningVolumes) . ")" if (@runningVolumes);
+print $output . "\n";
+print $output . "\n";
+if ($volume_limit and $sinkVolume > $volume_limit) {
+    print  "#ff0000";
+}
+
+sub uniq {
+    my %seen;
+    grep !$seen{$_}++, @_;
 }

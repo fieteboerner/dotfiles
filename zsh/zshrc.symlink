@@ -1,4 +1,6 @@
 # Path to your oh-my-zsh installation.
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
 export TERM="xterm-256color"
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/oh-my-zsh
@@ -27,7 +29,7 @@ export REPORTTIME=10
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"

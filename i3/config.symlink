@@ -1,6 +1,6 @@
 # mod windows key
 set $mod Mod4
-set $DOTFILES "/home/fieteborner/.dotfiles"
+set $DOTFILES "$HOME/.dotfiles"
 
 # font
 font pango: System San Francisco Display 10
@@ -42,7 +42,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+space floating toggle
+bindsym $mod+t floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space focus mode_toggle
@@ -85,7 +85,7 @@ bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 # toggle between last two workspaces
-bindsym $mod+t workspace back_and_forth
+# bindsym $mod+t workspace back_and_forth
 bindsym Control+Mod1+Left workspace prev
 bindsym Control+Mod1+Right workspace next
 
@@ -96,7 +96,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3
-bindsym $mod+Shift+e exec $DOTFILES/i3/scripts/exit_menu
+bindsym $mod+Shift+e exec /home/fieteborner/.dotfiles/i3/scripts/i3exit
 
 
 # resize window (you can also use the mouse for that)
@@ -152,6 +152,9 @@ bindsym $mod+Shift+s sticky toggle
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Gnome-tweak-tool"] floating enable
 for_window [class="Keepassx"] floating enable
+for_window [class="Blueman-manager"] floating enable
+# Remmina main window
+for_window [title="Zugriff auf entfernte Arbeitsflächen"] floating enable
 
 # default workspaces
 assign [class="Thunderbird"] $workspace1
@@ -184,12 +187,12 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym XF86Calculator exec gnome-calculator
 bindsym XF86HomePage exec x-www-browser
 bindsym $mod+Shift+f exec x-www-browser
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 # close with alt+f4
 bindsym Mod1+XF86AudioMicMute kill
 bindsym Print exec --no-startup-id gnome-screenshot
-bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
+bindsym $mod+space exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
 
 # startup
 exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
