@@ -15,7 +15,9 @@ setw -g mode-keys vi
 # disable mouse
 # setw -g mode-mouse off
 # enable better scrolling
-set -g mode-mouse on
+# set -g mode-mouse on
+set -g mouse-utf8 on
+set -g mouse on
 
 # decrease command delay (increases vim responsiveness)
 set -sg escape-time 1

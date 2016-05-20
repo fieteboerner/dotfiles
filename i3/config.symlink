@@ -17,9 +17,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# lock screen
-bindsym Control+Mod1+l exec i3lock --color 475263
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -95,9 +92,26 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# exit i3
-bindsym $mod+Shift+e exec /home/fieteborner/.dotfiles/i3/scripts/i3exit
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (d) shutdown
 
+mode "$mode_system" {
+    bindsym l exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit reboot, mode "default"
+    bindsym d exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+x mode "$mode_system"
+
+# exit i3
+bindsym $mod+Shift+e exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit logout, mode "default"
+# lock screen
+bindsym Control+Mod1+l exec --no-startup-id /bin/bash $DOTFILES/i3/scripts/i3exit lock, mode "default"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
