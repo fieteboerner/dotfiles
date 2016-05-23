@@ -1,0 +1,7 @@
+Description=Launch twmn notification daemon
+
+[Service]
+ExecStart=/usr/bin/twmnd
+
+[Install]
+WantedBy=default.target

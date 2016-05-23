@@ -1,0 +1,7 @@
+Description=Auto suspend aftser specific time
+
+[Service]
+ExecStart=/home/fiete/.dotfiles/i3/scripts/autosuspend.sh
+
+[Install]
+WantedBy=default.target

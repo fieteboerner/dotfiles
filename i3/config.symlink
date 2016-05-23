@@ -223,6 +223,11 @@ exec --no-startup-id setxkbmap -option grp:alt_shift_toggle de,us
 # disable standby if fullscreen is active
 exec --no-startup-id python $DOTFILES/i3/scripts/disable-standby-fs.py
 # enables fade trasitions
-exec --no-startup-id compton -f
+exec --no-startup-id compton -f --config /dev/null --backend glx --vsync opengl-swc --paint-on-overlay
+# https://github.com/chjj/compton/issues/249
+# compton --config /dev/null --backend glx
+# compton --config /dev/null --backend glx --paint-on-overlay
+# compton --config /dev/null
+# compton --config /dev/null --paint-on-overlay
 # edit server for TextAid Plogin in Chrome
 exec --no-startup-id ~/edit-server.pl &

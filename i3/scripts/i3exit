@@ -20,14 +20,14 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        systemctl suspend
+        sudo systemctl suspend
         #lock && dbus-send --system --print-reply \
         #     --dest="org.freedesktop.UPower" \
         #         /org/freedesktop/UPower \
         #         org.freedesktop.UPower.Suspend
         ;;
     hibernate)
-        systemctl hibernate
+        sudo systemctl hibernate
         #lock && dbus-send --system --print-reply \
         #     --dest="org.freedesktop.UPower" \
         #         /org/freedesktop/UPower \
@@ -35,12 +35,12 @@ case "$1" in
         ;;
     reboot)
         showMenu "reboot"
-        systemctl reboot
+        sudo systemctl reboot
         #sudo /sbin/reboot
         ;;
     shutdown)
         showMenu "shutdown"
-        systemctl poweroff
+        sudo systemctl poweroff
         #sudo /sbin/halt
         ;;
     *)

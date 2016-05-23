@@ -106,8 +106,8 @@ augroup fileType
 augroup END
 
 " setting up tmp directories for swp files
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " set undo dir
 set undofile
 set undodir=~/.vim/undo
