@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 
 if empty($DOTFILES)
-	let $DOTFILES = '$HOME/.dotfiles'
+    let $DOTFILES = '$HOME/.dotfiles'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -14,42 +14,44 @@ source $DOTFILES/vim/plugins.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 "set nonumber
-set number									" show line numbers -> see key mapping for toggling
-set relativenumber							" show relative line numbers -> see key mappings for toggling
+set number                                  " show line numbers -> see key mapping for toggling
+set relativenumber                          " show relative line numbers -> see key mappings for toggling
 set autoindent
 set smartindent
-set autoread								" read files if changed on file system
-set ttyfast									" faster rendering
+set autoread                                " read files if changed on file system
+set ttyfast                                 " faster rendering
 set encoding=utf8
 set noesckeys                               " speedup O (insert line above)
+set nocompatible                            " fix arrow key issues in insert mode
+set autochdir                               " change directory to current buffer location
 
 
 "-------Visuals-------"
 let bgColor = 234
-set cursorline								" highlight current line -> see key mapping for toggle
+set cursorline                              " highlight current line -> see key mapping for toggle
 hi CursorLine cterm=NONE ctermbg=236
 set title                                   " set terminal title
 colorscheme atom-dark-256
 set t_CO=256
-set scrolloff=2								" minimum lines above/below cursor
-set list listchars=tab:»·,trail:·			" show extra space characters
+set scrolloff=2                             " minimum lines above/below cursor
+set list listchars=tab:»·,trail:·           " show extra space characters
 
 hi LineNr ctermbg=234
-" set foldcolumn=2                            " set foldcolumn for left padding    
+" set foldcolumn=2                            " set foldcolumn for left padding
 " hi foldcolumn ctermbg=bg
 
 "-------command line--------"
-set wildmenu								" enhanced command line completion
-set hidden									" current buffer can be put into background
-set showcmd									" show incomplete commands
-set noshowmode								" don't show which mode disabled for PowerLine
-set wildmode=list:longest 					" complete files like a shell
+set wildmenu                                " enhanced command line completion
+set hidden                                  " current buffer can be put into background
+set showcmd                                 " show incomplete commands
+set noshowmode                              " don't show which mode disabled for PowerLine
+set wildmode=list:longest                   " complete files like a shell
 
 "-------tab stops-------"
-set tabstop=4								" size of a hard tabstop
-set shiftwidth=4							" size of an indent
-set softtabstop=4							" a combination of spaces and tabs are used to simulate tabstops at a width
-set expandtab								" tabs are spaces
+set tabstop=4                               " size of a hard tabstop
+set shiftwidth=4                            " size of an indent
+set softtabstop=4                           " a combination of spaces and tabs are used to simulate tabstops at a width
+set expandtab                               " tabs are spaces
 
 "-------code folding-------"
 set foldmethod=syntax                       " fold based on indent
@@ -66,14 +68,14 @@ set showbreak=…                             " show ellipsis at breaking
 "-------Search-------"
 set incsearch                               " start search by typing
 set showmatch                               " show matching braces
-set nohlsearch								" don't show all occurrences of search term -> see mapping for toggle
+set nohlsearch                              " don't show all occurrences of search term -> see mapping for toggle
 
 "-------Split Management-------"
 set splitbelow                              " Make splits default to below...
 set splitright                              " And to the right. This feels more natural.
 
 "-------spelling------"
-set complete+=kspell						" enable dictionary completion if spelling is enabled
+set complete+=kspell                        " enable dictionary completion if spelling is enabled
 " get spell files from http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
 set spelllang=en_us                         " default en language, for toggling language see mappings
 
@@ -97,8 +99,8 @@ augroup fileType
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
     autocmd FileType markdown
-		\ setlocal textwidth=0 wrapmargin=0 wrap spell |
-		\ TableModeEnable
+        \ setlocal textwidth=0 wrapmargin=0 wrap spell |
+        \ TableModeEnable
     autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
     autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
     autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
@@ -116,7 +118,7 @@ set undodir=~/.vim/undo
 " => Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let mapleader = ','							" replaces \ as default 
+let mapleader = ','                         " replaces \ as default 
 
 "toggle number
 nnoremap <leader>n :set number!<cr>
@@ -128,7 +130,7 @@ nnoremap <leader>rn :set relativenumber!<cr>
 nnoremap <leader>cl :set cursorline!<cr>
 
 " toggle current highlighting
-noremap <leader>/	:set hlsearch!<CR>
+noremap <leader>/   :set hlsearch!<CR>
 
 " toggle spell checking
 map <leader>sp :setlocal spell!<CR>
@@ -169,6 +171,7 @@ nmap gO O<ESC>j
 
 " unmap arrow keys
 noremap <Up> <Nop>
+
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
@@ -190,15 +193,15 @@ inoremap <PageDown> <Nop>
 "/
 "ctrl+n toggles nerd tree
 map <C-n> :NERDTreeToggle<CR>
-let NERDTreeHijackNetrw = 0				"disable highjacking filebrowser
+let NERDTreeHijackNetrw = 0             "disable highjacking filebrowser
 "/
 "/ Greplace 
 "/
-set grepprg=ag							" Ag for search
+set grepprg=ag                          " Ag for search
 "/
 "/ CtrlP 
 "/
-let g:ctrlp_show_hidden = 1				"enable hidden files
+let g:ctrlp_show_hidden = 1             "enable hidden files
 "/
 "/ easymotion
 "/
@@ -250,4 +253,6 @@ let g:syntastic_enable_signs=1
 
 " JavaScript
 let g:syntastic_javascript_checkers = ['jshint']
-
+" TypeScript
+" to use @Page, @Component, ... in ts files
+let g:syntastic_typescript_tsc_args = '--experimentalDecorators'

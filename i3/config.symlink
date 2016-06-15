@@ -195,8 +195,8 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
 # program shortcuts
 bindsym XF86Calculator exec gnome-calculator
 bindsym XF86HomePage exec x-www-browser
@@ -204,8 +204,8 @@ bindsym $mod+Shift+f exec x-www-browser
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 # close with alt+f4
+bindsym $mod+Print exec --no-startup-id shutter -f
 bindsym Mod1+XF86AudioMicMute kill
-bindsym Print exec --no-startup-id gnome-screenshot
 bindsym $mod+space exec i3-dmenu-desktop --dmenu='rofi -dmenu -i -show run -lines 3 -eh 2 -width 100 -padding 410 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"'
 
 # startup
@@ -220,6 +220,10 @@ exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
 # toggle keymaps with alt + shift
 exec --no-startup-id setxkbmap -option grp:alt_shift_toggle de,us
+# start blutooth applet
+exec --no-startup-id blueman-applet
+# start notification daemon
+exec --no-startup-id twmnd
 # disable standby if fullscreen is active
 exec --no-startup-id python $DOTFILES/i3/scripts/disable-standby-fs.py
 # enables fade trasitions

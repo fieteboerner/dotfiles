@@ -21,27 +21,17 @@ case "$1" in
         ;;
     suspend)
         sudo systemctl suspend
-        #lock && dbus-send --system --print-reply \
-        #     --dest="org.freedesktop.UPower" \
-        #         /org/freedesktop/UPower \
-        #         org.freedesktop.UPower.Suspend
         ;;
     hibernate)
         sudo systemctl hibernate
-        #lock && dbus-send --system --print-reply \
-        #     --dest="org.freedesktop.UPower" \
-        #         /org/freedesktop/UPower \
-        #         org.freedesktop.UPower.Hibernate
         ;;
     reboot)
         showMenu "reboot"
         sudo systemctl reboot
-        #sudo /sbin/reboot
         ;;
     shutdown)
         showMenu "shutdown"
         sudo systemctl poweroff
-        #sudo /sbin/halt
         ;;
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"

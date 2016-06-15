@@ -73,7 +73,7 @@ plugins=(
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:"/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin:/usr/lib/dart/bin/"
+export PATH=$PATH:"/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin:/usr/lib/dart/bin/:$HOME/.npm-packages/bin"
 export IBUS_ENABLE_SYNC_MODE=1
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -124,4 +124,3 @@ export PERL5LIB="/home/fieteborner/eclipse/ums-svn/lib"
 
 [[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
 [[ -e "$DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -e "/usr/bin/ssh-agent" ]] && eval `/usr/bin/ssh-agent -s` > /dev/null
