@@ -23,9 +23,6 @@ mkdir -p ~/.vim/bundle
 cd ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git
 
-echo "Installing vundle plugins"
-vim +PluginInstall +qall
-
 echo "Setting up color scheme"
 mkdir ~/.vim/colors
 cd ~/.vim/colors
@@ -36,6 +33,9 @@ mkdir ~/.vim/spell
 cd ~/.vim/spell
 wget -N http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
 wget -N http://ftp.vim.org/pub/vim/runtime/spell/de.utf-8.spl
+
+echo "Installing vundle plugins"
+vim +PluginInstall +qall
 
 echo "Installing snippets"
 link $DOTFILES/vim/snippets.symlink ~/.vim/snippets
