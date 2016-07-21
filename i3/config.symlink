@@ -222,6 +222,8 @@ exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 exec --no-startup-id setxkbmap -option grp:alt_shift_toggle de,us
 # start blutooth applet
 exec --no-startup-id blueman-applet
+# start network manager applet
+exec --no-startup-id nm-applet
 # start notification daemon
 exec --no-startup-id twmnd
 # disable standby if fullscreen is active
