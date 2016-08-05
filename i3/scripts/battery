@@ -21,7 +21,7 @@ then
             ;;
     esac
 
-    if [ $capacity -lt 101 ]
+    if [ $capacity -lt 151 ]
       then icon=""
     fi
     if [ $capacity -lt 75 ]

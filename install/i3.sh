@@ -9,5 +9,10 @@ if [ $OS == "linux" ]; then
     I3_DST=$HOME/.config/i3/config
     link $DOTFILES/i3/config.symlink $I3_DST
 
+    mkdir -p ~/.config/twmn
+    echo "Setting up twmn config file"
+    I3_DST=$HOME/.config/twmn/twmn.conf
+    link $DOTFILES/i3/twmn.conf $I3_DST
+
     echo "Setup .xinputrc"
 fi
