@@ -66,10 +66,6 @@ if [ $OS == "linux" ]; then
     echo "Setting up shell theme"
     gsettings set org.gnome.desktop.interface gtk-theme "Arc"
     gsettings set org.gnome.desktop.wm.preferences theme "Arc"
-
-    echo "Linking .tmux.conf"
-    TMUX_DST=$HOME/.tmux.conf
-    link $DOTFILES/tmux/tmux.conf.symlink $TMUX_DST
 else
     # check if xcode is installed
     # install brew

@@ -24,6 +24,7 @@ case $ACTION in
         source $DOTFILES/install/base.sh
         source $DOTFILES/install/zsh.sh
         source $DOTFILES/install/vim.sh
+        source $DOTFILES/install/tmux.sh
         source $DOTFILES/install/dev-tools.sh
         source $DOTFILES/install/i3.sh
         ;;
@@ -35,6 +36,9 @@ case $ACTION in
         ;;
     "vim")
         source $DOTFILES/install/vim.sh
+        ;;
+    "tmux")
+        source $DOTFILES/install/tmux.sh
         ;;
     "dev-tools")
         source $DOTFILES/install/dev-tools.sh

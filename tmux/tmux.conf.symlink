@@ -2,6 +2,15 @@
 #  Configuration
 ###########################
 
+
+###########################
+#  Plugins
+###########################
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+
 # use <t_CO> term for pretty colors
 # set -g default-terminal "screen-<t_CO>color"
 set -g default-terminal "screen-256color"
@@ -131,3 +140,6 @@ set -g pane-border-fg colour235
 set -g pane-border-bg black
 set -g pane-active-border-fg green
 set -g pane-active-border-bg black
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
