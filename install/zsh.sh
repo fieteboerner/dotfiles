@@ -21,3 +21,11 @@ git submodule init zsh/custom/plugins/zsh-syntax-highlighting
 echo "Configuring zsh as default shell"
 sudo chsh -s $(which zsh) $USER
 sudo chmod -R 755 /usr/local/share/zsh/site-functions/
+
+echo "Configure Server Flag for Hostname"
+read -p "Is this a server installation? [y/N]: " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+   sudo sh -c "echo 'export ZSH_IS_SERVER=1' >> /etc/profile"
+fi
+
