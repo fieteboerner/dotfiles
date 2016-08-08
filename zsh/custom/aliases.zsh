@@ -20,6 +20,10 @@ alias ll="ls -lFh ${colorflag}"
 alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"
 
+# dev
+alias art="artisan"
+alias tinker="artisan tinker"
+
 # Helpers
 #alias df='df -h' # disk free, in Gigabytes, not bytes
 #alias du='du -h -c' # calculate disk usage for a folder
