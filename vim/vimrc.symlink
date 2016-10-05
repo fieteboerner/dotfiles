@@ -23,7 +23,7 @@ set ttyfast                                 " faster rendering
 set encoding=utf8
 set noesckeys                               " speedup O (insert line above)
 set nocompatible                            " fix arrow key issues in insert mode
-set autochdir                               " change directory to current buffer location
+" set autochdir                               " change directory to current buffer location
 
 
 "-------Visuals-------"
