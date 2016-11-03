@@ -55,11 +55,11 @@ plugins=(
 	artisan 
 	bower
 	composer
-	django
+	docker
+	docker-compose
 	git
 	laravel
 	npm
-	pip
 	python
 	sublime
 	sudo
