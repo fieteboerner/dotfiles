@@ -52,31 +52,24 @@ ENABLE_CORRECTION="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	artisan 
-	bower
 	composer
 	docker
 	docker-compose
 	git
 	laravel
 	npm
-	python
-	sublime
 	sudo
 	tmux
 	ubuntu
-	vagrant
+	yarn
 	zsh-syntax-highlighting
 )
 
 # User configuration
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
 export ANDROID_HOME=/opt/android-sdk/
-export PATH=$PATH:"/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin:/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/"
+export PATH=$PATH:"/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/"
 export IBUS_ENABLE_SYNC_MODE=1
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
