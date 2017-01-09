@@ -113,6 +113,8 @@ bindkey "^[[6~" history-beginning-search-forward
 
 
 # zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/my_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+# zstyle -e ':completion:*:(ssh|scp|sftp):*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
+zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
 
 export PERL5LIB="/home/fieteborner/eclipse/ums-svn/lib"
 
