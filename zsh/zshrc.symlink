@@ -116,8 +116,6 @@ bindkey "^[[6~" history-beginning-search-forward
 # zstyle -e ':completion:*:(ssh|scp|sftp):*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
 zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
 
-export PERL5LIB="/home/fieteborner/eclipse/ums-svn/lib"
-
 [[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
 [[ -e "$DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
