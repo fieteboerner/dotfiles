@@ -32,7 +32,6 @@ set cursorline                              " highlight current line -> see key 
 hi CursorLine cterm=NONE ctermbg=236
 set title                                   " set terminal title
 colorscheme atom-dark-256
-set t_CO=256
 set scrolloff=2                             " minimum lines above/below cursor
 set list listchars=tab:»·,trail:·           " show extra space characters
 
