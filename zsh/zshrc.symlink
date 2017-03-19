@@ -68,6 +68,10 @@ plugins=(
 # User configuration
 
 export ANDROID_HOME=/opt/android-sdk/
+if type ruby > /dev/null; then
+    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+fi
+
 export PATH=$PATH:"/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/"
 export IBUS_ENABLE_SYNC_MODE=1
 
