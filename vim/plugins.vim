@@ -43,6 +43,7 @@ call vundle#begin()
     Plugin 'shawncplus/phpcomplete.vim'     " Improved PHP omni-completion
     Plugin 'joonty/vim-phpqa'               " linter and mess detector ,qa mess ,qc code coverage
 
+    Plugin 't9md/vim-ruby-xmpfilter'
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
 call vundle#end()            " required
