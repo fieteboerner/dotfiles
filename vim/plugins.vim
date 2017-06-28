@@ -5,11 +5,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'           " plugin manager
     Plugin 'Shougo/vimproc.vim'             " enables async progess
-    Plugin 'scrooloose/nerdtree'            " file tree browser
     Plugin 'tpope/vim-vinegar'              " extend netrw (file browsing with -)
-    Plugin 'ctrlpvim/ctrlp.vim'             " file browser
-    Plugin 'rking/ag.vim'                   " directory search
-    Plugin 'skwp/greplace.vim'              " directory replace
+    Plugin 'junegunn/fzf.vim'               " fuzzy file finder
     Plugin 'msanders/snipmate.vim'          " add snippet funtionality
     Plugin 'tpope/vim-surround'             " surrounding control 's' and 'S' to operate (rename, delete, add) with parentheses, HTML tags ...
     Plugin 'tpope/vim-sleuth'               " detect tab/spaces tabwith
