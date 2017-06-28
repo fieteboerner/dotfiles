@@ -27,6 +27,7 @@ case $ACTION in
         source $DOTFILES/install/tmux.sh
         source $DOTFILES/install/dev-tools.sh
         source $DOTFILES/install/i3.sh
+        source $DOTFILES/install/fzf.sh
         ;;
     "base")
         source $DOTFILES/install/base.sh
@@ -45,6 +46,9 @@ case $ACTION in
         ;;
     "i3")
         source $DOTFILES/install/i3.sh
+        ;;
+    "fzf")
+        source $DOTFILES/install/fzf.sh
         ;;
     *)
         echo "unknown ACTION"
