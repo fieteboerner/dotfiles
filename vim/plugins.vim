@@ -7,7 +7,9 @@ call vundle#begin()
     Plugin 'Shougo/vimproc.vim'             " enables async progess
     Plugin 'tpope/vim-vinegar'              " extend netrw (file browsing with -)
     Plugin 'junegunn/fzf.vim'               " fuzzy file finder
-    Plugin 'msanders/snipmate.vim'          " add snippet funtionality
+    Plugin 'garbas/vim-snipmate'            " add snippet funtionality with extends funtionality
+    Plugin 'tomtom/tlib_vim'                " dependency of snipmate
+    Plugin 'MarcWeber/vim-addon-mw-utils'   " dependency of snipmate
     Plugin 'tpope/vim-surround'             " surrounding control 's' and 'S' to operate (rename, delete, add) with parentheses, HTML tags ...
     Plugin 'tpope/vim-sleuth'               " detect tab/spaces tabwith
     Plugin 'tpope/vim-repeat'               " enables repeat of plugin action not only built in action
@@ -27,9 +29,11 @@ call vundle#begin()
     Plugin 'scrooloose/syntastic'           " linter
     " languages
     Plugin 'joonty/vdebug.git'              " debugger for php, ruby, python
-    Plugin 'kchmck/vim-coffee-script'        " coffeescript support
+    Plugin 'kchmck/vim-coffee-script'       " coffeescript support
     "   ruby
-    Plugin 'vim-ruby/vim-ruby'               " ruby support (omni, ... )
+    Plugin 'vim-ruby/vim-ruby'              " ruby support (omni, ... )
+    Plugin 't9md/vim-ruby-xmpfilter'        " code execution inside a ruby file
+    Plugin 'tpope/vim-rails'                " rails helper functions
     " typescript
     Plugin 'leafgarland/typescript-vim'     " typescript syntax highlighting and indentation
     Plugin 'Quramy/tsuquyomi'               " omni-completion for ts
@@ -40,7 +44,6 @@ call vundle#begin()
     Plugin 'shawncplus/phpcomplete.vim'     " Improved PHP omni-completion
     Plugin 'joonty/vim-phpqa'               " linter and mess detector ,qa mess ,qc code coverage
 
-    Plugin 't9md/vim-ruby-xmpfilter'
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
 call vundle#end()            " required
