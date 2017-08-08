@@ -27,7 +27,8 @@ call vundle#begin()
     Plugin 'scrooloose/syntastic'           " linter
     " languages
     Plugin 'joonty/vdebug.git'              " debugger for php, ruby, python
-    Plugin 'kchmck/vim-coffee-script'        " coffeescript support
+    Plugin 'kchmck/vim-coffee-script'       " coffeescript support
+    Plugin 'evanmiller/nginx-vim-syntax'    " 
     "   ruby
     Plugin 'vim-ruby/vim-ruby'               " ruby support (omni, ... )
     " typescript
