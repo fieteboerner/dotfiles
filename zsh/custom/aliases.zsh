@@ -10,6 +10,8 @@ fi
 
 alias tailf="tail -f"
 
+alias nah="git reset --hard;git clean -df;"
+
 # Filesystem aliases
 alias ..='cd ..'
 alias ...='cd ../..'
