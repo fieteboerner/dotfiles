@@ -53,18 +53,18 @@ ENABLE_CORRECTION="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	composer
-	docker
-	docker-compose
 	git
 	laravel
 	npm
 	sudo
-	tmux
-	ubuntu
 	yarn
 	zsh-syntax-highlighting
 )
+[[ -e $(which composer) ]] && plugins+=(composer)
+[[ -e $(which docker) ]] && plugins+=(docker)
+[[ -e $(which docker-compose) ]] && plugins+=(docker-compose)
+[[ -e $(which tmux) ]] && plugins+=(tmux)
+[[ -e $(which apt-get) ]] && plugins+=(ubuntu)
 
 # User configuration
 
