@@ -82,6 +82,7 @@ plugins=(
 	zsh-syntax-highlighting
 )
 [[ -e $(which brew) ]] && plugins+=(osx)
+[[ -e $(which git-flow) ]] && plugins+=(git-flow)
 [[ -e $(which vagrant) ]] && plugins+=(vagrant)
 [[ -e $(which composer) ]] && plugins+=(composer)
 [[ -e $(which docker) ]] && plugins+=(docker)
