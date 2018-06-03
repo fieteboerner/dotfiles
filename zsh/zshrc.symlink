@@ -5,6 +5,7 @@ export TERM="xterm-256color"
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh/oh-my-zsh
 autoload -U zmv
+export DEFAULT_USER=$USER
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -48,24 +49,6 @@ ENABLE_CORRECTION="false"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	laravel
-	npm
-	sudo
-	yarn
-	zsh-syntax-highlighting
-)
-[[ -e $(which composer) ]] && plugins+=(composer)
-[[ -e $(which docker) ]] && plugins+=(docker)
-[[ -e $(which docker-compose) ]] && plugins+=(docker-compose)
-[[ -e $(which tmux) ]] && plugins+=(tmux)
-[[ -e $(which apt-get) ]] && plugins+=(ubuntu)
-
 # User configuration
 
 export ANDROID_HOME=/opt/android-sdk/
@@ -84,6 +67,28 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 [[ -d "$HOME/.rvm/bin" ]] && PATH=$PATH:"$HOME/.rvm/bin"
 [[ -d "$DOTFILES/bin" ]] && PATH=$PATH:"$DOTFILES/bin"
+
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+	git
+	laravel
+	npm
+	sudo
+	yarn
+	zsh-syntax-highlighting
+)
+[[ -e $(which brew) ]] && plugins+=(osx)
+[[ -e $(which vagrant) ]] && plugins+=(vagrant)
+[[ -e $(which composer) ]] && plugins+=(composer)
+[[ -e $(which docker) ]] && plugins+=(docker)
+[[ -e $(which docker-compose) ]] && plugins+=(docker-compose)
+[[ -e $(which tmux) ]] && plugins+=(tmux)
+[[ -e $(which apt-get) ]] && plugins+=(ubuntu)
+
 # export PATH=$PATH:"/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/:$HOME/.local/bin"
 export IBUS_ENABLE_SYNC_MODE=1
 
