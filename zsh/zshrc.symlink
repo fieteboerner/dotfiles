@@ -10,10 +10,14 @@ export DEFAULT_USER=$USER
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="cloud"
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 ZSH_CUSTOM=$DOTFILES/zsh/custom
 export REPORTTIME=10
+
+# Theme options
+SPACESHIP_BATTERY_THRESHOLD=20
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_NODE_SHOW=false
 
 #Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -80,6 +84,7 @@ plugins=(
 	sudo
 	yarn
 	zsh-syntax-highlighting
+	zsh-autosuggestions
 )
 [[ -e $(which brew) ]] && plugins+=(osx)
 [[ -e $(which git-flow) ]] && plugins+=(git-flow)
@@ -138,12 +143,6 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 
 [[ -a "/etc/zsh_command_not_found" ]] && . /etc/zsh_command_not_found
 [[ -e "$DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $DOTFILES/zsh/custom/pluins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-###-tns-completion-start-###
-if [ -f /home/fiete/.tnsrc ]; then 
-    source /home/fiete/.tnsrc 
-fi
-###-tns-completion-end-###
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
