@@ -1,0 +1,15 @@
+
+set surround
+set relativenumber
+set number
+set scrolloff=2
+
+let mapleader = ","
+
+"easy motion
+nmap <leader><leader>f :action KJumpAction<CR>
+nmap <leader><leader>w :action KJumpAction.Word0<CR>
+
+" commentary
+nnoremap gcl :action CommentByLineComment<CR>
+vnoremap gc :<bs><bs><bs><bs><bs>action VimVisualSwapSelections<cr>:action CommentByLineComment<CR>gv
