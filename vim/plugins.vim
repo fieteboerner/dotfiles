@@ -45,6 +45,8 @@ call vundle#begin()
     Plugin 'stephpy/vim-php-cs-fixer'       " analyzes and tries to fix coding standards (PSR-1 and PSR-2) ,pcd|,pcf
     Plugin 'shawncplus/phpcomplete.vim'     " Improved PHP omni-completion
     Plugin 'joonty/vim-phpqa'               " linter and mess detector ,qa mess ,qc code coverage
+    " css
+    Plugin 'gko/vim-coloresque'             " hex color colorizer
 
 "Plugin 'c9s/perlomni.vim'
 "Plugin 'c9s/cpan.vim'
