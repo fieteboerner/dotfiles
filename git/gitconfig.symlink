@@ -6,6 +6,7 @@
     user = fieteboerner
 [init]
     templatedir = ~/.dotfiles/git/templates
+    hooksdir = ~/.dotfiles/git/hooks
 [alias]
     # list all aliases
     la = "!git config -l | grep alias | cut -c 7-"

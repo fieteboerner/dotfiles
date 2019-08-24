@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Prefixes the commit message with the ticket ID found in the current branch name
+# Example: feature/ab-123-save-the world -> AB-123 - 
+
+# Include any branches for which you wish to disable this script
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master development staging test)
+fi
+
+# Include any branches for which you wish to disable this script
+if [ -z "$TICKET_REGEX" ]; then
+  TICKET_REGEX="[A-Z]+-[0-9]+"
+fi
+
+# Get the current branch name and check if it is excluded
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+
+# Get the Ticket Id
+TICKET_ID=$(echo $BRANCH_NAME | grep -Eio $TICKET_REGEX)
+
+# print the commit prefix if it was found and the branch is not excluded
+if [ -n $TICKET_ID ] && ! [ $BRANCH_EXCLUDED -eq 1 ]; then
+  echo "${TICKET_ID^^} - " > $1
+fi
+
+
+
