@@ -8,10 +8,11 @@ hooks=~/.dotfiles/git/hooks
 
 echo "Executing $hook_type hook(s)"
 
+shopt -s nullglob
 for hook in $hooks/*.$hook_type; do
 	echo ""
 	echo "${COLOR_LIGHTPURPLE}Executing ${hook}${COLOR_NONE}"
-	${hook}
+	${hook} "$@"
 	EXIT_CODE=$((${EXIT_CODE} + $?))
 done
 
