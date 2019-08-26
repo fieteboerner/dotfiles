@@ -23,11 +23,11 @@ BRANCH_NAME=$(git symbolic-ref --short HEAD)
 BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
 
 # Get the Ticket Id
-TICKET_ID=$(echo $BRANCH_NAME | grep -Eio $TICKET_REGEX)
+TICKET_ID=$(echo $BRANCH_NAME | grep -Eio $TICKET_REGEX | tr '[:lower:]' '[:upper:]')
 
 # print the commit prefix if it was found and the branch is not excluded
 if [ -n $TICKET_ID ] && ! [ $BRANCH_EXCLUDED -eq 1 ]; then
-  echo "${TICKET_ID^^} - $(cat $1)" > $1
+  echo "$TICKET_ID - $(cat $1)" > $1
 fi
 
 
