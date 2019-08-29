@@ -120,6 +120,14 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -alh'
 alias vi='vim'
+alias gmm='gco master && gl && gco - && gm master'
+
+# New Feature Branch
+function nfb () {
+    gco master
+    gl
+    gco -b feature/$1
+}
 
 # enable vim mode
 # bindkey -v
