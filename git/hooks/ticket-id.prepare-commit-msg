@@ -4,7 +4,7 @@
 # Example: feature/ab-123-save-the world -> AB-123 - 
 
 # Abort if it is an amend/merge commit
-if [ $# -ge 3 ]; then
+if [ $# -ge 3 ] || [ $2 == "merge" ]; then
   exit
 fi
 
