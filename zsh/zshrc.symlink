@@ -120,13 +120,25 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -alh'
 alias vi='vim'
-alias gmm='gco master && gl && gco - && gm master'
+alias gmm='git checkout master && git pull && git checkout - && git merge master'
 
 # New Feature Branch
 function nfb () {
-    gco master
-    gl
-    gco -b feature/$1
+    git checkout master
+    git pull
+    git checkout -b feature/$1
+}
+
+# checkout by id
+function gcoid () {
+    BRANCH_NAME=$(git branch -l | grep $1 | head -n 1 | cut -c3- | tr -d '\n')
+
+    if [ -z $BRANCH_NAME ]; then
+	echo "Could not find any Branch with this ID $1"
+	return
+    fi
+
+    git checkout "$BRANCH_NAME"
 }
 
 # enable vim mode
