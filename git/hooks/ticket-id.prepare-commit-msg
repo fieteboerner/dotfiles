@@ -2,6 +2,7 @@
 
 # Prefixes the commit message with the ticket ID found in the current branch name
 # Example: feature/ab-123-save-the world -> AB-123 - 
+# Author: Fiete Börner <fieteboerner@googlemail.com>
 
 # Abort if it is an amend/merge commit
 if [ $# -ge 3 ] || [ $2 == "merge" ]; then
@@ -26,7 +27,7 @@ BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAM
 TICKET_ID=$(echo $BRANCH_NAME | grep -Eio $TICKET_REGEX | tr '[:lower:]' '[:upper:]')
 
 # print the commit prefix if it was found and the branch is not excluded
-if [ -n $TICKET_ID ] && ! [ $BRANCH_EXCLUDED -eq 1 ]; then
+if [ ! -z $TICKET_ID ] && ! [ $BRANCH_EXCLUDED -eq 1 ]; then
   echo "$TICKET_ID - $(cat $1)" > $1
 fi
 
