@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prefixes the commit message with the ticket ID found in the current branch name
-# Example: feature/ab-123-save-the world -> AB-123 - 
+# Example: feature/ab-123-save-the world -> AB-123 -
 # Author: Fiete Börner <fieteboerner@googlemail.com>
 
 # Abort if it is an amend/merge commit
