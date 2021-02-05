@@ -88,6 +88,7 @@ plugins=(
 )
 [[ -e $(which brew) ]] && plugins+=(osx)
 [[ -e $(which git-flow) ]] && plugins+=(git-flow)
+[[ -e $(which kubectl) ]] && plugins+=(kubectl)
 [[ -e $(which vagrant) ]] && plugins+=(vagrant)
 [[ -e $(which composer) ]] && plugins+=(composer)
 [[ -e $(which docker) ]] && plugins+=(docker)
@@ -168,3 +169,4 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -e $(which docker-machine) ]] && eval $(docker-machine env default)
