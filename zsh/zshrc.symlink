@@ -173,3 +173,4 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.deno.zsh ] && source ~/.deno.zsh
+[[ -e $(which docker-machine) ]] && eval $(docker-machine env default)
