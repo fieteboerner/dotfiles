@@ -3,9 +3,11 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+    Plugin 'ayu-theme/ayu-vim'              " Ayu Theme
     Plugin 'VundleVim/Vundle.vim'           " plugin manager
     Plugin 'Shougo/vimproc.vim'             " enables async progess
     Plugin 'tpope/vim-vinegar'              " extend netrw (file browsing with -)
+    Plugin 'tpope/vim-eunuch'               " Helpful vim commands :Wall :SudoWrite ...
     Plugin 'junegunn/fzf.vim'               " fuzzy file finder
     Plugin 'garbas/vim-snipmate'            " add snippet funtionality with extends funtionality
     Plugin 'tomtom/tlib_vim'                " dependency of snipmate
@@ -33,9 +35,9 @@ call vundle#begin()
     Plugin 'evanmiller/nginx-vim-syntax'    " 
     Plugin 'posva/vim-vue'                  " Vue file syntax
     "   ruby
-    Plugin 'vim-ruby/vim-ruby'              " ruby support (omni, ... )
-    Plugin 't9md/vim-ruby-xmpfilter'        " code execution inside a ruby file
-    Plugin 'tpope/vim-rails'                " rails helper functions
+    " Plugin 'vim-ruby/vim-ruby'              " ruby support (omni, ... )
+    " Plugin 't9md/vim-ruby-xmpfilter'        " code execution inside a ruby file
+    " Plugin 'tpope/vim-rails'                " rails helper functions
     " typescript
     Plugin 'leafgarland/typescript-vim'     " typescript syntax highlighting and indentation
     Plugin 'Quramy/tsuquyomi'               " omni-completion for ts

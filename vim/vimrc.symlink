@@ -13,7 +13,6 @@ source $DOTFILES/vim/plugins.vim
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
-"set nonumber
 set number                                  " show line numbers -> see key mapping for toggling
 set relativenumber                          " show relative line numbers -> see key mappings for toggling
 set autoindent
@@ -24,15 +23,19 @@ set encoding=utf8
 set noesckeys                               " speedup O (insert line above)
 set nocompatible                            " fix arrow key issues in insert mode
 set modeline                                " enable auto setting
-" set autochdir                               " change directory to current buffer location
-
+set iskeyword-=.                            " remove dot as keyword-char
+set formatoptions-=cro                      " Stop newline continution of comments
+" set autochdir                             " change directory to current buffer location
 
 "-------Visuals-------"
 let bgColor = 234
 set cursorline                              " highlight current line -> see key mapping for toggle
 hi CursorLine cterm=NONE ctermbg=236
 set title                                   " set terminal title
-colorscheme atom-dark-256
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+colorscheme ayu
+" colorscheme atom-dark-256
 set scrolloff=2                             " minimum lines above/below cursor
 set list listchars=tab:»·,trail:·           " show extra space characters
 
@@ -102,6 +105,7 @@ augroup fileType
         \ setlocal textwidth=0 wrapmargin=0 wrap spell |
         \ TableModeEnable
     autocmd FileType apache setlocal ts=4 sw=4 sts=4 sr noet
+    autocmd FileType nginx setlocal commentstring=#\ %s
     autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
     autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
@@ -169,22 +173,6 @@ nmap } }zz
 nmap g<C-O> o<ESC>k
 nmap gO O<ESC>j
 
-" unmap arrow keys
-noremap <Up> <Nop>
-
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <PageUp> <Nop>
-noremap <PageDown> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,8 +180,8 @@ inoremap <PageDown> <Nop>
 "/ NERDTree
 "/
 "ctrl+n toggles nerd tree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeHijackNetrw = 0             "disable highjacking filebrowser
+" map <C-n> :NERDTreeToggle<CR>
+" let NERDTreeHijackNetrw = 0             "disable highjacking filebrowser
 "/
 "/ Greplace 
 "/
@@ -257,36 +245,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 " to use @Page, @Component, ... in ts files
 let g:syntastic_typescript_tsc_args = '--experimentalDecorators'
 
-
 "/
-"/ ruby xmpfilter
-"/
-let g:xmpfilter_cmd = "seeing_is_believing"
-
-autocmd FileType ruby nmap <buffer> <D-m> <Plug>(seeing_is_believing-mark)
-autocmd FileType ruby xmap <buffer> <D-m> <Plug>(seeing_is_believing-mark)
-autocmd FileType ruby imap <buffer> <D-m> <Plug>(seeing_is_believing-mark)
-
-autocmd FileType ruby nmap <buffer> <D-c> <Plug>(seeing_is_believing-clean)
-autocmd FileType ruby xmap <buffer> <D-c> <Plug>(seeing_is_believing-clean)
-autocmd FileType ruby imap <buffer> <D-c> <Plug>(seeing_is_believing-clean)
-
-" xmpfilter compatible
-autocmd FileType ruby nmap <buffer> <D-r> <Plug>(seeing_is_believing-run_-x)
-autocmd FileType ruby xmap <buffer> <D-r> <Plug>(seeing_is_believing-run_-x)
-autocmd FileType ruby imap <buffer> <D-r> <Plug>(seeing_is_believing-run_-x)
-
-" auto insert mark at appropriate spot.
-autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing_is_believing-run)
-autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
-autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)
-
-"/
-"/ FZF Plugin
+"/ FZF Plugin (ctrl+p)
 "/
 nmap <C-p> :Files <CR>
-
-"/
-"/ vim comentary
-"/
-autocmd FileType nginx setlocal commentstring=#\ %s

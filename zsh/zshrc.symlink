@@ -63,6 +63,7 @@ fi
 [[ -d "/usr/lib/dart/bin/" ]] && PATH=$PATH:"/usr/lib/dart/bin/"
 [[ -d "$HOME/.npm-packages/bin" ]] && PATH=$PATH:"$HOME/.npm-packages/bin"
 [[ -d "$HOME/bin" ]] && PATH=$PATH:"$HOME/bin"
+[[ -d "$HOME/.deno/bin" ]] && PATH=$PATH:"$HOME/.deno/bin"
 [[ -d "$HOME/.config/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/.config/composer/vendor/bin"
 [[ -d "$HOME/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/composer/vendor/bin"
 [[ -d "$ANDROID_HOME/tools" ]] && PATH=$PATH:"$ANDROID_HOME/tools"
@@ -106,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 export EDITOR='vim'
+[[ -e $(which nvim) ]] && export EDITOR='nvim'
 
 # export ARCHFLAGS="-arch x86_64"
 
@@ -170,3 +172,4 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.deno.zsh ] && source ~/.deno.zsh
