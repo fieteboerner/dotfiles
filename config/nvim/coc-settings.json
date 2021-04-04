@@ -1,0 +1,35 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        //        "css",
+        //        "markdown",
+        //        "javascript",
+        //        "graphql",
+        //        "html",
+        //        "yaml",
+        "json",
+        //        "python",
+        //        "typescript"
+    ],
+    // Explorer
+    "explorer.width": 30,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.previewAction.onHover": false,
+    "explorer.keyMappings.global": {
+        "<cr>": [
+            "expandable?",
+            "expand",
+            "open"
+        ],
+        "v": "open:vsplit"
+    },
+    // diagnostics
+    "diagnostic.errorSign": " ",
+    "diagnostic.warningSign": " ",
+    "diagnostic.infoSign": "",
+    "diagnostic.hintSign": " ",
+    // emmet
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    },
+}

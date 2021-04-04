@@ -29,6 +29,7 @@ case $ACTION in
         source $DOTFILES/install/i3.sh
         source $DOTFILES/install/fzf.sh
         source $DOTFILES/install/kitty.sh
+        source $DOTFILES/install/nvim.sh
         ;;
     "base")
         source $DOTFILES/install/base.sh
@@ -53,6 +54,9 @@ case $ACTION in
         ;;
     "kitty")
         source $DOTFILES/install/kitty.sh
+        ;;
+    "nvim")
+        source $DOTFILES/install/nvim.sh
         ;;
     *)
         echo "unknown ACTION"
