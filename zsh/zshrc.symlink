@@ -97,6 +97,7 @@ plugins=(
 [[ -e $(which tmux) ]] && plugins+=(tmux)
 [[ -e $(which apt-get) ]] && plugins+=(ubuntu)
 [[ -e $(which kubectl) ]] && plugins+=(kubectl)
+[[ -e $(which helm) ]] && plugins+=(helm)
 
 # export PATH=$PATH:"/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/:$HOME/.local/bin"
 export IBUS_ENABLE_SYNC_MODE=1
