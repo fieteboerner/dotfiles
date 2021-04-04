@@ -28,6 +28,7 @@ case $ACTION in
         source $DOTFILES/install/dev-tools.sh
         source $DOTFILES/install/i3.sh
         source $DOTFILES/install/fzf.sh
+        source $DOTFILES/install/kitty.sh
         ;;
     "base")
         source $DOTFILES/install/base.sh
@@ -49,6 +50,9 @@ case $ACTION in
         ;;
     "fzf")
         source $DOTFILES/install/fzf.sh
+        ;;
+    "kitty")
+        source $DOTFILES/install/kitty.sh
         ;;
     *)
         echo "unknown ACTION"
