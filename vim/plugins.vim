@@ -9,9 +9,9 @@ call vundle#begin()
     Plugin 'tpope/vim-vinegar'              " extend netrw (file browsing with -)
     Plugin 'tpope/vim-eunuch'               " Helpful vim commands :Wall :SudoWrite ...
     Plugin 'junegunn/fzf.vim'               " fuzzy file finder
-    Plugin 'garbas/vim-snipmate'            " add snippet funtionality with extends funtionality
-    Plugin 'tomtom/tlib_vim'                " dependency of snipmate
-    Plugin 'MarcWeber/vim-addon-mw-utils'   " dependency of snipmate
+    " Plugin 'garbas/vim-snipmate'            " add snippet funtionality with extends funtionality
+    " Plugin 'tomtom/tlib_vim'                " dependency of snipmate
+    " Plugin 'MarcWeber/vim-addon-mw-utils'   " dependency of snipmate
     Plugin 'tpope/vim-surround'             " surrounding control 's' and 'S' to operate (rename, delete, add) with parentheses, HTML tags ...
     Plugin 'tpope/vim-sleuth'               " detect tab/spaces tabwith
     Plugin 'tpope/vim-repeat'               " enables repeat of plugin action not only built in action
