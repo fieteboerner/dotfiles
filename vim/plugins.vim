@@ -32,7 +32,7 @@ call vundle#begin()
     " languages
     Plugin 'joonty/vdebug.git'              " debugger for php, ruby, python
     Plugin 'kchmck/vim-coffee-script'       " coffeescript support
-    Plugin 'evanmiller/nginx-vim-syntax'    " 
+    " Plugin 'evanmiller/nginx-vim-syntax'    " 
     Plugin 'posva/vim-vue'                  " Vue file syntax
     "   ruby
     " Plugin 'vim-ruby/vim-ruby'              " ruby support (omni, ... )
