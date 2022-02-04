@@ -17,7 +17,7 @@ export REPORTTIME=10
 # Theme options
 SPACESHIP_BATTERY_THRESHOLD=20
 SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=false
+#SPACESHIP_NODE_SHOW=false
 
 #Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -162,6 +162,20 @@ bindkey "^[[6~" history-beginning-search-forward
 # bindkey "${key[Down]}" down-line-or-history
 
 
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### End: Fix slowness of pastes
+
+
 # zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/my_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 # zstyle -e ':completion:*:(ssh|scp|sftp):*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
 zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
@@ -174,4 +188,7 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.deno.zsh ] && source ~/.deno.zsh
-[[ -e $(which docker-machine) ]] && eval $(docker-machine env default)
+
+# init nvm
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+
