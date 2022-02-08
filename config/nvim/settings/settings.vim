@@ -21,6 +21,7 @@ set signcolumn=yes                      " Always show the signcolumn, otherwise 
 set updatetime=300                      " Faster completion
 set timeoutlen=250                      " By default timeoutlen is 1000 ms
 set scrolloff=2                         " minimum lines above/below cursor
+set clipboard+=unnamedplus              " copy to clipboard with +y
 
 "-------command line--------"
 set wildmenu                            " enhanced command line completion
