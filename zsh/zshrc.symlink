@@ -99,6 +99,12 @@ plugins=(
 [[ -e $(which kubectl) ]] && plugins+=(kubectl)
 [[ -e $(which helm) ]] && plugins+=(helm)
 
+case "$OSTYPE" in
+   linux*)
+      alias open="xdg-open"
+      ;;
+esac
+
 # export PATH=$PATH:"/usr/lib/dart/bin/:$HOME/.npm-packages/bin:$HOME/bin:$HOME/.config/composer/vendor/bin/:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/:$HOME/.local/bin"
 export IBUS_ENABLE_SYNC_MODE=1
 
