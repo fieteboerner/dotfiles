@@ -111,6 +111,7 @@
 [push]
     # push will only do the current branch, not all branches
     default = current
+	autoSetupRemote = true
 [branch]
     # set up 'git pull' to rebase instead of merge
     autosetuprebase = always
@@ -141,4 +142,4 @@
 [http]
 	sslVerify = true
 [credential]
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /usr/lib/git-core/git-credential-libsecret
