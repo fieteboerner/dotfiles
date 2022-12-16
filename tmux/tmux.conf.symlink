@@ -1,19 +1,12 @@
-###########################
+##########################
 #  Configuration
 ###########################
 
+# improve terminal colors
+set -g default-terminal "${TERM}"
 
-###########################
-#  Plugins
-###########################
-
-# set -g @plugin 'tmux-plugins/tpm'
-# set -g @plugin 'tmux-plugins/tmux-resurrect'
-
-
-# use <t_CO> term for pretty colors
-# set -g default-terminal "screen-<t_CO>color"
-set -g default-terminal "screen-256color"
+# Enable undercurl colors
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
 
 # increase scroll-back history
 set -g history-limit 50000
@@ -21,11 +14,7 @@ set -g history-limit 50000
 # use vim key bindings
 setw -g mode-keys vi
 
-# disable mouse
-# setw -g mode-mouse off
 # enable better scrolling
-# set -g mode-mouse on
-set -g mouse-utf8 on
 set -g mouse on
 
 # decrease command delay (increases vim responsiveness)
@@ -42,10 +31,22 @@ setw -g pane-base-index 1
 
 # highlight window when it has new activity
 setw -g monitor-activity on
-set -g visual-activity on
+
+# A bell in another window should cause a bell in the current window
+set -g bell-action any
+
+# Don't show distracting notifications
+set -g visual-bell off
+set -g visual-activity off
+
+# Focus events enabled for terminals that support them
+set -g focus-events on
 
 # re-number windows when one is closed
 set -g renumber-windows on
+
+# don't detach tmux when killing a session
+set -g detach-on-destroy off
 
 # enable pbcopy and pbpaste
 # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
@@ -88,12 +89,15 @@ bind C-k resize-pane -U 10
 bind C-l resize-pane -R 20
 bind C-h resize-pane -L 20
 
+# Copy mode
+bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
+bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
+bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
+unbind-key -T copy-mode-vi v
+
 ###########################
 # Status Bar
 ###########################
-
-# enable UTF-8 support in status bar
-set -g status-utf8 on
 
 # set refresh interval for status bar
 set -g status-interval 1
@@ -101,45 +105,13 @@ set -g status-interval 1
 # center the status bar
 set -g status-justify left
 
-# show session, window, pane in left status bar
-set -g status-left-length 40
-set -g status-left ' #[fg=colour076]#S#[fg=colour075] #I:#P #[default]'
-
-set -g window-status-activity-attr bold
-set -g pane-active-border-fg yellow
-
-set -g status-fg colour248
-set -g status-bg colour233
-set -g message-fg colour15
-set -g message-bg colour233
-set -g mode-fg colour15
-set -g mode-bg colour33
-
-set -g window-status-format "#[fg=colour248] #I #W "
-set -g window-status-current-format "#[fg=colour15,noreverse,bg=colour235] #I #W "
-
+set-option -g status-left-length 100
+set-option -g status-right-length 100
+set-option -g status-left " #{session_name}  "
+set-option -g status-right "#{pane_title} "
+set-option -g status-style "fg=#7C7D83 bg=#242631"
+set-option -g window-status-format "#{window_index}:#{pane_current_command}#{window_flags} "
+set-option -g window-status-current-format "#{window_index}:#{pane_current_command}#{window_flags} "
+set-option -g window-status-current-style "fg=#E9E9EA"
+set-option -g window-status-activity-style none
 set-option -g status-right " %A - %d.%m.%y %H:%M:%S "
-
-# show hostname, date, time, and battery in right status bar
- #[fg=red]#(battery discharging)#[default]#(battery charging)'
-
-###########################
-# Colors
-###########################
-
-# color status bar
-set -g status-bg colour235
-set -g status-fg white
-
-# highlight current window
-set-window-option -g window-status-current-fg black
-set-window-option -g window-status-current-bg green
-
-# set color of active pane
-set -g pane-border-fg colour235
-set -g pane-border-bg black
-set -g pane-active-border-fg green
-set -g pane-active-border-bg black
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
