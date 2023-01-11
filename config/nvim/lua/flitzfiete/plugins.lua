@@ -75,6 +75,7 @@ return require('packer').startup(function(use)
     use({
         'nvim-treesitter/nvim-treesitter',
         requires = {
+            'nvim-treesitter/playground',
             'nvim-treesitter/nvim-treesitter-textobjects',
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
@@ -121,7 +122,9 @@ return require('packer').startup(function(use)
     use({ 'tpope/vim-surround' })
     use({ 'tpope/vim-sleuth' }) -- autodetection of settings from .editorconfig
     use({ 'tpope/vim-eunuch' }) -- adds :Rename and :WriteSudo
+    use({ 'tpope/vim-repeat' }) -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
     use({ 'airblade/vim-gitgutter' })
+    use('farmergreg/vim-lastplace') -- jump to the last location when opening a file
 
     -- allows to edit html attributes with ax & ix
     use({
@@ -152,5 +155,21 @@ return require('packer').startup(function(use)
         end,
     })
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    }
+    require('flitzfiete.plugins.lualine')
+
+    use({
+        'airblade/vim-rooter',
+        setup = function()
+            -- instead of running every time by opening a file, it runs only on vim start
+            vim.g.rooter_manual_only = 1
+        end,
+        config = function()
+            vim.cmd('Rooter')
+        end
+    })
 end)
 

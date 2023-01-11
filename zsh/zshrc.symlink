@@ -198,3 +198,6 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 # init nvm
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
+#gmk autocompletion
+[ -f ~/qmk_firmware/util/qmk_tab_complete.sh ] && source ~/qmk_firmware/util/qmk_tab_complete.sh
+
