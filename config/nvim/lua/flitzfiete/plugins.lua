@@ -4,11 +4,11 @@
 vim.cmd [[packadd packer.nvim]]
 
 -- Install packer
-local ensure_packer = function ()
+local ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
         vim.cmd [[packadd packer.nvim]]
         return true
     end
@@ -33,12 +33,12 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
-    use({'wbthomason/packer.nvim'})
+    use({ 'wbthomason/packer.nvim' })
 
     use({
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} },
+        requires = { { 'nvim-lua/plenary.nvim' } },
         config = function()
             require('flitzfiete.plugins.telescope')
         end
@@ -96,24 +96,42 @@ return require('packer').startup(function(use)
         'VonHeikemen/lsp-zero.nvim',
         requires = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
         },
         config = function()
             require('flitzfiete.plugins.lsp')
+        end
+    })
+
+    use({
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function()
+            local null_ls = require("null-ls")
+            local diagnostics = null_ls.builtins.diagnostics
+            local formatting = null_ls.builtins.formatting
+
+            null_ls.setup({
+                sources = {
+                    diagnostics.eslint,
+                    diagnostics.yamllint,
+                    formatting.eslint,
+                    formatting.yamlfmt,
+                },
+            })
         end
     })
 
@@ -133,12 +151,7 @@ return require('packer').startup(function(use)
     })
 
     -- paste with correct indentation
-    use({
-        'sickill/vim-pasta',
-        -- config = function()
-        --     require('flitzfiete.plugins.pasta')
-        -- end,
-    })
+    use({ 'sickill/vim-pasta' })
 
     use({
         'windwp/nvim-autopairs',
@@ -171,5 +184,11 @@ return require('packer').startup(function(use)
             vim.cmd('Rooter')
         end
     })
-end)
 
+    use({
+        'APZelos/blamer.nvim',
+        config = function()
+        end
+    })
+    vim.g.blamer_enabled = 1
+end)

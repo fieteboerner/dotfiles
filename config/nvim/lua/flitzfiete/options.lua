@@ -34,6 +34,9 @@ vim.opt.wrapmargin = 8
 vim.opt.linebreak = true
 vim.opt.showbreak = "…"
 
+-- 
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+
 -- show invisible characters --
 vim.opt.list = true -- enable the below listchars
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
@@ -51,13 +54,3 @@ vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo"
 
 vim.opt.termguicolors = true
 
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
