@@ -80,7 +80,7 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["blamer.nvim"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
+    config = { "\27LJ\2\n0\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\19blamer_enabled\6g\bvim\0" },
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/blamer.nvim",
     url = "https://github.com/APZelos/blamer.nvim"
@@ -94,11 +94,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
@@ -115,8 +110,14 @@ _G.packer_plugins = {
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["gitsigns.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 flitzfiete.plugins.gitsigns\frequire\0" },
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["lsp-zero.nvim"] = {
-    config = { "\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27flitzfiete.plugins.lsp\frequire\0" },
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23flitzfiete.lsp.lsp\frequire\0" },
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
@@ -143,7 +144,7 @@ _G.packer_plugins = {
     url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["null-ls.nvim"] = {
-    config = { "\27LJ\2\n´\1\0\0\b\0\v\0\0216\0\0\0'\2\1\0B\0\2\0029\1\2\0009\1\3\0019\2\2\0009\2\4\0029\3\5\0005\5\t\0004\6\5\0009\a\6\1>\a\1\0069\a\a\1>\a\2\0069\a\6\2>\a\3\0069\a\b\2>\a\4\6=\6\n\5B\3\2\1K\0\1\0\fsources\1\0\0\fyamlfmt\ryamllint\veslint\nsetup\15formatting\16diagnostics\rbuiltins\fnull-ls\frequire\0" },
+    config = { "\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31flitzfiete.plugins.null-ls\frequire\0" },
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
@@ -164,6 +165,12 @@ _G.packer_plugins = {
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\n}\0\0\3\0\a\0\0146\0\0\0009\0\1\0)\1\1\0=\1\2\0006\0\0\0009\0\1\0)\1\1\0=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\23loaded_netrwPlugin\17loaded_netrw\6g\bvim\0" },
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     config = { "\27LJ\2\n=\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\"flitzfiete.plugins.treesitter\frequire\0" },
     loaded = true,
@@ -181,13 +188,12 @@ _G.packer_plugins = {
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/fiete/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["onedark.nvim"] = {
-    config = { "\27LJ\2\næ\4\0\0\t\0\24\0X6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\5\0005\4\t\0006\5\0\0009\5\3\0059\5\6\5'\a\a\0+\b\2\0B\5\3\0029\5\b\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\a\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\f\0005\4\15\0006\5\0\0009\5\3\0059\5\6\5'\a\r\0+\b\2\0B\5\3\0029\5\14\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\16\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\17\0005\4\19\0006\5\0\0009\5\3\0059\5\6\5'\a\18\0+\b\2\0B\5\3\0029\5\b\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\18\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\20\0005\4\21\0B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\22\0005\4\23\0B\0\4\1K\0\1\0\1\0\1\afg\f#2F313C\24IndentBlanklineChar\1\0\1\afg\f#30323E\25NvimTreeIndentMarker\1\0\0\15CursorLine\17CursorLineBg\15StatusLine\1\0\0\15foreground\fNonText\22StatusLineNonText\abg\afg\1\0\0\15background\16NormalFloat\24nvim_get_hl_by_name\16FloatBorder\16nvim_set_hl\bapi\24colorscheme onedark\bcmd\bvim\0" },
+    config = { "\27LJ\2\n¾\4\0\0\t\0\22\0T6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\a\0006\5\0\0009\5\1\0059\5\4\5'\a\5\0+\b\2\0B\5\3\0029\5\6\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\5\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\n\0005\4\r\0006\5\0\0009\5\1\0059\5\4\5'\a\v\0+\b\2\0B\5\3\0029\5\f\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\14\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\15\0005\4\17\0006\5\0\0009\5\1\0059\5\4\5'\a\16\0+\b\2\0B\5\3\0029\5\6\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\16\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\18\0005\4\19\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\20\0005\4\21\0B\0\4\1K\0\1\0\1\0\1\afg\f#2F313C\24IndentBlanklineChar\1\0\1\afg\f#30323E\25NvimTreeIndentMarker\1\0\0\15CursorLine\17CursorLineBg\15StatusLine\1\0\0\15foreground\fNonText\22StatusLineNonText\abg\afg\1\0\0\15background\16NormalFloat\24nvim_get_hl_by_name\16FloatBorder\16nvim_set_hl\bapi\bvim\0" },
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/jessarcher/onedark.nvim"
@@ -207,11 +213,27 @@ _G.packer_plugins = {
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope-live-grep-args.nvim"] = {
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/telescope-live-grep-args.nvim",
+    url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
+  },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!flitzfiete.plugins.telescope\frequire\0" },
+    config = { "\27LJ\2\n‹\1\0\0\4\0\a\0\f6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\0029\0\3\0005\2\5\0005\3\4\0=\3\6\2B\0\2\1K\0\1\0\rdefaults\1\0\0\1\0\1\19color_devicons\2\nsetup\14telescope!flitzfiete.plugins.telescope\frequire\0" },
     loaded = true,
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0 colorscheme tokyonight-moon\bcmd\bvim\0" },
+    loaded = true,
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   undotree = {
     config = { "\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 flitzfiete.plugins.undotree\frequire\0" },
@@ -229,10 +251,11 @@ _G.packer_plugins = {
     path = "/home/fiete/.local/share/nvim/site/pack/packer/start/vim-eunuch",
     url = "https://github.com/tpope/vim-eunuch"
   },
-  ["vim-gitgutter"] = {
+  ["vim-illuminate"] = {
+    config = { "\27LJ\2\n=\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\"flitzfiete.plugins.illuminate\frequire\0" },
     loaded = true,
-    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
-    url = "https://github.com/airblade/vim-gitgutter"
+    path = "/home/fiete/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vim-lastplace"] = {
     loaded = true,
@@ -291,46 +314,62 @@ time([[Setup for vim-rooter]], false)
 time([[packadd for vim-rooter]], true)
 vim.cmd [[packadd vim-rooter]]
 time([[packadd for vim-rooter]], false)
--- Config for: onedark.nvim
-time([[Config for onedark.nvim]], true)
-try_loadstring("\27LJ\2\næ\4\0\0\t\0\24\0X6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\5\0005\4\t\0006\5\0\0009\5\3\0059\5\6\5'\a\a\0+\b\2\0B\5\3\0029\5\b\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\a\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\f\0005\4\15\0006\5\0\0009\5\3\0059\5\6\5'\a\r\0+\b\2\0B\5\3\0029\5\14\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\16\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\17\0005\4\19\0006\5\0\0009\5\3\0059\5\6\5'\a\18\0+\b\2\0B\5\3\0029\5\b\5=\5\n\0046\5\0\0009\5\3\0059\5\6\5'\a\18\0+\b\2\0B\5\3\0029\5\b\5=\5\v\4B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\20\0005\4\21\0B\0\4\0016\0\0\0009\0\3\0009\0\4\0)\2\0\0'\3\22\0005\4\23\0B\0\4\1K\0\1\0\1\0\1\afg\f#2F313C\24IndentBlanklineChar\1\0\1\afg\f#30323E\25NvimTreeIndentMarker\1\0\0\15CursorLine\17CursorLineBg\15StatusLine\1\0\0\15foreground\fNonText\22StatusLineNonText\abg\afg\1\0\0\15background\16NormalFloat\24nvim_get_hl_by_name\16FloatBorder\16nvim_set_hl\bapi\24colorscheme onedark\bcmd\bvim\0", "config", "onedark.nvim")
-time([[Config for onedark.nvim]], false)
--- Config for: neoscroll.nvim
-time([[Config for neoscroll.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!flitzfiete.plugins.neoscroll\frequire\0", "config", "neoscroll.nvim")
-time([[Config for neoscroll.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\2\n=\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\"flitzfiete.plugins.treesitter\frequire\0", "config", "nvim-treesitter")
 time([[Config for nvim-treesitter]], false)
--- Config for: lsp-zero.nvim
-time([[Config for lsp-zero.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27flitzfiete.plugins.lsp\frequire\0", "config", "lsp-zero.nvim")
-time([[Config for lsp-zero.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-try_loadstring("\27LJ\2\n´\1\0\0\b\0\v\0\0216\0\0\0'\2\1\0B\0\2\0029\1\2\0009\1\3\0019\2\2\0009\2\4\0029\3\5\0005\5\t\0004\6\5\0009\a\6\1>\a\1\0069\a\a\1>\a\2\0069\a\6\2>\a\3\0069\a\b\2>\a\4\6=\6\n\5B\3\2\1K\0\1\0\fsources\1\0\0\fyamlfmt\ryamllint\veslint\nsetup\15formatting\16diagnostics\rbuiltins\fnull-ls\frequire\0", "config", "null-ls.nvim")
-time([[Config for null-ls.nvim]], false)
--- Config for: undotree
-time([[Config for undotree]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 flitzfiete.plugins.undotree\frequire\0", "config", "undotree")
-time([[Config for undotree]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!flitzfiete.plugins.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
+-- Config for: tokyonight.nvim
+time([[Config for tokyonight.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0 colorscheme tokyonight-moon\bcmd\bvim\0", "config", "tokyonight.nvim")
+time([[Config for tokyonight.nvim]], false)
+-- Config for: blamer.nvim
+time([[Config for blamer.nvim]], true)
+try_loadstring("\27LJ\2\n0\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\19blamer_enabled\6g\bvim\0", "config", "blamer.nvim")
+time([[Config for blamer.nvim]], false)
 -- Config for: vim-rooter
 time([[Config for vim-rooter]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\vRooter\bcmd\bvim\0", "config", "vim-rooter")
 time([[Config for vim-rooter]], false)
--- Config for: blamer.nvim
-time([[Config for blamer.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "blamer.nvim")
-time([[Config for blamer.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 flitzfiete.plugins.gitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31flitzfiete.plugins.null-ls\frequire\0", "config", "null-ls.nvim")
+time([[Config for null-ls.nvim]], false)
+-- Config for: neoscroll.nvim
+time([[Config for neoscroll.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!flitzfiete.plugins.neoscroll\frequire\0", "config", "neoscroll.nvim")
+time([[Config for neoscroll.nvim]], false)
+-- Config for: undotree
+time([[Config for undotree]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 flitzfiete.plugins.undotree\frequire\0", "config", "undotree")
+time([[Config for undotree]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\"flitzfiete.plugins.illuminate\frequire\0", "config", "vim-illuminate")
+time([[Config for vim-illuminate]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: onedark.nvim
+time([[Config for onedark.nvim]], true)
+try_loadstring("\27LJ\2\n¾\4\0\0\t\0\22\0T6\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\a\0006\5\0\0009\5\1\0059\5\4\5'\a\5\0+\b\2\0B\5\3\0029\5\6\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\5\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\n\0005\4\r\0006\5\0\0009\5\1\0059\5\4\5'\a\v\0+\b\2\0B\5\3\0029\5\f\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\14\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\15\0005\4\17\0006\5\0\0009\5\1\0059\5\4\5'\a\16\0+\b\2\0B\5\3\0029\5\6\5=\5\b\0046\5\0\0009\5\1\0059\5\4\5'\a\16\0+\b\2\0B\5\3\0029\5\6\5=\5\t\4B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\18\0005\4\19\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\20\0005\4\21\0B\0\4\1K\0\1\0\1\0\1\afg\f#2F313C\24IndentBlanklineChar\1\0\1\afg\f#30323E\25NvimTreeIndentMarker\1\0\0\15CursorLine\17CursorLineBg\15StatusLine\1\0\0\15foreground\fNonText\22StatusLineNonText\abg\afg\1\0\0\15background\16NormalFloat\24nvim_get_hl_by_name\16FloatBorder\16nvim_set_hl\bapi\bvim\0", "config", "onedark.nvim")
+time([[Config for onedark.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n}\0\0\3\0\a\0\0146\0\0\0009\0\1\0)\1\1\0=\1\2\0006\0\0\0009\0\1\0)\1\1\0=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\23loaded_netrwPlugin\17loaded_netrw\6g\bvim\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n‹\1\0\0\4\0\a\0\f6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\0029\0\3\0005\2\5\0005\3\4\0=\3\6\2B\0\2\1K\0\1\0\rdefaults\1\0\0\1\0\1\19color_devicons\2\nsetup\14telescope!flitzfiete.plugins.telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: lsp-zero.nvim
+time([[Config for lsp-zero.nvim]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23flitzfiete.lsp.lsp\frequire\0", "config", "lsp-zero.nvim")
+time([[Config for lsp-zero.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

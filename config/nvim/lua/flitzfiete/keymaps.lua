@@ -1,5 +1,5 @@
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- move text up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

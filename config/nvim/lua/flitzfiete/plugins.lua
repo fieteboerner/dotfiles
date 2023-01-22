@@ -37,17 +37,33 @@ return require('packer').startup(function(use)
 
     use({
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } },
+        -- or                          , branch = '0.1.x',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'kyazdani42/nvim-web-devicons' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            { 'nvim-telescope/telescope-live-grep-args.nvim' },
+        },
         config = function()
             require('flitzfiete.plugins.telescope')
+            require('telescope').setup({
+                defaults = {
+                    color_devicons = true
+                }
+            })
         end
     })
 
     use({
+        'folke/tokyonight.nvim',
+        config = function()
+            vim.cmd('colorscheme tokyonight-moon')
+        end
+    })
+    use({
         'jessarcher/onedark.nvim',
         config = function()
-            vim.cmd('colorscheme onedark')
+            -- vim.cmd('colorscheme onedark')
 
             -- Hide the characters in FloatBorder
             vim.api.nvim_set_hl(0, 'FloatBorder', {
@@ -106,32 +122,21 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-path' },
             { 'saadparwaiz1/cmp_luasnip' },
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
+            -- { 'hrsh7th/cmp-nvim-lua' },
 
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
         },
         config = function()
-            require('flitzfiete.plugins.lsp')
+            require('flitzfiete.lsp.lsp')
         end
     })
 
     use({
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
-            local null_ls = require("null-ls")
-            local diagnostics = null_ls.builtins.diagnostics
-            local formatting = null_ls.builtins.formatting
-
-            null_ls.setup({
-                sources = {
-                    diagnostics.eslint,
-                    diagnostics.yamllint,
-                    formatting.eslint,
-                    formatting.yamlfmt,
-                },
-            })
+            require('flitzfiete.plugins.null-ls')
         end
     })
 
@@ -141,7 +146,21 @@ return require('packer').startup(function(use)
     use({ 'tpope/vim-sleuth' }) -- autodetection of settings from .editorconfig
     use({ 'tpope/vim-eunuch' }) -- adds :Rename and :WriteSudo
     use({ 'tpope/vim-repeat' }) -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
-    use({ 'airblade/vim-gitgutter' })
+
+    -- git
+    use({
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('flitzfiete.plugins.gitsigns')
+        end
+    })
+    use({
+        'APZelos/blamer.nvim',
+        config = function()
+            vim.g.blamer_enabled = 1
+        end
+    })
+
     use('farmergreg/vim-lastplace') -- jump to the last location when opening a file
 
     -- allows to edit html attributes with ax & ix
@@ -186,9 +205,23 @@ return require('packer').startup(function(use)
     })
 
     use({
-        'APZelos/blamer.nvim',
-        config = function()
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly', -- optional, updated every week. 
+        config = function ()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            require("nvim-tree").setup()
         end
     })
-    vim.g.blamer_enabled = 1
+
+
+    use({
+        'RRethy/vim-illuminate',
+        config = function()
+            require('flitzfiete.plugins.illuminate')
+        end
+    })
 end)

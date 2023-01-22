@@ -10,12 +10,12 @@ vim.opt.cursorline = true          -- highlight current line
 vim.opt.updatetime = 300           -- faster completion
 vim.opt.timeoutlen = 250           -- 1000 is the default
 vim.opt.scrolloff = 2              -- minimum lines above/below
+vim.opt.formatoptions = 'jtql'
 
 -- command line --
-vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
 vim.opt.hidden = true
 vim.opt.showcmd = true
-vim.opt.wildmode = "list:longest"
 
 
 -- tab stops --
@@ -41,10 +41,11 @@ vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 vim.opt.list = true -- enable the below listchars
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
 
--- search highlight --
+-- search --
 vim.opt.incsearch = true
 vim.opt.showmatch = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
