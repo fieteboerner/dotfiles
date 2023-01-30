@@ -35,8 +35,8 @@ vim.keymap.set('n', 'q:', ':q<CR>')
 
 -- Maintain the cursor position when yanking a visual selection
 -- http://ddrscott.github.io/blog/2016/yank-without-jank/
-vim.keymap.set('v', 'y', 'myy`y')
-vim.keymap.set('v', 'Y', 'myY`y')
+vim.keymap.set('v', 'y', 'myy`ygv')
+vim.keymap.set('v', 'Y', 'myY`ygv')
 
 -- Move text up and down
 vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')

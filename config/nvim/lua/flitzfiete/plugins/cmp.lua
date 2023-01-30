@@ -39,23 +39,6 @@ local source_labels = {
     latex_symbols = "LaTeX",
 }
 
-cmp.setup({
-    formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind]
-            vim_item.menu = source_labels[entry.source.name]
-
-            return vim_item
-        end
-    },
-    window = {
-        documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        }
-    },
-})
-
 local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -100,3 +83,21 @@ cmp_mappings['<S-Tab>'] = nil
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
 })
+
+cmp.setup({
+    formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+            vim_item.kind = kind_icons[vim_item.kind]
+            vim_item.menu = source_labels[entry.source.name]
+
+            return vim_item
+        end
+    },
+    window = {
+        documentation = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        }
+    },
+})
+
