@@ -236,6 +236,14 @@ return require('packer').startup({
                 require('flitzfiete.plugins.illuminate')
             end
         })
+
+        use({
+            'voldikss/vim-floaterm',
+            config = function()
+                require('flitzfiete.plugins.floaterm')
+            end,
+        })
+
     end,
     config = {
         display = {
