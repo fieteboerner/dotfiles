@@ -4,6 +4,7 @@
 
 # improve terminal colors
 set -g default-terminal "${TERM}"
+set -ga terminal-overrides ",*256col*:Tc"
 
 # Enable undercurl colors
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
@@ -86,6 +87,7 @@ bind -r l resize-pane -R 5
 bind -r h resize-pane -L 5
 
 bind Space resize-pane -Z
+bind C-Space resize-pane -Z
 
 # Copy mode
 bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
@@ -93,6 +95,24 @@ bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in co
 bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
 unbind-key -T copy-mode-vi v
 unbind -T copy-mode-vi MouseDragEnd1Pane                 # don't exit copy mode after dragging with mouse
+
+# vim & tmux navigation
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
+bind-key -n 'C-S-h' if-shell "$is_vim" 'send-keys C-S-h'  'select-pane -L'
+bind-key -n 'C-S-j' if-shell "$is_vim" 'send-keys C-S-j'  'select-pane -D'
+bind-key -n 'C-S-k' if-shell "$is_vim" 'send-keys C-S-k'  'select-pane -U'
+bind-key -n 'C-S-l' if-shell "$is_vim" 'send-keys C-S-l'  'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+bind-key -T copy-mode-vi 'C-S-h' select-pane -L
+bind-key -T copy-mode-vi 'C-S-j' select-pane -D
+bind-key -T copy-mode-vi 'C-S-k' select-pane -U
+bind-key -T copy-mode-vi 'C-S-l' select-pane -R
 
 ###########################
 # Status Bar
@@ -122,7 +142,6 @@ set-option -g status-right " %A - %d.%m.%y %H:%M:%S "
 set -g @plugin 'tmux-plugins/tpm'
 
 # list of tmux plugins
-set -g @plugin 'christoomey/vim-tmux-navigator' # for navigating panes and vim/nvim with Ctrl-hjkl
 set -g @plugin 'tmux-plugins/tmux-resurrect' # persist tmux sessions after computer restart
 set -g @plugin 'tmux-plugins/tmux-continuum' # automatically saves sessions for you every 15 minutes
 

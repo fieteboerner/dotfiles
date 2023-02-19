@@ -147,7 +147,17 @@ return require('packer').startup({
         use({ 'tpope/vim-sleuth' }) -- autodetection of settings from .editorconfig
         use({ 'tpope/vim-eunuch' }) -- adds :Rename and :WriteSudo
         use({ 'tpope/vim-repeat' }) -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
-        use({ 'christoomey/vim-tmux-navigator' })
+        use({ 
+            'christoomey/vim-tmux-navigator',
+            config = function()
+                vim.g.tmux_navigator_no_mappings = 1
+                vim.keymap.set('n', '<C-S-h>', ':<C-U>TmuxNavigateLeft<CR>')
+                vim.keymap.set('n', '<C-S-j>', ':<C-U>TmuxNavigateDown<CR>')
+                vim.keymap.set('n', '<C-S-k>', ':<C-U>TmuxNavigateUp<CR>')
+                vim.keymap.set('n', '<C-S-l>', ':<C-U>TmuxNavigateRight<CR>')
+            end
+        })
+
 
         -- git
         use({
