@@ -131,6 +131,7 @@ return require('packer').startup({
             },
             config = function()
                 require('flitzfiete.lsp.lsp')
+                require('flitzfiete.plugins.cmp')
             end
         })
 
@@ -172,6 +173,9 @@ return require('packer').startup({
                 vim.g.blamer_enabled = 1
             end
         })
+        use({
+            'kdheepak/lazygit.nvim'
+        })
 
         use('farmergreg/vim-lastplace') -- jump to the last location when opening a file
 
@@ -207,13 +211,13 @@ return require('packer').startup({
 
         use({
             'airblade/vim-rooter',
-            setup = function()
-                -- instead of running every time by opening a file, it runs only on vim start
-                vim.g.rooter_manual_only = 1
-            end,
-            config = function()
-                vim.cmd('Rooter')
-            end
+            -- setup = function()
+            --     -- instead of running every time by opening a file, it runs only on vim start
+            --     vim.g.rooter_manual_only = 1
+            -- end,
+            -- config = function()
+            --     vim.cmd('Rooter')
+            -- end
         })
 
         use({
@@ -262,3 +266,4 @@ return require('packer').startup({
         }
     }
 })
+
