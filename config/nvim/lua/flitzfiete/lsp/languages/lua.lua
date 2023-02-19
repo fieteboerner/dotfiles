@@ -1,6 +1,6 @@
 local lsp = require('lsp-zero')
 
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -9,6 +9,9 @@ lsp.configure('sumneko_lua', {
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
                 checkThirdParty = false,
+            },
+            telemetry = {
+                enable = false,
             }
         },
     }
