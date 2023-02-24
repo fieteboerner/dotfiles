@@ -29,6 +29,7 @@ require('telescope').setup({
         sorting_strategy = 'ascending',
         mappings = {
             n = {
+                ["<esc"] = require('telescope.actions').close,
                 ["<Space>"] = require('telescope.actions').select_default,
             }
         },

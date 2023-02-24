@@ -13,7 +13,7 @@ lsp.ensure_installed({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = '',
         warn = '',
@@ -34,6 +34,7 @@ lsp.on_attach(function(client, bufnr)
         -- client.server_capabilities.document_range_formatting = false
     end
 
+    vim.keymap.set("n", "<leader>ff", function() vim.lsp.buf.format({ async = true }) end, {})
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
@@ -47,12 +48,16 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
 
 vim.diagnostic.config({
     virtual_text = true,
+    float = {
+        source = true,
+    }
 })
 
 -- load language configuration

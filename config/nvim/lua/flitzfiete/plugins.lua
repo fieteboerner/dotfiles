@@ -148,6 +148,7 @@ return require('packer').startup({
         use({ 'tpope/vim-sleuth' }) -- autodetection of settings from .editorconfig
         use({ 'tpope/vim-eunuch' }) -- adds :Rename and :WriteSudo
         use({ 'tpope/vim-repeat' }) -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
+        use('tpope/vim-unimpaired') -- Adds [b and other handy mappings
         use({ 
             'christoomey/vim-tmux-navigator',
             config = function()

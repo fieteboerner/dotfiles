@@ -4,9 +4,15 @@ local formatting = null_ls.builtins.formatting
 
 null_ls.setup({
     sources = {
-        diagnostics.eslint,
+        diagnostics.eslint_d.with({
+            condition = function (utils)
+                return utils.root_has_file({ '.eslintrc.js' })
+            end
+        }),
         diagnostics.yamllint,
-        formatting.eslint,
+        diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+        -- formatting.eslint,
+        formatting.prettier,
         formatting.yamlfmt,
         -- formatting.gofmt,
         formatting.goimports,
