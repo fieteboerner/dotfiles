@@ -37,12 +37,13 @@ return require('packer').startup({
         use({ 'wbthomason/packer.nvim' })
 
         use({
-            'nvim-telescope/telescope.nvim', tag = '0.1.0',
+            'nvim-telescope/telescope.nvim',
+            tag = '0.1.0',
             -- or                          , branch = '0.1.x',
             requires = {
                 { 'nvim-lua/plenary.nvim' },
                 { 'kyazdani42/nvim-web-devicons' },
-                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+                { 'nvim-telescope/telescope-fzf-native.nvim',    run = 'make' },
                 { 'nvim-telescope/telescope-live-grep-args.nvim' },
             },
             config = function()
@@ -149,7 +150,7 @@ return require('packer').startup({
         use({ 'tpope/vim-eunuch' }) -- adds :Rename and :WriteSudo
         use({ 'tpope/vim-repeat' }) -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
         use('tpope/vim-unimpaired') -- Adds [b and other handy mappings
-        use({ 
+        use({
             'christoomey/vim-tmux-navigator',
             config = function()
                 vim.g.tmux_navigator_no_mappings = 1
@@ -158,6 +159,15 @@ return require('packer').startup({
                 vim.keymap.set('n', '<C-S-k>', ':<C-U>TmuxNavigateUp<CR>')
                 vim.keymap.set('n', '<C-S-l>', ':<C-U>TmuxNavigateRight<CR>')
             end
+        })
+
+        use({
+            'AndrewRadev/splitjoin.vim',
+            config = function()
+                vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+                vim.g.splitjoin_trailing_comma = 1
+                vim.g.splitjoin_php_method_chain_full = 1
+            end,
         })
 
 
@@ -254,12 +264,18 @@ return require('packer').startup({
         })
 
         use({
+            'lukas-reineke/indent-blankline.nvim',
+            config = function()
+                require('flitzfiete.plugins.indent-blankline')
+            end,
+        })
+
+        use({
             'voldikss/vim-floaterm',
             config = function()
                 require('flitzfiete.plugins.floaterm')
             end,
         })
-
     end,
     config = {
         display = {
@@ -267,4 +283,3 @@ return require('packer').startup({
         }
     }
 })
-
