@@ -49,6 +49,13 @@ set -g renumber-windows on
 # don't detach tmux when killing a session
 set -g detach-on-destroy off
 
+# make ssh agent working
+# Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable
+set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID \
+                             SSH_CONNECTION WINDOWID XAUTHORITY"
+# Use a symlink to look up SSH authentication
+setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
 # enable pbcopy and pbpaste
 # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
 # set-option -g default-command "reattach-to-user-namespace -l zsh"
