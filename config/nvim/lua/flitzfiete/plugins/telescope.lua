@@ -19,6 +19,7 @@ end)
 
 require('telescope').setup({
     defaults = {
+        color_devicons = true,
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix  = "  ",
@@ -35,6 +36,9 @@ require('telescope').setup({
         },
     },
     pickers = {
+        find_files = {
+            hidden = true,
+        },
         lsp_references = {
             theme = "dropdown",
             previewer = false,

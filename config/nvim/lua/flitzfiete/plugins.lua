@@ -48,11 +48,6 @@ return require('packer').startup({
             },
             config = function()
                 require('flitzfiete.plugins.telescope')
-                require('telescope').setup({
-                    defaults = {
-                        color_devicons = true
-                    }
-                })
             end
         })
 
@@ -222,10 +217,12 @@ return require('packer').startup({
 
         use({
             'airblade/vim-rooter',
-            -- setup = function()
-            --     -- instead of running every time by opening a file, it runs only on vim start
-            --     vim.g.rooter_manual_only = 1
-            -- end,
+            setup = function()
+                -- instead of running every time by opening a file, it runs only on vim start
+                -- vim.g.rooter_manual_only = 1
+
+                vim.g.rooter_patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile' }
+            end,
             -- config = function()
             --     vim.cmd('Rooter')
             -- end
@@ -241,6 +238,9 @@ return require('packer').startup({
                 vim.g.loaded_netrw = 1
                 vim.g.loaded_netrwPlugin = 1
                 require("nvim-tree").setup({
+                    git = {
+                        ignore = false,
+                    },
                     renderer = {
                         group_empty = true,
                     },

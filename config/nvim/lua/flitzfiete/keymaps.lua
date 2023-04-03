@@ -5,6 +5,10 @@ vim.g.maplocalleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- move horizontally
+vim.keymap.set('n', '<c-H>', '20zh')
+vim.keymap.set('n', '<c-L>', '20zl')
+
 -- center to -
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
