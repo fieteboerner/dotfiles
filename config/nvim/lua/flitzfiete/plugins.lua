@@ -99,12 +99,7 @@ return require('packer').startup({
             end
         })
 
-        use({
-            'mbbill/undotree',
-            config = function()
-                require('flitzfiete.plugins.undotree')
-            end
-        })
+        use({ 'mbbill/undotree' })
 
         use({
             'VonHeikemen/lsp-zero.nvim',
@@ -281,7 +276,15 @@ return require('packer').startup({
                 notify.setup({
                     stages = 'fade'
                 })
-                vim.notify = notify
+                local banned_messages = { "No information available" }
+                vim.notify = function(msg, ...)
+                    for _, banned in ipairs(banned_messages) do
+                        if msg == banned then
+                            return
+                        end
+                    end
+                    notify(msg, ...)
+                end
             end
         })
 
