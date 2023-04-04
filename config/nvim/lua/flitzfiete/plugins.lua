@@ -90,6 +90,7 @@ return require('packer').startup({
             requires = {
                 'nvim-treesitter/playground',
                 'nvim-treesitter/nvim-treesitter-textobjects',
+                'windwp/nvim-ts-autotag', -- auto close and rename html tags
                 'JoosepAlviste/nvim-ts-context-commentstring',
             },
             run = ':TSUpdate',
@@ -229,29 +230,16 @@ return require('packer').startup({
         })
 
         use({
-            'nvim-tree/nvim-tree.lua',
+            'nvim-neo-tree/neo-tree.nvim',
+            branch = "v2.x",
             requires = {
-                'nvim-tree/nvim-web-devicons', -- optional, for file icons
+                "nvim-lua/plenary.nvim",
+                "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+                "MunifTanjim/nui.nvim",
             },
-            tag = 'nightly', -- optional, updated every week.
             config = function()
-                vim.g.loaded_netrw = 1
-                vim.g.loaded_netrwPlugin = 1
-                require("nvim-tree").setup({
-                    git = {
-                        ignore = false,
-                    },
-                    renderer = {
-                        group_empty = true,
-                    },
-                    actions = {
-                        open_file = {
-                            quit_on_open = true,
-                        }
-                    }
-                })
-
-                vim.keymap.set('n', '<leader>b', ':NvimTreeFindFileToggle<CR>')
+                require('flitzfiete.plugins.neo-tree')
+                vim.keymap.set('n', '<leader>b', ':NeoTreeFocusToggle<CR>')
             end
         })
 
@@ -268,6 +256,42 @@ return require('packer').startup({
             config = function()
                 require('flitzfiete.plugins.indent-blankline')
             end,
+        })
+
+        use({
+            'stevearc/dressing.nvim',
+            config = function()
+                require('dressing').setup({
+                    input = {
+                        default_prompt = "➤ ",
+                        border = "rounded",
+                        win_options = { winhighlight = "FloatBorder:Normal,NormalNC:Normal" },
+                    },
+                    select = {
+                        backend = { "telescope", "builtin" },
+                        builtin = { win_options = { winhighlight = "Normal:Normal,NormalNC:Normal" } },
+                    },
+                })
+            end
+        })
+        use({
+            'rcarriga/nvim-notify',
+            config = function()
+                local notify = require('notify')
+                notify.setup({
+                    stages = 'fade'
+                })
+                vim.notify = notify
+            end
+        })
+
+        use({
+            "folke/which-key.nvim",
+            config = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+                require("which-key").setup({})
+            end
         })
 
         use({
