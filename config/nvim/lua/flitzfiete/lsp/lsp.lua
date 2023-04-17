@@ -32,8 +32,12 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(_, bufnr)
+lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
+
+    if client.name == "yamlls" then
+        client.server_capabilities.document_formatting = true
+    end
 
     local lsp_mappings = {
         n = {
