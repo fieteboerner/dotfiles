@@ -18,5 +18,7 @@ null_ls.setup({
         formatting.yamlfmt,
         -- formatting.gofmt,
         formatting.goimports,
+
+        formatting.lua_format,
     },
 })

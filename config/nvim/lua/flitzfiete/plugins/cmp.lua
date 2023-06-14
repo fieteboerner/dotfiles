@@ -1,6 +1,6 @@
-local lsp = require('lsp-zero')
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local lsp = require("lsp-zero")
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 -- configure autocompletion dropdown
 local kind_icons = {
@@ -39,38 +39,40 @@ local source_labels = {
     latex_symbols = "LaTeX",
 }
 
-vim.o.completeopt = 'menuone,longest,preview'
+-- vim.o.completeopt = "menuone,longest,preview"
 
-cmp.setup({
+return {
     preselect = cmp.PreselectMode.None,
     experimental = {
         ghost_text = true,
     },
     formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-            vim_item.kind = kind_icons[vim_item.kind]
-            vim_item.menu = source_labels[entry.source.name]
+        completeopt = "menu,menuone,preview",
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, item)
+            item.kind = kind_icons[item.kind]
+            item.menu = source_labels[entry.source.name]
 
-            return vim_item
-        end
+            local format = require("tailwindcss-colorizer-cmp").formatter
+            return format(entry, item)
+        end,
     },
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ["<M-a>"] = cmp.mapping {
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<M-a>"] = cmp.mapping({
             i = cmp.mapping.complete(),
-        },
+        }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -86,7 +88,7 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif require("luasnip").jumpable( -1) then
+            elseif require("luasnip").jumpable(-1) then
                 vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
             else
                 fallback()
@@ -97,8 +99,7 @@ cmp.setup({
         }),
     },
     window = {
-        completion = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
+        completion = cmp.config.window.bordered(),
     },
-})
+}
+

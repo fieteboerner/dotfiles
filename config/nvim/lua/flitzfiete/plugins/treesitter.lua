@@ -1,20 +1,25 @@
-require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all"
-    ensure_installed = { "javascript", "typescript", "help", "c", "lua", "rust" },
-
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
-
-    -- auto close an rename html tags
-    -- see: nvim-ts-autotag
+return {
     autotag = {
         enable = true,
     },
-
+    ensure_installed = {
+        -- defaults
+        "vim",
+        "lua",
+        -- web dev
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "vue",
+        "svelte",
+        -- other
+        "go",
+        -- config
+        "json",
+        "yaml",
+    },
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
@@ -34,12 +39,10 @@ require 'nvim-treesitter.configs'.setup {
                 ["af"] = "@function.outer",
                 ["ic"] = "@class.inner",
                 ["ac"] = "@class.outer",
-                ['ia'] = '@parameter.inner',
-                ['aa'] = '@parameter.outer',
+                ["ia"] = "@parameter.inner",
+                ["aa"] = "@parameter.outer",
             },
         },
     },
-    context_commentstring = {
-        enable = true,
-    },
+    context_commentstring = { enable = true },
 }

@@ -1,5 +1,9 @@
+local get_icon = require("flitzfiete.utils").get_icon
+
 local global_commands = {
-    system_open = function(state) require("flitzfiete.utils").system_open(state.tree:get_node():get_id()) end,
+    system_open = function(state)
+        require("flitzfiete.utils").system_open(state.tree:get_node():get_id())
+    end,
     parent_or_close = function(state)
         local node = state.tree:get_node()
         if (node.type == "directory" or node:has_children()) and node:is_expanded() then
@@ -22,40 +26,51 @@ local global_commands = {
     end,
 }
 
-local get_icon = require("flitzfiete.utils").get_icon
-
-require('neo-tree').setup({
+return {
     close_if_last_window = true,
+    popup_border_style = "rounded",
     source_selector = {
         winbar = true,
         content_layout = "center",
-        tab_labels = {
-            filesystem = get_icon "FolderClosed" .. " File",
-            buffers = get_icon "DefaultFile" .. " Bufs",
-            git_status = get_icon "Git" .. " Git",
-            diagnostics = get_icon "Diagnostic" .. " Diagnostic",
+        sources = {
+            {
+                source = "filesystem",
+                display_name = get_icon("FolderClosed") .. " File",
+            },
+            {
+                source = "buffers",
+                display_name = get_icon("DefaultFile") .. " Bufs",
+            },
+            {
+                source = "git_status",
+                display_name = get_icon("Git") .. " Git",
+            },
+            {
+                source = "diagnostics",
+                display_name = get_icon("Diagnostic") .. " Diagnostic",
+            },
         },
     },
     default_component_configs = {
         indent = { padding = 0 },
         icon = {
-            folder_closed = get_icon "FolderClosed",
-            folder_open = get_icon "FolderOpen",
-            folder_empty = get_icon "FolderEmpty",
-            default = get_icon "DefaultFile",
+            folder_closed = get_icon("FolderClosed"),
+            folder_open = get_icon("FolderOpen"),
+            folder_empty = get_icon("FolderEmpty"),
+            default = get_icon("DefaultFile"),
         },
-        modified = { symbol = get_icon "FileModified" },
+        modified = { symbol = get_icon("FileModified") },
         git_status = {
             symbols = {
-                added = get_icon "GitAdd",
-                deleted = get_icon "GitDelete",
-                modified = get_icon "GitChange",
-                renamed = get_icon "GitRenamed",
-                untracked = get_icon "GitUntracked",
-                ignored = get_icon "GitIgnored",
-                unstaged = get_icon "GitUnstaged",
-                staged = get_icon "GitStaged",
-                conflict = get_icon "GitConflict",
+                added = get_icon("GitAdd"),
+                deleted = get_icon("GitDelete"),
+                modified = get_icon("GitChange"),
+                renamed = get_icon("GitRenamed"),
+                untracked = get_icon("GitUntracked"),
+                ignored = get_icon("GitIgnored"),
+                unstaged = get_icon("GitUnstaged"),
+                staged = get_icon("GitStaged"),
+                conflict = get_icon("GitConflict"),
             },
         },
     },
@@ -78,7 +93,7 @@ require('neo-tree').setup({
         commands = global_commands,
         filtered_items = {
             hide_by_name = {
-                ".git"
+                ".git",
             },
             hide_dotfiles = false,
             hide_gitignored = false,
@@ -87,6 +102,11 @@ require('neo-tree').setup({
     buffers = { commands = global_commands },
     git_status = { commands = global_commands },
     event_handlers = {
-        { event = "neo_tree_buffer_enter", handler = function(_) vim.opt_local.signcolumn = "auto" end },
+        {
+            event = "neo_tree_buffer_enter",
+            handler = function(_)
+                vim.opt_local.signcolumn = "auto"
+            end,
+        },
     },
-})
+}
