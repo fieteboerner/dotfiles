@@ -32,6 +32,9 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 M.setup = function()
+    vim.diagnostic.config({
+        float = { border = "single" }
+    })
     lsp.preset({
         float_border = "rounded",
     })

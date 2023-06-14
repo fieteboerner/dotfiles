@@ -1,11 +1,13 @@
+local get_icon = require("flitzfiete.utils").get_icon
+
 local options = {
-    ensure_installed = { "lua-language-server", "gopls", "volar", "typescript" }, -- not an option from mason.nvim
+    ensure_installed = { "lua-language-server", "gopls", "volar", "tsserver", "tailwindcss" }, -- not an option from mason.nvim
 
     ui = {
       icons = {
-        package_pending = " ",
-        package_installed = "󰄳 ",
-        package_uninstalled = " 󰚌",
+        package_pending = get_icon("MasonInstalling"),
+        package_installed = get_icon("MasonInstalled"),
+        package_uninstall = get_icon("MasonUninstalled"),
       },
 
       keymaps = {

@@ -12,7 +12,7 @@ return {
     DefaultFile = "",
     Diagnostic = "裂",
     DiagnosticError = "",
-    DiagnosticHint = "",
+    DiagnosticHint = "󰌵",
     DiagnosticInfo = "",
     DiagnosticWarn = "",
     Ellipsis = "…",
@@ -46,4 +46,7 @@ return {
     Prompt = "",
     Spellcheck = "暈",
     TabClose = "",
+    MasonUninstalled = "",
+    MasonInstalling = " 󱥸",
+    MasonInstalled = "",
 }

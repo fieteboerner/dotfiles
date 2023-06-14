@@ -19,23 +19,23 @@ M.on_attach = function(client, bufnr)
         )
 
 
-        vim.api.nvim_create_autocmd(
-            {"BufWritePre"},
-            {
-                desc = "autoformat on save",
-                callback = function()
-                    if not M.has_capability("textDocument/formatting", { bufnr = bufnr }) then
-                        -- del_buffer_autocmd("lsp_auto_format", bufnr)
-                        return
-                    end
-                    local autoformat_enabled = vim.b.autoformat_enabled
-                    if autoformat_enabled == nil then autoformat_enabled = true end
-                    if autoformat_enabled then
-                        vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, { bufnr = bufnr }))
-                    end
-                end,
-            }
-        )
+        -- vim.api.nvim_create_autocmd(
+        --     {"BufWritePre"},
+        --     {
+        --         desc = "autoformat on save",
+        --         callback = function()
+        --             if not M.has_capability("textDocument/formatting", { bufnr = bufnr }) then
+        --                 -- del_buffer_autocmd("lsp_auto_format", bufnr)
+        --                 return
+        --             end
+        --             local autoformat_enabled = vim.b.autoformat_enabled
+        --             if autoformat_enabled == nil then autoformat_enabled = true end
+        --             if autoformat_enabled then
+        --                 vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, { bufnr = bufnr }))
+        --             end
+        --         end,
+        --     }
+        -- )
     end
 end
 

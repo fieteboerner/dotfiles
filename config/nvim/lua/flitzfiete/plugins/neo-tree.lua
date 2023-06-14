@@ -75,6 +75,7 @@ return {
         },
     },
     window = {
+        border = "rounded",
         width = 30,
         mappings = {
             ["<space>"] = false, -- disable space until we figure out which-key disabling
