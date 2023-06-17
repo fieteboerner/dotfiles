@@ -11,6 +11,7 @@ null_ls.setup({
         }),
         diagnostics.yamllint,
         diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+
         -- formatting.eslint,
         formatting.prettier.with({
             filetypes = { "html", "json", "svelte", "markdown", "css", "javascript", "javascriptreact" },
@@ -18,7 +19,6 @@ null_ls.setup({
         formatting.yamlfmt,
         -- formatting.gofmt,
         formatting.goimports,
-
-        formatting.lua_format,
+        formatting.stylua,
     },
 })

@@ -1,5 +1,5 @@
-    local plugins = {
-	    {
+local plugins = {
+    {
         "folke/tokyonight.nvim",
         lazy = false,
         config = function()
@@ -54,15 +54,15 @@
         "nvim-telescope/telescope.nvim",
         dependencies = {
             { "nvim-treesitter/nvim-treesitter" },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' },
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "nvim-telescope/telescope-live-grep-args.nvim" },
         },
         cmd = "Telescope",
         opts = function()
-            return require "flitzfiete.plugins.telescope"
+            return require("flitzfiete.plugins.telescope")
         end,
         config = function(_, opts)
-            local telescope = require "telescope"
+            local telescope = require("telescope")
             telescope.setup(opts)
 
             -- load extensions
@@ -70,6 +70,15 @@
                 -- telescope.load_extension(ext)
             end
         end,
+    },
+
+    {
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
+        opts = {
+            suggestions = { enable = true },
+            panel = { enable = false },
+        },
     },
 
     {
@@ -96,18 +105,26 @@
             {
                 "hrsh7th/nvim-cmp",
                 dependencies = {
-                    "windwp/nvim-autopairs",
-                    opts = {
-                        fast_wrap = {},
-                        disable_filetype = { "TelescopePrompt", "vim" },
-                    },
-                    config = function(_, opts)
-                        require("nvim-autopairs").setup(opts)
+                    {
+                        "windwp/nvim-autopairs",
+                        opts = {
+                            fast_wrap = {},
+                            disable_filetype = { "TelescopePrompt", "vim" },
+                        },
+                        config = function(_, opts)
+                            require("nvim-autopairs").setup(opts)
 
-                        -- setup cmp for autopairs
-                        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-                        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-                    end,
+                            -- setup cmp for autopairs
+                            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+                        end,
+                    },
+                    {
+                        "zbirenbaum/copilot-cmp",
+                        config = function()
+                            require("copilot_cmp").setup()
+                        end,
+                    },
                 },
             },
             { "hrsh7th/cmp-buffer" },
@@ -123,12 +140,7 @@
                 dependencies = { "rafamadriz/friendly-snippets" },
                 build = "make install_jsregexp",
                 config = function()
-                    local ls = require("luasnip")
-                    ls.config.set_config({
-                        history = true,
-                        udateevents = "TextChanged,TextChangedI",
-                    })
-                    require("luasnip.loaders.from_vscode").lazy_load()
+                    require("flitzfiete.plugins.luasnip").setup()
                 end,
             },
         },
@@ -345,6 +357,6 @@
         cmd = { "Spectre" },
         keys = { "<leader>fs", "<leader>fsw" },
     },
- }
+}
 
- require("lazy").setup(plugins, require("flitzfiete.plugins.lazy_nvim"))
+require("lazy").setup(plugins, require("flitzfiete.plugins.lazy_nvim"))
