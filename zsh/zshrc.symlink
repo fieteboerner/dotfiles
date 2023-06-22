@@ -95,7 +95,6 @@ plugins=(
 [[ -e $(which composer) ]] && plugins+=(composer)
 [[ -e $(which docker) ]] && plugins+=(docker)
 [[ -e $(which docker-compose) ]] && plugins+=(docker-compose)
-[[ -e $(which tmux) ]] && plugins+=(tmux)
 [[ -e $(which apt-get) ]] && plugins+=(ubuntu)
 [[ -e $(which kubectl) ]] && plugins+=(kubectl)
 [[ -e $(which helm) ]] && plugins+=(helm)
@@ -133,6 +132,7 @@ export EDITOR='vim'
 alias ll='ls -alh'
 alias vi='vim'
 alias gmm='git checkout master && git pull && git checkout - && git merge master'
+alias lg='lazygit'
 
 # New Feature Branch
 function nfb () {
