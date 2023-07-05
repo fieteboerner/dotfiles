@@ -63,6 +63,7 @@ fi
 [[ -d "/usr/lib/dart/bin/" ]] && PATH=$PATH:"/usr/lib/dart/bin/"
 [[ -d "$HOME/.npm-packages/bin" ]] && PATH=$PATH:"$HOME/.npm-packages/bin"
 [[ -d "$HOME/bin" ]] && PATH=$PATH:"$HOME/bin"
+[[ -d "$HOME/go/bin" ]] && PATH=$PATH:"$HOME/go/bin"
 [[ -d "$HOME/.deno/bin" ]] && PATH=$PATH:"$HOME/.deno/bin"
 [[ -d "$HOME/.config/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/.config/composer/vendor/bin"
 [[ -d "$HOME/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/composer/vendor/bin"
