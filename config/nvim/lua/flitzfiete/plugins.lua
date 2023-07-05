@@ -2,18 +2,11 @@ local plugins = {
     {
         "folke/tokyonight.nvim",
         lazy = false,
-        config = function()
+        init = function()
             vim.cmd("colorscheme tokyonight-moon")
         end,
     },
 
-    {
-        "jessarcher/onedark.nvim",
-        lazy = false,
-        config = function()
-            require("flitzfiete.plugins.others").setupOneDark()
-        end,
-    },
     {
         "norcalli/nvim-colorizer.lua",
         init = function()

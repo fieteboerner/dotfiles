@@ -4,8 +4,8 @@ local get_icon = require("flitzfiete.utils").get_icon
 local M = {}
 
 M.on_attach = function(client, bufnr)
-    require("flitzfiete.lsp.format").on_attach(client, bufnr)
     require("flitzfiete.keymaps").setupLspMappings(client, bufnr)
+    require("flitzfiete.lsp.format").on_attach(client, bufnr)
 
     -- if client.server_capabilities.signatureHelpProvider then
     --     require("flitzfiete.utils.signature").setup(client)
