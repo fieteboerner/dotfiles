@@ -6,11 +6,11 @@ null_ls.setup({
     sources = {
         diagnostics.eslint_d.with({
             condition = function(utils)
-                return utils.root_has_file({ '.eslintrc.js' })
-            end
+                return utils.root_has_file({ ".eslintrc.js" })
+            end,
         }),
         diagnostics.yamllint,
-        diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+        diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree" } }),
 
         -- formatting.eslint,
         formatting.prettier.with({

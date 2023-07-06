@@ -54,3 +54,5 @@ vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo"
 
 vim.opt.termguicolors = true
+
+vim.g.autoformat_enabled = true

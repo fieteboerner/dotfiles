@@ -5,15 +5,15 @@ local formatter = require("flitzfiete.lsp.format")
 local M = {}
 
 M.sections = {
-    f = { desc = "ó° Find" },
-    p = { desc = "ó° Packages" },
-    l = { desc = "ï LSP" },
-    u = { desc = "î­¿ UI" },
-    b = { desc = "ó°© Buffers" },
-    d = { desc = "ï Debugger}" },
-    g = { desc = "ï¡ Git" },
-    S = { desc = "ó±¬ Session" },
-    t = { desc = "î Terminal" },
+    f = { desc = " Find" },
+    p = { desc = "󰏖 Packages" },
+    l = { desc = " LSP" },
+    u = { desc = " UI" },
+    b = { desc = "󰓩 Buffers" },
+    d = { desc = " Debugger}" },
+    g = { desc = "󰊢 Git" },
+    S = { desc = "󱂬 Session" },
+    t = { desc = " Terminal" },
 }
 M.maps = { i = {}, n = {}, v = {}, t = {} }
 
@@ -51,15 +51,15 @@ M.maps.n["<leader>pU"] = {
 }
 
 -- NeoTree
-M.maps.n["<leader>e"] = { "<cmd>Neotree<CR>", desc = "Toggle Explorer" }
-M.maps.n["<leader>o"] = { "<cmd>Neotree focus<CR>", desc = "Toggle Explorer Focus" }
+M.maps.n["<leader>e"] = { "<cmd>Neotree<CR>", desc = " Toggle Explorer" }
+M.maps.n["<leader>o"] = { "<cmd>Neotree focus<CR>", desc = " Toggle Explorer Focus" }
 
 -- Oil
 M.maps.n["-"] = {
     function()
         require("oil").open()
     end,
-    desc = "Open Parent Directory"
+    desc = "Open Parent Directory",
 }
 
 -- Telescope
@@ -279,7 +279,7 @@ M.maps.n["<leader>u"] = M.sections.u
 M.maps.n["<leader>ua"] = { ui.toggle_autopairs, desc = "Toggle autopairs" }
 M.maps.n["<leader>ub"] = { ui.toggle_background, desc = "Toggle background" }
 M.maps.n["<leader>uc"] = { ui.toggle_cmp, desc = "Toggle autocompletion" }
-M.maps.n["<leader>uC"] = { "<cmd>ColorizerToggle<cr>", desc = "Toggle color highlight" }
+M.maps.n["<leader>uC"] = { ui.toggle_copilot, desc = "Toggle copilot" }
 M.maps.n["<leader>ug"] = { ui.toggle_signcolumn, desc = "Toggle signcolumn" }
 M.maps.n["<leader>ui"] = { ui.set_indent, desc = "Change indent setting" }
 M.maps.n["<leader>ul"] = { ui.toggle_statusline, desc = "Toggle statusline" }
