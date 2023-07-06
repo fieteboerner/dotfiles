@@ -1,3 +1,4 @@
+local actions = require("telescope.actions")
 return {
     defaults = {
         color_devicons = true,
@@ -13,8 +14,18 @@ return {
         sorting_strategy = "ascending",
         mappings = {
             n = {
-                ["<esc"] = require("telescope.actions").close,
-                ["<Space>"] = require("telescope.actions").select_default,
+                ["<esc"] = actions.close,
+                ["<Space>"] = actions.select_default,
+                ["<C-j>"] = actions.cycle_history_next,
+                ["<C-k>"] = actions.cycle_history_prev,
+                ["<C-Down>"] = actions.cycle_history_next,
+                ["<C-Up>"] = actions.cycle_history_prev,
+            },
+            i = {
+                ["<C-j>"] = actions.cycle_history_next,
+                ["<C-k>"] = actions.cycle_history_prev,
+                ["<C-Down>"] = actions.cycle_history_next,
+                ["<C-Up>"] = actions.cycle_history_prev,
             },
         },
         vimgrep_arguments = {
@@ -31,6 +42,7 @@ return {
     pickers = {
         find_files = {
             hidden = true,
+            -- cache_picker = true,
         },
         lsp_references = {
             theme = "dropdown",
