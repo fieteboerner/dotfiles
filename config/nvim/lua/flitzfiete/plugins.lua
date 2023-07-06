@@ -68,6 +68,7 @@ local plugins = {
     {
         "zbirenbaum/copilot.lua",
         event = "InsertEnter",
+        cmd = { "Copilot" },
         opts = {
             suggestions = { enable = true },
             panel = { enable = false },

@@ -1,7 +1,7 @@
 return {
     defaults = {
         color_devicons = true,
-        prompt_prefix = " ",
+        prompt_prefix = "  ",
         selection_caret = " ",
         entry_prefix = "  ",
         file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
