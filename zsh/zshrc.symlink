@@ -136,6 +136,7 @@ alias vi='vim'
 alias gmm='git checkout master && git pull && git checkout - && git merge master'
 alias lg='lazygit'
 alias vg='via-go'
+alias gpms='git push && git checkout stage && git pull && git merge - && git push'
 
 # New Feature Branch
 function nfb () {
@@ -149,8 +150,8 @@ function gcoid () {
     BRANCH_NAME=$(git branch -l | grep $1 | head -n 1 | cut -c3- | tr -d '\n')
 
     if [ -z $BRANCH_NAME ]; then
-	echo "Could not find any Branch with this ID $1"
-	return
+        echo "Could not find any Branch with this ID $1"
+        return
     fi
 
     git checkout "$BRANCH_NAME"
@@ -204,4 +205,7 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 
 #gmk autocompletion
 [ -f ~/qmk_firmware/util/qmk_tab_complete.sh ] && source ~/qmk_firmware/util/qmk_tab_complete.sh
+
+# z - jump around
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
