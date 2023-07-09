@@ -116,6 +116,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
 [[ -e $(which nvim) ]] && export EDITOR='nvim'
+[[ -e $(which via-go) ]] && eval "$(via-go autocomplete)"
 
 # export ARCHFLAGS="-arch x86_64"
 
@@ -134,6 +135,7 @@ alias ll='ls -alh'
 alias vi='vim'
 alias gmm='git checkout master && git pull && git checkout - && git merge master'
 alias lg='lazygit'
+alias vg='via-go'
 
 # New Feature Branch
 function nfb () {
