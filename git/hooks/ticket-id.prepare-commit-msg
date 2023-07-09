@@ -5,18 +5,18 @@
 # Author: Fiete Börner <fieteboerner@googlemail.com>
 
 # Abort if it is an amend/merge commit
-if [ $# -ge 3 ] || [ $2 == "merge" ]; then
+if [[ $# -ge 3 ]] || [[ $2 == "merge" ]]; then
   exit
 fi
 
 # Include any branches for which you wish to disable this script
-if [ -z "$BRANCHES_TO_SKIP" ]; then
+if [[ -z "$BRANCHES_TO_SKIP" ]]; then
   BRANCHES_TO_SKIP=(master development staging test)
 fi
 
 # Include any branches for which you wish to disable this script
-if [ -z "$TICKET_REGEX" ]; then
-  TICKET_REGEX="[A-Z]+-[0-9]+"
+if [[ -z "$TICKET_REGEX" ]]; then
+    TICKET_REGEX="(?<=/)[A-Z]+-[0-9]+"
 fi
 
 # Get the current branch name and check if it is excluded
@@ -24,12 +24,10 @@ BRANCH_NAME=$(git symbolic-ref --short HEAD)
 BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
 
 # Get the Ticket Id
-TICKET_ID=$(echo $BRANCH_NAME | grep -Eio $TICKET_REGEX | tr '[:lower:]' '[:upper:]')
+TICKET_ID=$(echo $BRANCH_NAME | grep -Pio $TICKET_REGEX | tr '[:lower:]' '[:upper:]')
 
 # print the commit prefix if it was found and the branch is not excluded
-if [ ! -z $TICKET_ID ] && ! [ $BRANCH_EXCLUDED -eq 1 ]; then
+if [[ ! -z $TICKET_ID ]] && ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
   echo "$TICKET_ID - $(cat $1)" > $1
 fi
-
-
 
