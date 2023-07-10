@@ -8,10 +8,15 @@ local plugins = {
     },
 
     {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
         init = function()
             require("flitzfiete.utils").lazy_load("nvim-colorizer.lua")
         end,
+        opts = {
+            user_default_options = {
+                tailwind = true,
+            },
+        },
         config = function(_, opts)
             require("colorizer").setup(opts)
 
