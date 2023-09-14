@@ -56,7 +56,6 @@ return {
             item.kind = kind_icons[item.kind]
             item.menu = source_labels[entry.source.name]
 
-
             local format = require("tailwindcss-colorizer-cmp").formatter
             return format(entry, item)
         end,
@@ -78,10 +77,10 @@ return {
             i = cmp.mapping.complete(),
         }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif require("luasnip").expand_or_jumpable() then
+            if luasnip.expand_or_jumpable() then
                 vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+            elseif cmp.visible() then
+                cmp.select_next_item()
             else
                 fallback()
             end
@@ -90,13 +89,6 @@ return {
             "s",
         }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
-            -- if cmp.visible() then
-            --     cmp.select_prev_item()
-            -- elseif require("luasnip").jumpable(-1) then
-            --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-            -- else
-            --     fallback()
-            -- end
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             elseif cmp.visible() then
