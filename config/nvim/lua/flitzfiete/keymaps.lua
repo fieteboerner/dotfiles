@@ -384,6 +384,7 @@ M.setupLspMappings = function(client, bufnr)
                 end,
                 desc = "Format file with LSP",
             },
+            ["<leader>le"] = { "<cmd>GoIfErr<cr>", desc = "Insert go error check" },
         },
         v = {
             ["<leader>la"] = { vim.lsp.buf.code_action, desc = "LSP code action" },

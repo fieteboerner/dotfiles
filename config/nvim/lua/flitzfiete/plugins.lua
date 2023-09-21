@@ -356,6 +356,18 @@ local plugins = {
         cmd = { "Spectre" },
         keys = { "<leader>fs", "<leader>fsw" },
     },
+
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        cmd = { "GoIfErr" },
+        config = function(_, opts)
+            require("gopher").setup(opts)
+        end,
+        build = function()
+            vim.cmd([[silent! GoInstallDeps]])
+        end,
+    },
 }
 
 require("lazy").setup(plugins, require("flitzfiete.plugins.lazy_nvim"))
