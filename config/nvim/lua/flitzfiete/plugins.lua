@@ -320,6 +320,7 @@ local plugins = {
             local notify = require("notify")
             notify.setup({
                 stages = "fade",
+                top_down = false,
             })
             local banned_messages = { "No information available" }
             vim.notify = function(msg, ...)

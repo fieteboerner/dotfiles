@@ -24,22 +24,26 @@ end
 -- @param type the type of the notification (:help vim.log.levels)
 -- @param opts table of nvim-notify options to use (:help notify-options)
 function M.notify(msg, type, opts)
-    vim.schedule(function() vim.notify(msg, type, M.extend_tbl({ title = "AstroNvim" }, opts)) end)
+    vim.schedule(function()
+        vim.notify(msg, type, M.extend_tbl({ title = "Nvim" }, opts))
+    end)
 end
 
 --- Open a URL under the cursor with the current operating system
 -- @param path the path of the file to open with the system opener
 function M.system_open(path)
     local cmd
-    if vim.fn.has "win32" == 1 and vim.fn.executable "explorer" == 1 then
+    if vim.fn.has("win32") == 1 and vim.fn.executable("explorer") == 1 then
         cmd = { "cmd.exe", "/K", "explorer" }
-    elseif vim.fn.has "unix" == 1 and vim.fn.executable "xdg-open" == 1 then
+    elseif vim.fn.has("unix") == 1 and vim.fn.executable("xdg-open") == 1 then
         cmd = { "xdg-open" }
-    elseif (vim.fn.has "mac" == 1 or vim.fn.has "unix" == 1) and vim.fn.executable "open" == 1 then
+    elseif (vim.fn.has("mac") == 1 or vim.fn.has("unix") == 1) and vim.fn.executable("open") == 1 then
         cmd = { "open" }
     end
-    if not cmd then M.notify("Available system opening tool not found!", "error") end
-    vim.fn.jobstart(vim.fn.extend(cmd, { path or vim.fn.expand "<cfile>" }), { detach = true })
+    if not cmd then
+        M.notify("Available system opening tool not found!", "error")
+    end
+    vim.fn.jobstart(vim.fn.extend(cmd, { path or vim.fn.expand("<cfile>") }), { detach = true })
 end
 
 --- Register queued which-key mappings
@@ -74,8 +78,12 @@ function M.set_mappings(map_table, base)
                     keymap_opts[1] = nil
                 end
                 if not cmd or keymap_opts.name then -- if which-key mapping, queue it
-                    if not M.which_key_queue then M.which_key_queue = {} end
-                    if not M.which_key_queue[mode] then M.which_key_queue[mode] = {} end
+                    if not M.which_key_queue then
+                        M.which_key_queue = {}
+                    end
+                    if not M.which_key_queue[mode] then
+                        M.which_key_queue[mode] = {}
+                    end
                     M.which_key_queue[mode][keymap] = keymap_opts
                 else -- if not which-key mapping, set it
                     vim.keymap.set(mode, keymap, cmd, keymap_opts)
@@ -83,14 +91,16 @@ function M.set_mappings(map_table, base)
             end
         end
     end
-    if package.loaded["which-key"] then M.which_key_register() end -- if which-key is loaded already, register
+    if package.loaded["which-key"] then
+        M.which_key_register()
+    end -- if which-key is loaded already, register
 end
 
 M.lazy_load = function(plugin)
     vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
         group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
         callback = function()
-            local file = vim.fn.expand "%"
+            local file = vim.fn.expand("%")
             local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
 
             if condition then
@@ -100,18 +110,18 @@ M.lazy_load = function(plugin)
                 -- This deferring only happens only when we do "nvim filename"
                 if plugin ~= "nvim-treesitter" then
                     vim.schedule(function()
-                        require("lazy").load { plugins = plugin }
+                        require("lazy").load({ plugins = plugin })
 
                         if plugin == "nvim-lspconfig" then
-                            vim.cmd "silent! do FileType"
-                            end
-                        end, 0)
-                    else
-                        require("lazy").load { plugins = plugin }
-                    end
+                            vim.cmd("silent! do FileType")
+                        end
+                    end, 0)
+                else
+                    require("lazy").load({ plugins = plugin })
                 end
-            end,
-        })
-    end
+            end
+        end,
+    })
+end
 
-    return M
+return M
