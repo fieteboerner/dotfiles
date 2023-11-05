@@ -91,18 +91,28 @@ func simpleSwapAudioStreams(path string, data *ffprobe.ProbeData) error {
 	args := []string{
 		"-i", path,
 		"-map", "0:v:0",
-		"-map", "0:a:1",
-		"-map", "0:a:0",
-		"-disposition:a:0", "default",
-		"-disposition:a:1", "-default",
-		"-disposition:a:1", "-forced", // sometimes there is a forced-flag on the german stream. - so remove it
-		"-c", "copy",
+		// disabled static switching in favor of dynamic switching
+		// "-map", "0:a:1",
+		// "-map", "0:a:0",
+		// "-disposition:a:0", "default",
+		// "-disposition:a:1", "-default",
+		// "-disposition:a:1", "-forced", // sometimes there is a forced-flag on the german stream. - so remove it
+		// "-c", "copy",
 	}
 	if hasSubtitles(data) {
 		args = append(args, "-map", "0:s")
 	}
 
+	audioArgs := getAudioArgs(data)
+	args = append(args, audioArgs...)
+	args = append(args, "-c", "copy")
+
 	args = append(args, temporaryPath) //output file
+
+	// for _, arg := range args {
+	// 	fmt.Println(arg)
+	// }
+	// panic("stop")
 
 	err := execCommand("ffmpeg", args...)
 
@@ -114,6 +124,47 @@ func simpleSwapAudioStreams(path string, data *ffprobe.ProbeData) error {
 	os.Rename(temporaryPath, path)
 
 	return nil
+}
+
+func getAudioArgs(data *ffprobe.ProbeData) []string {
+	audioStreams := []*ffprobe.Stream{}
+
+	for _, stream := range data.Streams {
+		if stream.CodecType != "audio" {
+			continue
+		}
+		language, _ := stream.TagList.GetString("language")
+		if language == "eng" {
+			// prepend eng stream to top
+			audioStreams = append([]*ffprobe.Stream{stream}, audioStreams...)
+		} else {
+			audioStreams = append(audioStreams, stream)
+		}
+	}
+
+	audioMapArgs := []string{}
+	dispositionArgs := []string{}
+	defaultUsed := false
+
+	for i, s := range audioStreams {
+		audioMapArgs = append(audioMapArgs, "-map")
+		audioMapArgs = append(audioMapArgs, fmt.Sprintf("0:a:%d", s.Index-1))
+
+		language, _ := s.TagList.GetString("language")
+		dispositionArgs = append(dispositionArgs, fmt.Sprintf("-disposition:a:%d", i))
+		dispositionValue := "-default"
+		if language == "eng" && !defaultUsed {
+			dispositionValue = "default"
+			defaultUsed = true
+		}
+		dispositionArgs = append(dispositionArgs, dispositionValue)
+	}
+
+	args := []string{}
+	args = append(args, audioMapArgs...)
+	args = append(args, dispositionArgs...)
+
+	return args
 }
 
 // func getAudioMaps(data *ffprobe.ProbeData) []string {
