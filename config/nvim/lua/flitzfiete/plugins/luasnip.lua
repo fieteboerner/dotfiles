@@ -21,6 +21,14 @@ M.setup = function()
     ls.add_snippets("svelte", jsSnippets)
     ls.add_snippets("vue", jsSnippets)
 
+    -- Vue
+    ls.add_snippets("vue", {
+        ls.parser.parse_snippet("defineProps", "defineProps<{\n  $0\n}>()"),
+        ls.parser.parse_snippet("props", "const props = defineProps<{\n  $0\n}>()"),
+        ls.parser.parse_snippet("script", '<script${1: lang="ts"}${2: setup}>\n  $0\n</script>'),
+        ls.parser.parse_snippet("style", '<style${1: lang="scss"}${2: scoped}>\n  $0\n</style>'),
+    })
+
     -- PHP
     ls.add_snippets("php", {
         ls.parser.parse_snippet("class", "class $1\n{\n    $0\n}"),

@@ -320,6 +320,7 @@ local plugins = {
             local notify = require("notify")
             notify.setup({
                 stages = "fade",
+                top_down = false,
             })
             local banned_messages = { "No information available" }
             vim.notify = function(msg, ...)
@@ -355,6 +356,18 @@ local plugins = {
         dependencies = { "nvim-lua/plenary.nvim" },
         cmd = { "Spectre" },
         keys = { "<leader>fs", "<leader>fsw" },
+    },
+
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        cmd = { "GoIfErr" },
+        config = function(_, opts)
+            require("gopher").setup(opts)
+        end,
+        build = function()
+            vim.cmd([[silent! GoInstallDeps]])
+        end,
     },
 }
 
