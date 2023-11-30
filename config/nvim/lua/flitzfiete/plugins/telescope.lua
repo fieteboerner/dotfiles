@@ -7,7 +7,7 @@ return {
         entry_prefix = "  ",
         file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
         shorten_path = true,
-        path_display = { "smart" },
+        path_display = { "truncate" },
         layout_config = {
             prompt_position = "top",
         },
@@ -42,6 +42,7 @@ return {
     pickers = {
         find_files = {
             hidden = true,
+            previewer = false,
             -- cache_picker = true,
         },
         lsp_references = {

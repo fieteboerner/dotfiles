@@ -48,6 +48,7 @@ vim.opt.ignorecase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo"
 

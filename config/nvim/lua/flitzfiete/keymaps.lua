@@ -127,7 +127,7 @@ M.maps.n["<leader>ff"] = {
 }
 M.maps.n["<leader>fF"] = {
     function()
-        require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+        require("telescope.builtin").find_files({ hidden = true, no_ignore = true, file_ignore_patterns = { ".git/" } })
     end,
     desc = "Find all files",
 }
@@ -191,7 +191,7 @@ M.maps.n["<leader>fW"] = {
 }
 M.maps.n["<leader>fu"] = {
     function()
-        vim.cmd.UndoTreeToggle()
+        vim.cmd.UndotreeToggle()
     end,
     desc = "Undo tree",
 }

@@ -46,13 +46,13 @@ local plugins = {
         end,
     },
 
-    { "mbbill/undotree", event = "VeryLazy" },
+    { "mbbill/undotree",          event = "VeryLazy" },
 
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             { "nvim-treesitter/nvim-treesitter" },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            { "nvim-telescope/telescope-fzf-native.nvim",    run = "make" },
             { "nvim-telescope/telescope-live-grep-args.nvim" },
         },
         cmd = "Telescope",
@@ -75,7 +75,7 @@ local plugins = {
         event = "InsertEnter",
         cmd = { "Copilot" },
         opts = {
-            suggestions = { enable = true },
+            suggestions = { enable = false },
             panel = { enable = false },
         },
     },
@@ -157,12 +157,12 @@ local plugins = {
         end,
     },
 
-    { "tpope/vim-commentary", event = "VeryLazy" },
-    { "tpope/vim-vinegar", event = "VeryLazy" },
-    { "tpope/vim-sleuth", event = "VeryLazy" }, -- autoload .editorconfig settings
-    { "tpope/vim-repeat", event = "VeryLazy" }, -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
+    { "tpope/vim-commentary",     event = "VeryLazy" },
+    { "tpope/vim-vinegar",        event = "VeryLazy" },
+    { "tpope/vim-sleuth",         event = "VeryLazy" }, -- autoload .editorconfig settings
+    { "tpope/vim-repeat",         event = "VeryLazy" }, -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
     { "farmergreg/vim-lastplace", lazy = false }, -- jump to the last location when opening a file
-    { "sickill/vim-pasta", event = "VeryLazy" }, -- jump to the last location when opening a filedF
+    { "sickill/vim-pasta",        event = "VeryLazy" }, -- jump to the last location when opening a filedF
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
