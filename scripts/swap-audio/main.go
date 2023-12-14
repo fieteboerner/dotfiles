@@ -16,7 +16,7 @@ func main() {
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "please pass a filepath")
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	path := os.Args[1]
@@ -128,15 +128,17 @@ func simpleSwapAudioStreams(path string, data *ffprobe.ProbeData) error {
 
 func getAudioArgs(data *ffprobe.ProbeData) []string {
 	audioStreams := []*ffprobe.Stream{}
+	engAudioSetFirst := false
 
 	for _, stream := range data.Streams {
 		if stream.CodecType != "audio" {
 			continue
 		}
 		language, _ := stream.TagList.GetString("language")
-		if language == "eng" {
+		if language == "eng" && !engAudioSetFirst {
 			// prepend eng stream to top
 			audioStreams = append([]*ffprobe.Stream{stream}, audioStreams...)
+			engAudioSetFirst = true
 		} else {
 			audioStreams = append(audioStreams, stream)
 		}
