@@ -21,7 +21,7 @@ var swapCommand = &cobra.Command{
 		swapper := util.NewSwapper(inputPath, outputPath, newDefaultLang, dryRun)
 
 		if err := swapper.Swap(); err != nil {
-			fmt.Printf("An error occurred %q", err)
+			fmt.Printf("Unable to swap audio %q", err)
 			os.Exit(1)
 		}
 		if dryRun {
