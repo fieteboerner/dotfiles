@@ -15,7 +15,8 @@ ZSH_CUSTOM=$DOTFILES/zsh/custom
 export REPORTTIME=10
 
 # Theme options
-SPACESHIP_BATTERY_THRESHOLD=20
+# SPACESHIP_BATTERY_THRESHOLD=20
+SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
 #SPACESHIP_NODE_SHOW=false
 
@@ -81,14 +82,14 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     vi-mode
-	colored-man-pages
-	git
-	laravel
-	npm
-	sudo
-	yarn
-	zsh-syntax-highlighting
-	zsh-autosuggestions
+    colored-man-pages
+    git
+    laravel
+    npm
+    sudo
+    yarn
+    zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 [[ -e $(which brew) ]] && plugins+=(osx)
 [[ -e $(which git-flow) ]] && plugins+=(git-flow)

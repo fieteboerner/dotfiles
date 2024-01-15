@@ -11,6 +11,12 @@ null_ls.setup({
         }),
         diagnostics.yamllint,
         diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree" } }),
+        diagnostics.stylelint.with({
+            filetypes = { "scss", "less", "css", "sass", "vue" },
+        }),
+        formatting.stylelint.with({
+            filetypes = { "scss", "less", "css", "sass", "vue" },
+        }),
 
         -- eslint before prettier because prettier is responsible for the basics (indentation, etc.)
         formatting.eslint_d.with({
