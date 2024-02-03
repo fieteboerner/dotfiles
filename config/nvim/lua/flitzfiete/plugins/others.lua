@@ -54,6 +54,9 @@ M.gitsigns = {
         topdelete = { text = "▎" },
         changedelete = { text = "▎" },
     },
+    preview_config = {
+        border = "rounded",
+    },
 }
 
 M.oil = {
