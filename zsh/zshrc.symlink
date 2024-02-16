@@ -210,3 +210,4 @@ zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_host
 # z - jump around
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
+[[ -e $(which zoxide) ]] && eval "$(zoxide init --cmd cd zsh)"
