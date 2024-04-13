@@ -274,6 +274,22 @@ M.maps.n["<leader>o"] = {
     desc = "Toggle Explorer Focus",
 }
 
+-- dap
+local dap = require("dap")
+M.maps.n["<leader>dt"] = { require("dapui").toggle, desc = "Toggle Dap UI" }
+M.maps.n["<leader>db"] = { dap.toggle_breakpoint, desc = "Toggle Debugger Breakpoint" }
+M.maps.n["<leader>dc"] = { dap.continue, desc = "Continue Debugging" }
+M.maps.n["<leader>di"] = { dap.step_into, desc = "Step Into" }
+M.maps.n["<leader>dO"] = { dap.step_out, desc = "Step Out" }
+M.maps.n["<leader>do"] = { dap.step_over, desc = "Step Over" }
+M.maps.n["<leader>dx"] = { dap.terminate, desc = "Terminate Debugging" }
+M.maps.n["<leader>dr"] = {
+    function()
+        require("dapui").open({ reset = true })
+    end,
+    desc = "Reset Dap UI window sizes",
+}
+
 -- Custom menu for modification of the user experience
 M.maps.n["<leader>u"] = M.sections.u
 M.maps.n["<leader>ua"] = { ui.toggle_autopairs, desc = "Toggle autopairs" }
