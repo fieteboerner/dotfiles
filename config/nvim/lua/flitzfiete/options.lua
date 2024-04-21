@@ -43,6 +43,7 @@ vim.opt.listchars = { tab = "▸ ", trail = "·" }
 vim.opt.incsearch = true
 vim.opt.showmatch = true
 vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.opt.ignorecase = true
 
 vim.opt.splitbelow = true

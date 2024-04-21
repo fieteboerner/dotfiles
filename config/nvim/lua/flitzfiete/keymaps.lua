@@ -277,6 +277,7 @@ M.maps.n["<leader>o"] = {
 -- dap
 local dap = require("dap")
 M.maps.n["<leader>dt"] = { require("dapui").toggle, desc = "Toggle Dap UI" }
+M.maps.n["<leader>de"] = { require("dapui").eval, desc = "Hover Over Expression" }
 M.maps.n["<leader>db"] = { dap.toggle_breakpoint, desc = "Toggle Debugger Breakpoint" }
 M.maps.n["<leader>dc"] = { dap.continue, desc = "Continue Debugging" }
 M.maps.n["<leader>di"] = { dap.step_into, desc = "Step Into" }
