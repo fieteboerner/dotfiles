@@ -1,7 +1,4 @@
 return {
-    autotag = {
-        enable = true,
-    },
     ensure_installed = {
         -- defaults
         "vim",
@@ -44,5 +41,4 @@ return {
             },
         },
     },
-    context_commentstring = { enable = true },
 }

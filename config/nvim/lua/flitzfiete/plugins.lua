@@ -26,7 +26,13 @@ local plugins = {
             end, 0)
         end,
     },
-
+    {
+        "windwp/nvim-ts-autotag", -- auto close and rename html tags
+        event = { "BufReadPre", "BufNewFile" },
+        config = function(_, opts)
+            require("nvim-ts-autotag").setup(opts)
+        end,
+    },
     {
         "nvim-treesitter/nvim-treesitter",
         cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -34,7 +40,6 @@ local plugins = {
         dependencies = {
             "nvim-treesitter/playground",
             "nvim-treesitter/nvim-treesitter-textobjects",
-            "windwp/nvim-ts-autotag", -- auto close and rename html tags
             "JoosepAlviste/nvim-ts-context-commentstring",
         },
         init = function()
@@ -70,15 +75,15 @@ local plugins = {
         end,
     },
 
-    {
-        "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        cmd = { "Copilot" },
-        opts = {
-            suggestions = { enable = false },
-            panel = { enable = false },
-        },
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     event = "InsertEnter",
+    --     cmd = { "Copilot" },
+    --     opts = {
+    --         suggestions = { enable = false },
+    --         panel = { enable = false },
+    --     },
+    -- },
 
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -137,6 +142,7 @@ local plugins = {
             {
                 "L3MON4D3/LuaSnip",
                 dependencies = { "rafamadriz/friendly-snippets" },
+                version = "v2.*",
                 build = "make install_jsregexp",
                 config = function()
                     require("flitzfiete.plugins.luasnip").setup()
@@ -322,7 +328,7 @@ local plugins = {
         event = "VeryLazy",
         opts = require("flitzfiete.plugins.others").indentBlankline,
         config = function(_, opts)
-            require("indent_blankline").setup(opts)
+            require("ibl").setup(opts)
         end,
     },
 

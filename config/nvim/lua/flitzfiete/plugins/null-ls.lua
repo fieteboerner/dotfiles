@@ -25,9 +25,9 @@ null_ls.setup({
             end,
         }),
         formatting.prettierd.with({
-            condition = function(utils)
-                return utils.has_file({ ".prettierrc", ".prettierrc.js" })
-            end,
+            -- condition = function(utils)
+            --     return utils.has_file({ ".prettierrc", ".prettierrc.js" })
+            -- end,
             filetypes = {
                 "html",
                 "json",

@@ -75,4 +75,41 @@ M.setup = function()
     lsp.setup()
 end
 
+M.masonLspconfigOptions = function()
+    local handlers = {
+        -- default handler
+        function(server_name)
+            require("lspconfig")[server_name].setup({})
+        end,
+    }
+    local customHandlers = {
+        ["jsonls"] = require("flitzfiete.lsp.languages.json"),
+        ["lua_ls"] = require("flitzfiete.lsp.languages.lua"),
+        ["intelephense"] = require("flitzfiete.lsp.languages.php"),
+        ["tailwindcss"] = require("flitzfiete.lsp.languages.tailwind"),
+        ["volar"] = require("flitzfiete.lsp.languages.vue"),
+        ["yamlls"] = require("flitzfiete.lsp.languages.yaml"),
+    }
+    for key, opts in pairs(customHandlers) do
+        handlers[key] = function()
+            require("lspconfig")[key].setup(opts)
+        end
+    end
+    return {
+        ensure_installed = {
+            "cssls",
+            "gopls",
+            "html",
+            "jsonls",
+            "lua_ls",
+            "svelte",
+            "tailwindcss",
+            "tsserver",
+            "volar",
+            "yamlls",
+        },
+        handlers = handlers,
+    }
+end
+
 return M
