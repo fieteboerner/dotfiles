@@ -69,6 +69,8 @@ M.setup = function()
 
     require("flitzfiete.lsp.languages.lua")
     require("flitzfiete.lsp.languages.json")
+    require("flitzfiete.lsp.languages.tailwind")
+    require("flitzfiete.lsp.languages.php")
     require("flitzfiete.lsp.languages.vue")
     require("flitzfiete.lsp.languages.yaml")
 
