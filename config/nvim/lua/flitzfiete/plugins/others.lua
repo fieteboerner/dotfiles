@@ -42,7 +42,10 @@ M.indentBlankline = {
         },
         buftypes = {
             "terminal",
-        }
+        },
+    },
+    scope = {
+        enabled = false,
     },
 }
 
