@@ -1,0 +1,118 @@
+export DOTFILES=$HOME/.dotfiles
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# PATH
+[[ -d "/usr/lib/dart/bin/" ]] && PATH=$PATH:"/usr/lib/dart/bin/"
+[[ -d "$HOME/.npm-packages/bin" ]] && PATH=$PATH:"$HOME/.npm-packages/bin"
+[[ -d "$HOME/bin" ]] && PATH=$PATH:"$HOME/bin"
+[[ -d "$HOME/go/bin" ]] && PATH=$PATH:"$HOME/go/bin"
+[[ -d "$HOME/.deno/bin" ]] && PATH=$PATH:"$HOME/.deno/bin"
+[[ -d "$HOME/.config/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/.config/composer/vendor/bin"
+[[ -d "$HOME/composer/vendor/bin" ]] && PATH=$PATH:"$HOME/composer/vendor/bin"
+[[ -d "$ANDROID_HOME/tools" ]] && PATH=$PATH:"$ANDROID_HOME/tools"
+[[ -d "$ANDROID_HOME/platform-tools/" ]] && PATH=$PATH:"$ANDROID_HOME/platform-tools/"
+[[ -d "$HOME/.local/bin" ]] && PATH=$PATH:"$HOME/.local/bin"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -d "$HOME/.rvm/bin" ]] && PATH=$PATH:"$HOME/.rvm/bin"
+[[ -d "$DOTFILES/bin" ]] && PATH=$PATH:"$DOTFILES/bin"
+
+eval "$(starship init zsh)"
+
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
+# # Add in snippets
+zinit snippet OMZP::vi-mode
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::npm
+zinit snippet OMZP::yarn
+zinit snippet OMZP::laravel
+zinit snippet OMZL::theme-and-appearance.zsh
+zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZL::completion.zsh
+zinit snippet OMZL::directories.zsh
+
+# # slow init
+# [[ -e $(which composer) ]]       && zinit snippet OMZP::composer
+[[ -e $(which docker) ]]         && zinit snippet OMZP::docker
+[[ -e $(which docker-compose) ]] && zinit snippet OMZP::docker-compose
+[[ -e $(which apt-get) ]]        && zinit snippet OMZP::ubuntu
+[[ -e $(which kubectl) ]]        && zinit snippet OMZP::kubectl
+
+# Load completions
+autoload -U zmv
+autoload -Uz compinit; compinit
+
+export TERM="xterm-256color"
+export EDITOR='vim'
+[[ -e $(which nvim) ]] && export EDITOR='nvim'
+[[ -e $(which via-go) ]] && eval "$(via-go autocomplete)"
+
+case "$OSTYPE" in
+   linux*)
+      alias open="xdg-open"
+      ;;
+esac
+
+# keybindings
+bindkey -e # emacs bindings
+bindkey "^[[3~" delete-char
+bindkey -s "^[#" "^a#\n" # comment out line and go to next
+bindkey '^[v' .describe-key-briefly
+
+# Aliases
+alias ll='ls -alh'
+alias grep='grep --color=auto'
+alias vi='vim'
+alias lg='lazygit'
+alias vg='via-go'
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# init nvm (async)
+source "$HOME/.dotfiles/zsh/load-nvm.sh"
+
+#gmk autocompletion
+[ -f ~/qmk_firmware/util/qmk_tab_complete.sh ] && source ~/qmk_firmware/util/qmk_tab_complete.sh
+
+[[ -e $(which zoxide) ]] && eval "$(zoxide init --cmd cd zsh)"
+
+### host autocomplete based on known_hosts
+zstyle -e ':completion:*:*:*' hosts 'reply=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:# *}%%\ *}%%,*})'
+
+### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+### End: Fix slowness of pastes

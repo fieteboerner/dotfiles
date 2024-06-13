@@ -158,20 +158,12 @@ function gcoid () {
     git checkout "$BRANCH_NAME"
 }
 
-# enable vim mode
-# bindkey -v
 # override key bindings (emacs)
 bindkey -e
 bindkey -r "^[[5~"
 bindkey -r "^[[6~"
 bindkey "^u" backward-kill-line # opposite of ^k not killing entire line
 bindkey -s "^[#" "^a#\n" # comment out line and go to next
-bindkey "^[p" history-beginning-search-backward # alt+p
-bindkey "^[n" history-beginning-search-forward # alt+n
-bindkey "^[[5~" history-beginning-search-backward
-bindkey "^[[6~" history-beginning-search-forward
-# bindkey "${key[Up]}" up-line-or-history
-# bindkey "${key[Down]}" down-line-or-history
 
 
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
