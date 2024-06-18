@@ -79,6 +79,7 @@ alias grep='grep --color=auto'
 alias vi='vim'
 alias lg='lazygit'
 alias vg='via-go'
+alias reload='source ~/.zshrc'
 
 # History
 HISTSIZE=5000
