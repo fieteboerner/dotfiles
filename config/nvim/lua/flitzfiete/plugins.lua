@@ -86,6 +86,15 @@ local plugins = {
     -- },
 
     {
+        "akinsho/flutter-tools.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+        },
+        lazy = false,
+        opts = {},
+    },
+
+    {
         "VonHeikemen/lsp-zero.nvim",
         lazy = false,
         dependencies = {
