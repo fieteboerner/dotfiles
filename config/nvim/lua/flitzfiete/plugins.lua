@@ -171,6 +171,24 @@ local plugins = {
             return require("flitzfiete.plugins.null-ls")
         end,
     },
+    -- test
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "marilari88/neotest-vitest",
+        },
+        opts = function()
+            return require("flitzfiete.plugins.neotest")
+        end,
+        config = function(_, opts)
+            require("neotest").setup(opts)
+        end,
+    },
+
     -- dap / debugging
     {
         "rcarriga/nvim-dap-ui",

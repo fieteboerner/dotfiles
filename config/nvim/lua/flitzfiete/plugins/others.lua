@@ -39,6 +39,7 @@ M.indentBlankline = {
             "TelescopeResults",
             "nvcheatsheet",
             "mason",
+            "oil",
         },
         buftypes = {
             "terminal",

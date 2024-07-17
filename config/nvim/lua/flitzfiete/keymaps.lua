@@ -19,40 +19,18 @@ M.maps = { i = {}, n = {}, v = {}, t = {} }
 
 -- Plugin Manager
 M.maps.n["<leader>p"] = M.sections.p
-M.maps.n["<leader>pi"] = {
-    function()
-        require("packer").install()
-    end,
-    desc = "Plugins Install",
-}
-M.maps.n["<leader>ps"] = {
-    function()
-        require("packer").home()
-    end,
-    desc = "Plugins Status",
-}
 M.maps.n["<leader>pS"] = {
     function()
         require("lazy").sync()
     end,
     desc = "Plugins Sync",
 }
-M.maps.n["<leader>pu"] = {
-    function()
-        require("packer").check()
-    end,
-    desc = "Plugins Check Updates",
-}
-M.maps.n["<leader>pU"] = {
-    function()
-        require("packer").update()
-    end,
-    desc = "Plugins Update",
-}
+
+M.maps.n["[q"] = { "<cmd>:cprev<CR>zz", desc = "Previous in qflist" }
+M.maps.n["]q"] = { "<cmd>:cnext<CR>zz", desc = "Next in qflist" }
 
 -- NeoTree
 M.maps.n["<leader>e"] = { "<cmd>Neotree<CR>", desc = " Toggle Explorer" }
-M.maps.n["<leader>o"] = { "<cmd>Neotree focus<CR>", desc = " Toggle Explorer Focus" }
 
 -- Oil
 M.maps.n["-"] = {
@@ -272,6 +250,63 @@ M.maps.n["<leader>o"] = {
         end
     end,
     desc = "Toggle Explorer Focus",
+}
+
+-- test
+M.maps.n["<leader>t"] = { desc = "+test" }
+M.maps.n["<leader>tt"] = {
+    function()
+        require("neotest").run.run(vim.fn.expand("%"))
+    end,
+    desc = "Run File",
+}
+M.maps.n["<leader>tT"] = {
+    function()
+        require("neotest").run.run(vim.uv.cwd())
+    end,
+    desc = "Run All Test Files",
+}
+M.maps.n["<leader>tr"] = {
+    function()
+        require("neotest").run.run()
+    end,
+    desc = "Run Nearest",
+}
+M.maps.n["<leader>tl"] = {
+    function()
+        require("neotest").run.run_last()
+    end,
+    desc = "Run Last",
+}
+M.maps.n["<leader>ts"] = {
+    function()
+        require("neotest").summary.toggle()
+    end,
+    desc = "Toggle Summary",
+}
+M.maps.n["<leader>to"] = {
+    function()
+        require("neotest").output.open({ enter = true, auto_close = true })
+    end,
+    desc = "Show Output",
+}
+M.maps.n["<leader>tO"] = {
+    function()
+        require("neotest").output_panel.toggle()
+    end,
+    desc = "Toggle Output Panel",
+}
+M.maps.n["<leader>tS"] = {
+    function()
+        require("neotest").run.stop()
+    end,
+    desc = "Stop",
+}
+M.maps.n["<leader>tw"] = {
+    function()
+        require("neotest").watch.toggle(vim.fn.expand("%"))
+    end,
+    desc = "Toggle Watch",
 }
 
 -- dap

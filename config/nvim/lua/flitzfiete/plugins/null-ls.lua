@@ -12,6 +12,9 @@ null_ls.setup({
         diagnostics.yamllint,
         diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree" } }),
         diagnostics.stylelint.with({
+            condition = function(utils)
+                return utils.root_has_file({ "stylelint.config.js", ".stylelintrc.js", ".stylelintrc" })
+            end,
             filetypes = { "scss", "less", "css", "sass", "vue" },
         }),
         formatting.stylelint.with({

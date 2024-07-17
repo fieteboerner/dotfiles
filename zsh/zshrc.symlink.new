@@ -80,6 +80,7 @@ alias vi='vim'
 alias lg='lazygit'
 alias vg='via-go'
 alias reload='source ~/.zshrc'
+alias nah='git reset --hard && git clean -df'
 
 # History
 HISTSIZE=5000
@@ -117,3 +118,4 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### End: Fix slowness of pastes
+
