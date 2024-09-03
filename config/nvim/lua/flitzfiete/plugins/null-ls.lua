@@ -1,4 +1,5 @@
 local null_ls = require("null-ls")
+local utils = require("null-ls/utils")
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
@@ -16,6 +17,14 @@ null_ls.setup({
                 return utils.root_has_file({ "stylelint.config.js", ".stylelintrc.js", ".stylelintrc" })
             end,
             filetypes = { "scss", "less", "css", "sass", "vue" },
+        }),
+        diagnostics.phpcs.with({
+            condition = function(utils)
+                return utils.root_has_file({ "phpcs_ruleset.xml" })
+            end,
+            extra_args = {
+                "--standard=" .. utils.path.join(utils.get_root(), "phpcs_ruleset.xml"),
+            },
         }),
         formatting.stylelint.with({
             filetypes = { "scss", "less", "css", "sass", "vue" },
@@ -47,5 +56,6 @@ null_ls.setup({
         -- formatting.gofmt,
         formatting.goimports,
         formatting.stylua,
+        formatting.phpcsfixer,
     },
 })
