@@ -401,6 +401,15 @@ M.setup = function()
     vim.keymap.set("", "<Home>", "^")
     vim.keymap.set("i", "<Home>", "<Esc>^i")
 
+    -- neoscroll
+    local modes = { "n", "v", "x" }
+    vim.keymap.set(modes, "<C-u>", function()
+        require("neoscroll").ctrl_u({ duration = 50 })
+    end)
+    vim.keymap.set(modes, "<C-d>", function()
+        require("neoscroll").ctrl_d({ duration = 50 })
+    end)
+
     utils.set_mappings(M.maps)
 end
 --

@@ -52,7 +52,7 @@ function M.which_key_register()
         local wk_avail, wk = pcall(require, "which-key")
         if wk_avail then
             for mode, registration in pairs(M.which_key_queue) do
-                wk.register(registration, { mode = mode })
+                wk.add(registration, { mode = mode })
             end
             M.which_key_queue = nil
         end
@@ -84,7 +84,10 @@ function M.set_mappings(map_table, base)
                     if not M.which_key_queue[mode] then
                         M.which_key_queue[mode] = {}
                     end
-                    M.which_key_queue[mode][keymap] = keymap_opts
+
+                    -- turn into new whick key format like { "<C-u>", function end, desc="" }
+                    table.insert(options, 1, keymap)
+                    table.insert(M.which_key_queue[mode], options)
                 else -- if not which-key mapping, set it
                     vim.keymap.set(mode, keymap, cmd, keymap_opts)
                 end

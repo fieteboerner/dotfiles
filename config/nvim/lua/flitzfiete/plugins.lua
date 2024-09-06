@@ -302,7 +302,7 @@ local plugins = {
         "karb94/neoscroll.nvim",
         event = "VeryLazy",
         config = function()
-            require("flitzfiete.plugins.neoscroll")
+            return require("flitzfiete.plugins.neoscroll")
         end,
     },
 
@@ -394,7 +394,9 @@ local plugins = {
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup({})
+            require("which-key").setup({
+                icons = { mappings = false },
+            })
         end,
     },
 

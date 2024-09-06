@@ -57,5 +57,6 @@ null_ls.setup({
         formatting.goimports,
         formatting.stylua,
         formatting.phpcsfixer,
+        formatting.black,
     },
 })
