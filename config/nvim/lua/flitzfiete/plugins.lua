@@ -146,6 +146,7 @@ local plugins = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
             { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help" },
 
             -- Snippets
             {
