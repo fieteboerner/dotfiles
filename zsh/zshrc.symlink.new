@@ -39,11 +39,11 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::npm
 zinit snippet OMZP::yarn
-zinit snippet OMZP::laravel
 zinit snippet OMZL::theme-and-appearance.zsh
 zinit snippet OMZL::key-bindings.zsh
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::directories.zsh
+zinit snippet "$HOME/.dotfiles/zsh/zsh-artisan/artisan.plugin.zsh"
 
 # # slow init
 # [[ -e $(which composer) ]]       && zinit snippet OMZP::composer
@@ -82,6 +82,9 @@ alias nah='git reset --hard;git clean -df;'
 alias vg='via-go'
 alias reload='source ~/.zshrc'
 alias nah='git reset --hard && git clean -df'
+# laravel artisan
+alias art="artisan"
+alias tinker="artisan tinker"
 
 # History
 HISTSIZE=5000
