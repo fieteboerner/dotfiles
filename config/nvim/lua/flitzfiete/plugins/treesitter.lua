@@ -13,6 +13,7 @@ return {
         "svelte",
         -- other
         "go",
+        "php",
         -- config
         "json",
         "yaml",
