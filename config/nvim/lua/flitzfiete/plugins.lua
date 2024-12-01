@@ -29,6 +29,13 @@ local plugins = {
     {
         "windwp/nvim-ts-autotag", -- auto close and rename html tags
         event = { "BufReadPre", "BufNewFile" },
+        opts = {
+            per_filetype = {
+                ["php"] = {
+                    enable_close = false, -- disable to not break the repeat in php files (->foo -foo)
+                },
+            },
+        },
         config = function(_, opts)
             require("nvim-ts-autotag").setup(opts)
         end,
