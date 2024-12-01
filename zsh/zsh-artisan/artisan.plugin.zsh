@@ -19,26 +19,29 @@ function artisan() {
     local artisan_cmd
 
     if [ "$docker_compose_config_path" = '' ]; then
-        artisan_cmd="php $artisan_path"
+        artisan_cmd="php $artisan_path $*"
     else
         if [ "`grep "laravel/sail" $docker_compose_config_path | head -n1`" != '' ]; then
-            artisan_cmd="$laravel_path/vendor/bin/sail artisan"
+            artisan_cmd="$laravel_path/vendor/bin/sail artisan $*"
          else
+            local env_vars=$(env | grep '^ARTISAN_' | sed 's/^ARTISAN_//' | tr '\n' ' ')
+            # ARTISAN_* prefixed env vars will passed into docker for the actual php artisan command (the prefix will be removed)
             local docker_compose_cmd=`_docker_compose_cmd`
             # local docker_compose_service_name=`$docker_compose_cmd ps --services 2>/dev/null | grep 'app-php' | head -n1`
             local docker_compose_service_name="app-php"
             if [ -t 1 ]; then
-                artisan_cmd="$docker_compose_cmd exec $docker_compose_service_name php artisan"
+                artisan_cmd="$docker_compose_cmd exec $docker_compose_service_name sh -c \"$env_vars php artisan $*\""
             else
                 # The command is not being run in a TTY (e.g. it's being called by the completion handler below)
-                artisan_cmd="$docker_compose_cmd exec -T $docker_compose_service_name php artisan"
+                artisan_cmd="$docker_compose_cmd exec -T $docker_compose_service_name sh -c \"$env_vars php artisan $*\""
             fi
         fi
     fi
 
     local artisan_start_time=`date +%s`
 
-    eval $artisan_cmd $*
+    echo "exec: $artisan_cmd"
+    eval $artisan_cmd
 
     local artisan_exit_status=$? # Store the exit status so we can return it later
 
