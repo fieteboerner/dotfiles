@@ -7,7 +7,7 @@ return {
         entry_prefix = "  ",
         file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
         shorten_path = true,
-        path_display = { "truncate" },
+        path_display = { shorten = 5 },
         layout_config = {
             prompt_position = "top",
         },

@@ -67,3 +67,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = highlight_group,
     pattern = "*",
 })
+vim.filetype.add({
+    pattern = {
+        [".*%.blade%.php"] = "html",
+    },
+})
