@@ -8,6 +8,7 @@ return {
         file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
         shorten_path = true,
         path_display = { shorten = 5 },
+        previewer = false,
         layout_config = {
             prompt_position = "top",
         },
@@ -36,18 +37,17 @@ return {
             "--with-filename",
             "--line-number",
             "--column",
+            "--iglob=**/.env",
             "--smart-case",
         },
     },
     pickers = {
         find_files = {
             hidden = true,
-            previewer = false,
             -- cache_picker = true,
         },
         lsp_references = {
             theme = "dropdown",
-            previewer = false,
         },
         lsp_definitions = {
             -- remove modules to allow to go to definition via lsp
@@ -55,11 +55,17 @@ return {
         },
         oldfiles = {
             cwd_only = true,
-            on_complete = {
-                function()
-                    vim.cmd("stopinsert")
-                end,
-            },
+            -- on_complete = {
+            --     function()
+            --         vim.cmd("stopinsert")
+            --     end,
+            -- },
+        },
+        grep_string = {
+            previewer = true,
+        },
+        live_grep = {
+            previewer = true,
         },
     },
 
