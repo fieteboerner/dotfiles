@@ -49,6 +49,10 @@ return {
             theme = "dropdown",
             previewer = false,
         },
+        lsp_definitions = {
+            -- remove modules to allow to go to definition via lsp
+            file_ignore_patterns = { ".git/" },
+        },
         oldfiles = {
             cwd_only = true,
             on_complete = {
