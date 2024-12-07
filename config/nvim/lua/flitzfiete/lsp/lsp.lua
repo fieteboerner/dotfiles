@@ -109,6 +109,10 @@ M.masonLspconfigOptions = function()
             "tsserver",
             "volar",
             "yamlls",
+            "intelephense",
+            "eslint_d",
+            "prettierd",
+            "stylelint",
         },
         handlers = handlers,
     }

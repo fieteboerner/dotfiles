@@ -37,7 +37,6 @@ return {
             "--with-filename",
             "--line-number",
             "--column",
-            "--iglob=**/.env",
             "--smart-case",
         },
     },
