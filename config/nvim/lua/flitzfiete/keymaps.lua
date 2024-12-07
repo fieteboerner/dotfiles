@@ -446,6 +446,10 @@ M.setupLspMappings = function(client, bufnr)
                 desc = "Format file with LSP",
             },
             ["<leader>le"] = { "<cmd>GoIfErr<cr>", desc = "Insert go error check" },
+            ["<leader>cc"] = {
+                require("flitzfiete.utils.php-docblock").generate_php_docblock,
+                desc = "Insert go error check",
+            },
         },
         v = {
             ["<leader>la"] = { vim.lsp.buf.code_action, desc = "LSP code action" },
