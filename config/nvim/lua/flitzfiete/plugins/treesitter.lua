@@ -14,6 +14,7 @@ return {
         -- other
         "go",
         "php",
+        "php_only", -- used in blade
         -- config
         "json",
         "yaml",
