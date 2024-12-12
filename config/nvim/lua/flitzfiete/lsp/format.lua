@@ -41,6 +41,10 @@ end
 
 M.on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
+        -- do not format with the following lsps
+        if client.name == "volar" or client.name == "tsserver" then
+            return
+        end
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
             vim.lsp.buf.format(M.format_opts)
         end, { desc = "Format file with LSP" })
