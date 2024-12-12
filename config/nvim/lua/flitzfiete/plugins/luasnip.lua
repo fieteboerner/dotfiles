@@ -7,7 +7,6 @@ M.setup = function()
         history = true,
         updateevents = "TextChanged,TextChangedI",
     })
-    require("luasnip.loaders.from_vscode").lazy_load()
 
     -- JS/TS/Svelte/Vue
     local jsSnippets = {
