@@ -76,7 +76,8 @@ local function generate_php_docblock()
     end
 
     -- if comment already exists
-    if ts_utils.get_previous_node(node):type() == "comment" then
+    local prevNode = ts_utils.get_previous_node(node)
+    if prevNode and prevNode:type() == "comment" then
         return
     end
 
