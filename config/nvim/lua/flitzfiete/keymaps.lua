@@ -371,6 +371,10 @@ M.setup = function()
     vim.keymap.set("v", "<", "<gv")
     vim.keymap.set("v", ">", ">gv")
 
+    -- exec lua
+    vim.keymap.set("n", "<leader>x", ":.lua<cr>")
+    vim.keymap.set("v", "<leader>x", ":lua<cr>")
+
     -- copy to clipboard
     vim.keymap.set("n", "<leader>y", '"+y')
     vim.keymap.set("v", "<leader>y", '"+y')
