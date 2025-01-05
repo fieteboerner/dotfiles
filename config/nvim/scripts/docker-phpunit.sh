@@ -49,7 +49,7 @@ args=("${args//(*}")
 
 # Run the tests
 # set -x
-docker exec -it $container $execPath -c "SYMFONY_DEPRECATIONS_HELPER=weak $phpunitPath -d memory_limit=-1 -d xdebug.idekey=deliver-be ${args} --log-junit=${localPhpUnitResultPath}"
+docker exec -it $container $execPath -c "SKIP_REFRESH_DB_STATE=1 $phpunitPath -d memory_limit=-1 -d xdebug.idekey=deliver-be ${args} --log-junit=${localPhpUnitResultPath}"
 # set +x
 
 # copy results

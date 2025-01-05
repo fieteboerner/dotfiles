@@ -19,6 +19,11 @@ return {
                         CONTAINER = "fermenthero-api-app-1",
                     }
                 end
+                if cwd == "/home/fiete/code/adzlocal/apps/system" then
+                    return {
+                        CONTAINER = "system-app-php-1",
+                    }
+                end
                 return {}
             end,
         }),
