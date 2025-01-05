@@ -6,5 +6,21 @@ return {
                 return name ~= "node_modules"
             end,
         }),
+        require("neotest-phpunit")({
+            root_files = { "phpunit.xml", "composer.json" },
+            phpunit_cmd = function()
+                return os.getenv("HOME") .. "/.dotfiles/config/nvim/scripts/docker-phpunit.sh"
+            end,
+            filter_dirs = { "vendor" },
+            env = function()
+                local cwd = vim.fn.getcwd()
+                if cwd == "/home/fiete/code/fermenthero-api" then
+                    return {
+                        CONTAINER = "fermenthero-api-app-1",
+                    }
+                end
+                return {}
+            end,
+        }),
     },
 }

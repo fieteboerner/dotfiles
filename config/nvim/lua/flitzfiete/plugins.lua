@@ -197,12 +197,14 @@ local plugins = {
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
             "marilari88/neotest-vitest",
+            "olimorris/neotest-phpunit",
         },
         opts = function()
             return require("flitzfiete.plugins.neotest")
         end,
         config = function(_, opts)
             require("neotest").setup(opts)
+            -- require("neotest.logging"):set_level(vim.log.levels.DEBUG)
         end,
     },
 
