@@ -62,7 +62,10 @@ M.on_attach = function(client, bufnr)
                     autoformat_enabled = true
                 end
                 if autoformat_enabled then
-                    vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, { bufnr = bufnr }))
+                    vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, {
+                        bufnr = bufnr,
+                        timeout_ms = 2000,
+                    }))
                 end
             end,
         })

@@ -375,6 +375,10 @@ M.setup = function()
     vim.keymap.set("n", "<leader>x", ":.lua<cr>")
     vim.keymap.set("v", "<leader>x", ":lua<cr>")
 
+    -- quick fix list
+    vim.keymap.set("n", "<M-j>", "<cmd>:cnext<cr>")
+    vim.keymap.set("n", "<M-k>", "<cmd>:cprev<cr>")
+
     -- copy to clipboard
     vim.keymap.set("n", "<leader>y", '"+y')
     vim.keymap.set("v", "<leader>y", '"+y')
