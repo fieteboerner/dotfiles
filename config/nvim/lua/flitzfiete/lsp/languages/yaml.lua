@@ -1,11 +1,16 @@
-local lsp = require('lsp-zero')
+local M = {}
 
-lsp.configure('yamlls', {
-    settings = {
-        yaml = {
-            schemas = {
-                kubernetes = "*.yaml"
-            }
-        }
-    }
-})
+M.setup = function(lspconfig, server, capabilities)
+    lspconfig[server].setup({
+        capabilities = capabilities,
+        settings = {
+            yaml = {
+                schemas = {
+                    kubernetes = "*.yaml",
+                },
+            },
+        },
+    })
+end
+
+return M

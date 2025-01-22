@@ -1,7 +1,12 @@
-local lsp = require("lsp-zero")
+local M = {}
 
-lsp.configure("intelephense", {
-    init_options = {
-        licenceKey = "TBD",
-    },
-})
+M.setup = function(lspconfig, server, capabilities)
+    lspconfig[server].setup({
+        capabilities = capabilities,
+        init_options = {
+            licenceKey = "TBD",
+        },
+    })
+end
+
+return M

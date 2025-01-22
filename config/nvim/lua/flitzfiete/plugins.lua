@@ -111,7 +111,7 @@ local plugins = {
     },
 
     {
-        "VonHeikemen/lsp-zero.nvim",
+        "williamboman/mason-lspconfig.nvim",
         lazy = false,
         dependencies = {
             -- LSP Support
@@ -128,8 +128,6 @@ local plugins = {
                     require("mason").setup(opts)
                 end,
             },
-            { "williamboman/mason-lspconfig.nvim" },
-
             -- Autocompletion
             {
                 "hrsh7th/nvim-cmp",
@@ -162,7 +160,6 @@ local plugins = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
             { "hrsh7th/cmp-nvim-lua" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
 
             -- Snippets
             {
@@ -175,10 +172,15 @@ local plugins = {
                 end,
             },
         },
-        config = function()
-            require("flitzfiete.lsp.lsp").setup()
+        config = function(_, opts)
             require("cmp").setup(require("flitzfiete.plugins.cmp"))
+            require("flitzfiete.lsp.lsp").setup()
         end,
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = { hint_enable = false },
     },
 
     {
