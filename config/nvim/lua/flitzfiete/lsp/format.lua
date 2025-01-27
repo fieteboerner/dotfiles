@@ -2,7 +2,30 @@ local notify = require("flitzfiete.utils").notify
 
 local M = {}
 
-M.format_opts = {}
+M.ignored_lsps = {
+    "volar",
+    "tsserver",
+}
+
+M.format_opts = {
+
+    timeout_ms = 2000,
+    filter = function(client)
+        if M.should_ignore_lsp_for_formatting(client) then
+            return false
+        end
+        return true
+    end,
+}
+
+function M.should_ignore_lsp_for_formatting(client)
+    for _, lsp in pairs(M.ignored_lsps) do
+        if lsp == client.name then
+            return true
+        end
+    end
+    return false
+end
 
 function M.has_capability(capability, filter)
     for _, client in ipairs(vim.lsp.get_active_clients(filter)) do
@@ -42,7 +65,7 @@ end
 M.on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
         -- do not format with the following lsps
-        if client.name == "volar" or client.name == "tsserver" then
+        if M.should_ignore_lsp_for_formatting(client) then
             return
         end
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
@@ -53,6 +76,7 @@ M.on_attach = function(client, bufnr)
             events = "BufWritePre",
             desc = "autoformat on save",
             callback = function()
+                vim.print("format")
                 if not M.has_capability("textDocument/formatting", { bufnr = bufnr }) then
                     del_buffer_autocmd("lsp_auto_format", bufnr)
                     return
@@ -64,7 +88,6 @@ M.on_attach = function(client, bufnr)
                 if autoformat_enabled then
                     vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, {
                         bufnr = bufnr,
-                        timeout_ms = 2000,
                     }))
                 end
             end,

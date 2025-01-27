@@ -3,6 +3,10 @@ local utils = require("null-ls/utils")
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
+function should_format_with_prettier(utils)
+    return utils.has_file({ ".prettierrc", ".prettierrc.js" })
+end
+
 null_ls.setup({
     sources = {
         diagnostics.eslint_d.with({
@@ -33,12 +37,16 @@ null_ls.setup({
         -- eslint before prettier because prettier is responsible for the basics (indentation, etc.)
         formatting.eslint_d.with({
             condition = function(utils)
+                -- do not format with eslint if it should do with prettier
+                if should_format_with_prettier(utils) then
+                    return false
+                end
                 return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
             end,
         }),
         formatting.prettierd.with({
             condition = function(utils)
-                return utils.has_file({ ".prettierrc", ".prettierrc.js" })
+                return should_format_with_prettier(utils)
             end,
             filetypes = {
                 "html",
