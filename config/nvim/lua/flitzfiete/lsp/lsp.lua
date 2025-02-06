@@ -71,22 +71,25 @@ M.setup = function()
                     capabilities = lsp_capabilities,
                 })
             end,
-            ["lua_ls"] = function(server)
+            volar = function()
+                -- do nothing because its loaded in tsserver
+            end,
+            lua_ls = function(server)
                 require("flitzfiete.lsp.languages.lua").setup(lspconfig, server, lsp_capabilities)
             end,
-            ["jsonls"] = function(server)
+            jsonls = function(server)
                 require("flitzfiete.lsp.languages.json").setup(lspconfig, server, lsp_capabilities)
             end,
-            ["intelephense"] = function(server)
+            intelephense = function(server)
                 require("flitzfiete.lsp.languages.php").setup(lspconfig, server, lsp_capabilities)
             end,
-            ["tailwindcss"] = function(server)
+            tailwindcss = function(server)
                 require("flitzfiete.lsp.languages.tailwind").setup(lspconfig, server, lsp_capabilities)
             end,
-            ["yamlls"] = function(server)
+            yamlls = function(server)
                 require("flitzfiete.lsp.languages.yaml").setup(lspconfig, server, lsp_capabilities)
             end,
-            ["tsserver"] = function(server)
+            tsserver = function(server)
                 require("flitzfiete.lsp.languages.typescript").setup(lspconfig, server, lsp_capabilities)
             end,
         },
