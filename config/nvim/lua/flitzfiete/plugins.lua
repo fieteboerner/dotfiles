@@ -91,15 +91,15 @@ local plugins = {
         end,
     },
 
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     event = "InsertEnter",
-    --     cmd = { "Copilot" },
-    --     opts = {
-    --         suggestions = { enable = false },
-    --         panel = { enable = false },
-    --     },
-    -- },
+    {
+        "github/copilot.vim",
+        event = "InsertEnter",
+        cmd = { "Copilot" },
+        config = function()
+            vim.keymap.set("i", "<C-e>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+            vim.g.copilot_no_tab_map = true
+        end,
+    },
 
     {
         "akinsho/flutter-tools.nvim",
