@@ -71,9 +71,6 @@ M.setup = function()
                     capabilities = lsp_capabilities,
                 })
             end,
-            volar = function()
-                -- do nothing because its loaded in tsserver
-            end,
             lua_ls = function(server)
                 require("flitzfiete.lsp.languages.lua").setup(lspconfig, server, lsp_capabilities)
             end,
