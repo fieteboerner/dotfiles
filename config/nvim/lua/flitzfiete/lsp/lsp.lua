@@ -26,7 +26,7 @@ function setupUI()
         vim.opt.signcolumn = "yes"
     end
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+    vim.o.winborder = border
 end
 
 M.setup = function()
