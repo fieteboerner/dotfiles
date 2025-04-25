@@ -8,6 +8,7 @@ function setupUI()
     -- setup ui
     local border = "rounded"
     vim.diagnostic.config({
+        virtual_text = true,
         signs = {
             text = {
                 [vim.diagnostic.severity.HINT] = get_icon("DiagnosticHint"),
@@ -40,7 +41,7 @@ M.setup = function()
             local client = vim.lsp.get_client_by_id(args.data.client_id)
             require("flitzfiete.keymaps").setupLspMappings(nil, bufnr)
             require("flitzfiete.lsp.format").on_attach(client, bufnr)
-            require("lsp_signature").on_attach(nil, bufnr)
+            -- require("lsp_signature").on_attach(nil, bufnr)
 
             if client and client.name == "volar" then
                 client.server_capabilities.documentformattingprovider = false
@@ -54,7 +55,7 @@ M.setup = function()
 
     require("mason-lspconfig").setup({
         ensure_installed = {
-            "tsserver",
+            "ts_ls",
             "gopls",
             "lua_ls",
             "yamlls",
@@ -86,7 +87,7 @@ M.setup = function()
             yamlls = function(server)
                 require("flitzfiete.lsp.languages.yaml").setup(lspconfig, server, lsp_capabilities)
             end,
-            tsserver = function(server)
+            ts_ls = function(server)
                 require("flitzfiete.lsp.languages.typescript").setup(lspconfig, server, lsp_capabilities)
             end,
         },

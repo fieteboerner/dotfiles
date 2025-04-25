@@ -3,17 +3,48 @@ local utils = require("null-ls/utils")
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
+local projectConfig = {
+    _init = false,
+    eslintFile = nil,
+    prettierFile = nil,
+}
+function getProjectConfig()
+    if not projectConfig._init then
+        local conf = dofile(".nvim.project")
+        if conf and conf.eslintFile then
+            projectConfig.eslintFile = conf.eslintFile
+        end
+        if conf and conf.prettierFile then
+            projectConfig.prettierFile = conf.prettierFile
+        end
+        projectConfig._init = true
+    end
+    return projectConfig
+end
+
 function should_format_with_prettier(utils)
-    return utils.has_file({ ".prettierrc", ".prettierrc.js" })
+    return utils.root_has_file({
+        ".prettierrc",
+        ".prettierrc.js",
+        ".prettierrc.json",
+        getProjectConfig().prettierFile,
+    })
 end
 
 null_ls.setup({
     sources = {
-        diagnostics.eslint_d.with({
-            condition = function(utils)
-                return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
-            end,
-        }),
+        -- diagnostics.eslint_d.with({
+        --     condition = function(utils)
+        --         return utils.root_has_file({
+        --             ".eslintrc.js",
+        --             ".eslintrc.cjs",
+        --             ".eslintrc.json",
+        --             "eslint.config.ts",
+        --             "eslint.config.js",
+        --             getProjectConfig().eslintFile,
+        --         })
+        --     end,
+        -- }),
         diagnostics.yamllint,
         diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree" } }),
         diagnostics.stylelint.with({
@@ -35,15 +66,15 @@ null_ls.setup({
         }),
 
         -- eslint before prettier because prettier is responsible for the basics (indentation, etc.)
-        formatting.eslint_d.with({
-            condition = function(utils)
-                -- do not format with eslint if it should do with prettier
-                if should_format_with_prettier(utils) then
-                    return false
-                end
-                return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
-            end,
-        }),
+        -- formatting.eslint_d.with({
+        --     condition = function(utils)
+        --         -- do not format with eslint if it should do with prettier
+        --         if should_format_with_prettier(utils) then
+        --             return false
+        --         end
+        --         return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
+        --     end,
+        -- }),
         formatting.prettierd.with({
             condition = function(utils)
                 return should_format_with_prettier(utils)
@@ -62,9 +93,9 @@ null_ls.setup({
         }),
         formatting.yamlfmt,
         -- formatting.gofmt,
-        formatting.goimports,
-        formatting.stylua,
+        -- formatting.goimports,
+        -- formatting.stylua,
         formatting.phpcsfixer,
-        formatting.black,
+        -- formatting.black,
     },
 })

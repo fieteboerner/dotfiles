@@ -67,13 +67,19 @@ local plugins = {
         end,
     },
 
-    { "mbbill/undotree", event = "VeryLazy" },
+    { "mbbill/undotree",          event = "VeryLazy" },
 
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             { "nvim-treesitter/nvim-treesitter" },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end,
+            },
             { "nvim-telescope/telescope-live-grep-args.nvim" },
         },
         cmd = "Telescope",
@@ -183,8 +189,33 @@ local plugins = {
         opts = { hint_enable = false },
     },
 
+    -- {
+    --     'stevearc/conform.nvim',
+    --     event = "VeryLazy",
+    --     opts = {
+    --         formatters_by_ft = {
+    --             lua = { "stylua" },
+    --             python = { "black" },
+    --             -- go = { "goimports" },
+    --             php = { "php_cs_fixer" },
+
+    --             javascript = { "prettierd", "prettier", stop_after_first = true },
+    --             javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+    --             css = { "prettierd", "prettier", stop_after_first = true },
+    --             html = { "prettierd", "prettier", stop_after_first = true },
+    --             json = { "prettierd", "prettier", stop_after_first = true },
+    --             markdown = { "prettierd", "prettier", stop_after_first = true },
+    --             graphql = { "prettierd", "prettier", stop_after_first = true },
+    --             svelte = { "prettierd", "prettier", stop_after_first = true },
+    --             typescript = { "prettierd", "prettier", stop_after_first = true },
+    --             vue = { "prettierd", "prettier", stop_after_first = true },
+
+    --             yaml = { "yamlfmt" },
+    --         },
+    --     },
+    -- },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         event = "VeryLazy",
         opts = function()
             return require("flitzfiete.plugins.null-ls")
@@ -196,7 +227,6 @@ local plugins = {
         dependencies = {
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
             "marilari88/neotest-vitest",
             "olimorris/neotest-phpunit",
@@ -231,12 +261,12 @@ local plugins = {
         end,
     },
 
-    { "tpope/vim-commentary", event = "VeryLazy" },
-    { "tpope/vim-vinegar", event = "VeryLazy" },
-    { "tpope/vim-sleuth", event = "VeryLazy" }, -- autoload .editorconfig settings
-    { "tpope/vim-repeat", event = "VeryLazy" }, -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
-    { "farmergreg/vim-lastplace", lazy = false }, -- jump to the last location when opening a file
-    { "sickill/vim-pasta", event = "VeryLazy" }, -- jump to the last location when opening a filedF
+    { "tpope/vim-commentary",     event = "VeryLazy" },
+    { "tpope/vim-vinegar",        event = "VeryLazy" },
+    { "tpope/vim-sleuth",         event = "VeryLazy" }, -- autoload .editorconfig settings
+    { "tpope/vim-repeat",         event = "VeryLazy" }, -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
+    { "farmergreg/vim-lastplace", lazy = false },       -- jump to the last location when opening a file
+    { "sickill/vim-pasta",        event = "VeryLazy" }, -- jump to the last location when opening a filedF
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features

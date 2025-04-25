@@ -4,7 +4,7 @@ local M = {}
 
 M.ignored_lsps = {
     "volar",
-    "tsserver",
+    "ts_ls",
 }
 
 M.format_opts = {
@@ -28,7 +28,7 @@ function M.should_ignore_lsp_for_formatting(client)
 end
 
 function M.has_capability(capability, filter)
-    for _, client in ipairs(vim.lsp.get_active_clients(filter)) do
+    for _, client in ipairs(vim.lsp.get_clients(filter)) do
         if client.supports_method(capability) then
             return true
         end
@@ -37,7 +37,7 @@ function M.has_capability(capability, filter)
 end
 
 local function add_buffer_autocmd(augroup, bufnr, autocmds)
-    if not vim.tbl_islist(autocmds) then
+    if not vim.islist(autocmds) then
         autocmds = { autocmds }
     end
     local cmds_found, cmds = pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
