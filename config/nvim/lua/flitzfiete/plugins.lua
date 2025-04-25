@@ -80,7 +80,16 @@ local plugins = {
                     require("telescope").load_extension("fzf")
                 end,
             },
-            { "nvim-telescope/telescope-live-grep-args.nvim" },
+            {
+                "nvim-telescope/telescope-live-grep-args.nvim",
+                -- This will not install any breaking changes.
+                -- For major updates, this must be adjusted manually.
+                version = "^1.0.0",
+                config = function()
+                    require("telescope").load_extension("live_grep_args")
+                end,
+
+            },
         },
         cmd = "Telescope",
         opts = function()
@@ -89,11 +98,6 @@ local plugins = {
         config = function(_, opts)
             local telescope = require("telescope")
             telescope.setup(opts)
-
-            -- load extensions
-            for _, ext in ipairs(opts.ensure_extentions) do
-                -- telescope.load_extension(ext)
-            end
         end,
     },
 
