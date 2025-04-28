@@ -82,7 +82,6 @@ return {
             if luasnip.expand_or_jumpable() then
                 vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
             elseif cmp.visible() then
-                -- do nothing
                 -- local entry = cmp.get_selected_entry()
                 -- if not entry then
                 --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -100,7 +99,6 @@ return {
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             elseif cmp.visible() then
-                -- do nothing
                 -- cmp.select_prev_item()
             else
                 fallback()
