@@ -47,6 +47,43 @@ M.setup = function()
                 client.server_capabilities.documentformattingprovider = false
                 client.server_capabilities.documentrangeformattingprovider = false
             end
+        end
+    })
+    lsp.set_preferences({
+        suggest_lsp_servers = true,
+    })
+    lsp.set_sign_icons({
+        error = get_icon("DiagnosticError"),
+        warn = get_icon("DiagnosticWarn"),
+        info = get_icon("DiagnosticInfo"),
+        hint = get_icon("DiagnosticHint"),
+    })
+
+    lsp.extend_lspconfig({
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+    })
+
+    require("flitzfiete.lsp.languages.lua")
+    require("flitzfiete.lsp.languages.json")
+    require("flitzfiete.lsp.languages.tailwind")
+    require("flitzfiete.lsp.languages.php")
+    require("flitzfiete.lsp.languages.vue")
+    require("flitzfiete.lsp.languages.yaml")
+
+    lsp.setup()
+    vim.diagnostic.config({
+        float = {
+            source = true,
+        },
+    })
+end
+
+M.masonLspconfigOptions = function()
+    local handlers = {
+        -- default handler
+        function(server_name)
+            require("lspconfig")[server_name].setup({})
         end,
     })
 

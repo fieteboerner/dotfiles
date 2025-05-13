@@ -5,6 +5,7 @@ local M = {}
 M.ignored_lsps = {
     "volar",
     "ts_ls",
+    "intelephense",
 }
 
 M.format_opts = {
