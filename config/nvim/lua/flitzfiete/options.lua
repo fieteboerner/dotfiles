@@ -1,6 +1,5 @@
 vim.opt.autoread = true      -- read files fi changed from file system
 vim.opt.encoding = "utf-8"   --
-vim.opt.fileencoding = "utf-8"
 vim.opt.ruler = true         -- show cursor position all the time
 vim.opt.cmdheight = 2        -- more space for messages
 vim.opt.mouse = "a"          -- enable mouse in all modes

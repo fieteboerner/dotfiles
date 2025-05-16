@@ -10,6 +10,12 @@ local projectConfig = {
 }
 function getProjectConfig()
     if not projectConfig._init then
+        local f = io.open(".nvim.project", "r")
+        if not f then
+            projectConfig._init = true
+            return projectConfig
+        end
+        f:close()
         local conf = dofile(".nvim.project")
         if conf and conf.eslintFile then
             projectConfig.eslintFile = conf.eslintFile
@@ -93,7 +99,7 @@ null_ls.setup({
         }),
         formatting.yamlfmt,
         -- formatting.gofmt,
-        -- formatting.goimports,
+        formatting.goimports,
         -- formatting.stylua,
         formatting.phpcsfixer,
         -- formatting.black,

@@ -252,6 +252,9 @@ M.maps.n["<leader>o"] = {
     end,
     desc = "Toggle Explorer Focus",
 }
+-- namu
+M.maps.n["<leader>ss"] = { "<cmd>Namu symbols<cr>", desc = "Jump to LSP symbol" }
+M.maps.n["<leader>sw"] = { "<cmd>Namu workspace<cr>", desc = "LSP Symbols - Workspace" }
 
 -- test
 M.maps.n["<leader>t"] = { desc = "+test" }
