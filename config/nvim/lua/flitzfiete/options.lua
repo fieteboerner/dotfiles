@@ -71,3 +71,4 @@ vim.filetype.add({
         [".*%.blade%.php"] = "blade",
     },
 })
+vim.g.lazygit_floating_window_use_plenary = 1

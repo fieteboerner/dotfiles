@@ -391,6 +391,9 @@ local plugins = {
     },
     {
         "kdheepak/lazygit.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
         cmd = "LazyGit",
     },
 
