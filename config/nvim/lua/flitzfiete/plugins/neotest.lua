@@ -27,5 +27,8 @@ return {
                 return {}
             end,
         }),
+        require("neotest-golang")({
+
+        }),
     },
 }

@@ -256,6 +256,7 @@ local plugins = {
             "nvim-treesitter/nvim-treesitter",
             "marilari88/neotest-vitest",
             "olimorris/neotest-phpunit",
+            "fredrikaverpil/neotest-golang",
         },
         opts = function()
             return require("flitzfiete.plugins.neotest")
