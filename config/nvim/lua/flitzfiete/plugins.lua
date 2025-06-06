@@ -6,6 +6,12 @@ local plugins = {
             vim.cmd("colorscheme tokyonight-moon")
         end,
     },
+    {
+        "thesimonho/kanagawa-paper.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
 
     {
         "NvChad/nvim-colorizer.lua",
