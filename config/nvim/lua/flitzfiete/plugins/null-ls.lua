@@ -129,6 +129,10 @@ null_ls.setup({
         formatting.stylua,
         -- formatting.phpcsfixer,
         formatting.phpcbf.with({
+            command = vim.fn.getcwd() .. "/vendor/bin/phpcbf",
+            condition = function(utils)
+                return utils.root_has_file({ "phpcs.xml", "phpcs_ruleset.xml" })
+            end,
             extra_args = {
                 "--standard=" .. getPhpCsRulesetFile(),
             },
