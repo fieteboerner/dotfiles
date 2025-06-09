@@ -88,6 +88,9 @@ M.on_attach = function(client, bufnr)
                 end
                 if autoformat_enabled then
                     vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, {
+                        filter = function(client)
+                            return not M.should_ignore_lsp_for_formatting(client)
+                        end,
                         bufnr = bufnr,
                     }))
                 end
