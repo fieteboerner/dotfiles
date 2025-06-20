@@ -7,6 +7,13 @@ local plugins = {
         end,
     },
     {
+        "rose-pine/neovim",
+        lazy = false,
+        name = "rose-pine",
+        config = function()
+        end
+    },
+    {
         "thesimonho/kanagawa-paper.nvim",
         lazy = false,
         priority = 1000,
