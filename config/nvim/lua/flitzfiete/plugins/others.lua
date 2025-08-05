@@ -65,6 +65,7 @@ M.gitsigns = {
 
 M.oil = {
     use_default_keymaps = false,
+    skip_confirm_for_simple_edits = true,
     keymaps = {
         ["<C-c>"] = "actions.close",
         ["<CR>"] = "actions.select",
