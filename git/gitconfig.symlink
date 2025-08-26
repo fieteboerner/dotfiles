@@ -139,6 +139,7 @@
 	tool = meld
 [rebase]
 	instructionFormat = "[%an - %ar] %s"
+	autoStash = true
 [http]
 	sslVerify = true
 [credential]

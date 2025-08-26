@@ -87,8 +87,8 @@ M.maps.n["<leader>fb"] = {
 }
 M.maps.n["<leader>fc"] = {
     function()
-        require("telescope").extensions.live_grep_args.live_grep_args()
-        -- require("telescope.builtin").grep_string()
+        -- require("telescope").extensions.live_grep_args.live_grep_args()
+        require("telescope.builtin").grep_string()
     end,
     desc = "Find for word under cursor",
 }
