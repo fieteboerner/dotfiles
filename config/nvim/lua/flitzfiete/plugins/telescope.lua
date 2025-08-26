@@ -1,5 +1,11 @@
 local actions = require("telescope.actions")
 return {
+    extensions = {
+        fzf = {
+            override_generic_sorter = false,
+            override_file_sorter = false,
+        },
+    },
     defaults = {
         color_devicons = true,
         prompt_prefix = "  ",
@@ -38,6 +44,8 @@ return {
             "--line-number",
             "--column",
             "--smart-case",
+            -- "--ignore-case",
+            -- "--sort=path",
         },
     },
     pickers = {
@@ -53,7 +61,9 @@ return {
             file_ignore_patterns = { ".git/" },
         },
         oldfiles = {
+            hidden = false,
             cwd_only = true,
+            no_ignore = true,
             -- on_complete = {
             --     function()
             --         vim.cmd("stopinsert")

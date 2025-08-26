@@ -82,6 +82,7 @@ alias nah='git reset --hard;git clean -df;'
 alias vg='via-go'
 alias reload='source ~/.zshrc'
 alias nah='git reset --hard && git clean -df'
+alias ssh-add-today='ssh-add -t $(( $(date -d "tomorrow 00:00:00" +%s) - $(date +%s) ))' # only for the current day.
 # laravel artisan
 alias art="artisan"
 alias tinker="artisan tinker"
@@ -123,3 +124,22 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ### End: Fix slowness of pastes
 
+git(){
+    command git "$@"
+    local exitCode=$?
+    if [ $exitCode -ne 0 ]; then
+        printf   "\e[1;41m                       \e[0m\n"
+        printf "\033[0;31m         ERROR         \033[0m\n"
+        printf   "\e[1;41m                       \e[0m\n"
+        return $exitCode
+    fi
+}
+
+
+# pnpm
+export PNPM_HOME="/home/fiete/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

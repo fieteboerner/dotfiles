@@ -103,21 +103,14 @@ local plugins = {
         dependencies = {
             { "nvim-treesitter/nvim-treesitter" },
             {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-                config = function()
-                    require("telescope").load_extension("fzf")
-                end,
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
             },
             {
                 "nvim-telescope/telescope-live-grep-args.nvim",
                 -- This will not install any breaking changes.
                 -- For major updates, this must be adjusted manually.
                 version = "^1.0.0",
-                config = function()
-                    require("telescope").load_extension("live_grep_args")
-                end,
-
             },
         },
         cmd = "Telescope",
@@ -127,6 +120,8 @@ local plugins = {
         config = function(_, opts)
             local telescope = require("telescope")
             telescope.setup(opts)
+            telescope.load_extension("fzf")
+            telescope.load_extension("live_grep_args")
         end,
     },
 
@@ -320,21 +315,21 @@ local plugins = {
             vim.keymap.set("n", "<C-S-j>", ":<C-U>TmuxNavigateDown<CR>")
             vim.keymap.set("n", "<C-S-k>", ":<C-U>TmuxNavigateUp<CR>")
             vim.keymap.set("n", "<C-S-l>", ":<C-U>TmuxNavigateRight<CR>")
-            vim.keymap.set('t', '<C-S-h>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateLeft')
+            vim.keymap.set("t", "<C-S-h>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateLeft")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<C-S-j>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateDown')
+            vim.keymap.set("t", "<C-S-j>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateDown")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<C-S-k>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateUp')
+            vim.keymap.set("t", "<C-S-k>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateUp")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<C-S-l>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateRight')
+            vim.keymap.set("t", "<C-S-l>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateRight")
             end, { noremap = true, silent = true })
 
             -- read <M-h/j/k/l> because there is trouble with tmux and <C-S-h/j/k/l>.
@@ -343,21 +338,21 @@ local plugins = {
             vim.keymap.set("n", "<M-j>", ":<C-U>TmuxNavigateDown<CR>")
             vim.keymap.set("n", "<M-k>", ":<C-U>TmuxNavigateUp<CR>")
             vim.keymap.set("n", "<M-l>", ":<C-U>TmuxNavigateRight<CR>")
-            vim.keymap.set('t', '<M-h>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateLeft')
+            vim.keymap.set("t", "<M-h>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateLeft")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<M-j>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateDown')
+            vim.keymap.set("t", "<M-j>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateDown")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<M-k>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateUp')
+            vim.keymap.set("t", "<M-k>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateUp")
             end, { noremap = true, silent = true })
-            vim.keymap.set('t', '<M-l>', function()
-                vim.cmd('stopinsert')
-                vim.cmd('TmuxNavigateRight')
+            vim.keymap.set("t", "<M-l>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateRight")
             end, { noremap = true, silent = true })
         end,
     },
