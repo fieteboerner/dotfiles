@@ -40,6 +40,9 @@ M.maps.n["-"] = {
     desc = "Open Parent Directory",
 }
 
+-- Custom
+M.maps.n["<leader>cp"] = { require('flitzfiete.utils.copy').copy_file_path, desc = "Copy file path" }
+
 -- Telescope
 M.maps.n["<C-P>"] = {
     function()
