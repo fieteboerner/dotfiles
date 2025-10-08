@@ -1,14 +1,14 @@
-vim.opt.autoread = true -- read files fi changed from file system
-vim.opt.encoding = "utf-8" --
-vim.opt.ruler = true -- show cursor position all the time
-vim.opt.cmdheight = 2 -- more space for messages
-vim.opt.mouse = "a" -- enable mouse in all modes
+vim.opt.autoread = true      -- read files fi changed from file system
+vim.opt.encoding = "utf-8"   --
+vim.opt.ruler = true         -- show cursor position all the time
+vim.opt.cmdheight = 2        -- more space for messages
+vim.opt.mouse = "a"          -- enable mouse in all modes
 vim.opt.number = true
 vim.opt.signcolumn = "yes:2" -- always displays the sign column
-vim.opt.cursorline = true -- highlight current line
-vim.opt.updatetime = 300 -- faster completion
-vim.opt.timeoutlen = 1000 -- 1000 is the default
-vim.opt.scrolloff = 2 -- minimum lines above/below
+vim.opt.cursorline = true    -- highlight current line
+vim.opt.updatetime = 300     -- faster completion
+vim.opt.timeoutlen = 1000    -- 1000 is the default
+vim.opt.scrolloff = 2        -- minimum lines above/below
 vim.opt.formatoptions = "jql"
 
 -- command line --
@@ -74,3 +74,10 @@ vim.filetype.add({
 vim.g.lazygit_floating_window_use_plenary = 1
 vim.api.nvim_create_user_command("QfDiagPhpcs", require("flitzfiete.utils.phpcs").populate_qflist_from_phpcs, {})
 vim.api.nvim_create_user_command("QfStaged", require("flitzfiete.utils.phpcs").populate_qflist_git_files, {})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "php",
+    callback = function()
+        vim.opt_local.autoindent = true
+    end,
+})
