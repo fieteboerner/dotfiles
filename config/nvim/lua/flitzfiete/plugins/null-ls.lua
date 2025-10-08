@@ -59,6 +59,16 @@ function getPhpCsRulesetFile()
     return phpcsRuleset or ""
 end
 
+function getPhpCsExecFile(executable)
+    local command = vim.fn.getcwd() .. "/vendor/bin/" .. executable
+    local f = io.open(command, "r")
+    if f ~= nil then
+        return command
+    end
+
+    return executable
+end
+
 null_ls.setup({
     sources = {
         -- diagnostics.eslint_d.with({
@@ -85,7 +95,7 @@ null_ls.setup({
             filetypes = { "scss", "less", "css", "sass", "vue" },
         }),
         diagnostics.phpcs.with({
-            command = vim.fn.getcwd() .. "/vendor/bin/phpcs",
+            command = getPhpCsExecFile("phpcs"),
             condition = function(utils)
                 return utils.root_has_file({ "phpcs.xml", "phpcs_ruleset.xml" })
             end,
@@ -126,10 +136,10 @@ null_ls.setup({
         formatting.yamlfmt,
         -- formatting.gofmt,
         formatting.goimports,
-        formatting.stylua,
+        -- formatting.stylua,
         -- formatting.phpcsfixer,
         formatting.phpcbf.with({
-            command = vim.fn.getcwd() .. "/vendor/bin/phpcbf",
+            command = getPhpCsExecFile("phpcbf"),
             condition = function(utils)
                 return utils.root_has_file({ "phpcs.xml", "phpcs_ruleset.xml" })
             end,
