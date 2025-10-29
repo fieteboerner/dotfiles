@@ -41,7 +41,8 @@ M.maps.n["-"] = {
 }
 
 -- Custom
-M.maps.n["<leader>cp"] = { require('flitzfiete.utils.copy').copy_file_path, desc = "Copy file path" }
+M.maps.n["<leader>cp"] = { require('flitzfiete.utils.copy').copy_relative_file_path, desc = "Copy relative file path" }
+M.maps.n["<leader>cP"] = { require('flitzfiete.utils.copy').copy_absolute_file_path, desc = "Copy absolute file path" }
 
 -- Telescope
 M.maps.n["<C-P>"] = {
