@@ -71,6 +71,7 @@ M.setup = function()
                 lspconfig[server].setup({
                     capabilities = lsp_capabilities,
                 })
+                -- require("flitzfiete.lsp.languages.vue").setup(lspconfig, server, lsp_capabilities)
             end,
             lua_ls = function(server)
                 require("flitzfiete.lsp.languages.lua").setup(lspconfig, server, lsp_capabilities)
@@ -87,9 +88,19 @@ M.setup = function()
             yamlls = function(server)
                 require("flitzfiete.lsp.languages.yaml").setup(lspconfig, server, lsp_capabilities)
             end,
-            ts_ls = function(server)
-                require("flitzfiete.lsp.languages.typescript").setup(lspconfig, server, lsp_capabilities)
+            volar = function(server)
+                -- do nothing
             end,
+            -- ts_ls = function(server)
+            --     require("flitzfiete.lsp.languages.typescript").setup(lspconfig, server, lsp_capabilities)
+            -- end,
+            -- vtsls = function(server)
+            --     return
+            -- end,
+            -- vue_ls = function(server)
+            --     require("flitzfiete.lsp.languages.vue").setupVtsls(lspconfig, server, lsp_capabilities)
+            --     require("flitzfiete.lsp.languages.vue").setupVueLs(lspconfig, server, lsp_capabilities)
+            -- end,
         },
     })
 end

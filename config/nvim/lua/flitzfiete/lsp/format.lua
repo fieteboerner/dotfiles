@@ -4,7 +4,7 @@ local M = {}
 
 M.ignored_lsps = {
     "volar",
-    "ts_ls",
+    -- "ts_ls",
     "intelephense",
 }
 
