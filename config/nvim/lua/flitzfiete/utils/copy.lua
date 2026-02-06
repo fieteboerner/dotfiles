@@ -20,4 +20,15 @@ function M.copy_absolute_file_path()
     print('Copied file path: ' .. filepath)
 end
 
+function M.copy_branch_name()
+    local result = vim.system({ "git", "branch", "--show-current" }, { text = true }):wait()
+    local branch_name = result.stdout:gsub("%s+", "")
+    if branch_name == '' then
+        print('Not in a git repository')
+        return
+    end
+    vim.fn.setreg('+', branch_name) -- Copy to system clipboard
+    print('Copied branch name: ' .. branch_name)
+end
+
 return M

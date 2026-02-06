@@ -88,7 +88,11 @@ local plugins = {
                 -- Enable the modules you want
                 namu_symbols = {
                     enable = true,
-                    options = {}, -- here you can configure namu
+                    options = {
+                        AllowKinds = {
+                            php = { "Function", "Method", "Class" },
+                        }
+                    }, -- here you can configure namu
                 },
                 -- Optional: Enable other modules if needed
                 ui_select = { enable = false }, -- vim.ui.select() wrapper
@@ -209,6 +213,7 @@ local plugins = {
         config = function(_, opts)
             require("cmp").setup(require("flitzfiete.plugins.cmp"))
             require("flitzfiete.lsp.lsp").setup()
+            require("flitzfiete.lsp.languages.vue").setup()
         end,
     },
     {
@@ -392,6 +397,20 @@ local plugins = {
         end,
     },
     {
+        "tpope/vim-fugitive",
+        cmd = {
+            "Git",
+            "G",
+            "Gdiffsplit",
+            "Gread",
+            "Gwrite",
+            "Ggrep",
+            "GMove",
+            "GDelete",
+            "GBrowse",
+        },
+    },
+    {
         "APZelos/blamer.nvim",
         event = "VeryLazy",
         init = function()
@@ -411,6 +430,31 @@ local plugins = {
         "whatyouhide/vim-textobj-xmlattr",
         event = "VeryLazy",
         dependencies = { "kana/vim-textobj-user" },
+    },
+
+    {
+        "johmsalas/text-case.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("textcase").setup({})
+            require("telescope").load_extension("textcase")
+        end,
+        keys = {
+            "ga", -- Default invocation prefix
+            { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+        },
+        cmd = {
+            -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
+            "Subs",
+            "TextCaseOpenTelescope",
+            "TextCaseOpenTelescopeQuickChange",
+            "TextCaseOpenTelescopeLSPChange",
+            "TextCaseStartReplacingCommand",
+        },
+        -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
+        -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
+        -- available after the first executing of it or after a keymap of text-case.nvim has been used.
+        lazy = false,
     },
 
     {
