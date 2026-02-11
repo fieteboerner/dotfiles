@@ -72,6 +72,7 @@ M.maps.n["<leader>gt"] = {
     end,
     desc = "Git status",
 }
+M.maps.n["<leader>gm"] = { require("flitzfiete.utils.gitlab").open_or_create_gitlab_mr, desc = "Open current branches MR" }
 M.maps.n["<leader>f<CR>"] = {
     function()
         require("telescope.builtin").resume()
