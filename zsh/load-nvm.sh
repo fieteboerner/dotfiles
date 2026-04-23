@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 load-nvm() {
-    [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh # this is really slow
+    [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh --no-use # this is really slow
 }
 
 nvm() {

@@ -80,6 +80,7 @@ alias vi='vim'
 alias lg='lazygit'
 alias nah='git reset --hard;git clean -df;'
 alias vg='via-go'
+alias oc='opencode'
 alias reload='source ~/.zshrc'
 alias nah='git reset --hard && git clean -df'
 alias ssh-add-today='ssh-add -t $(( $(date -d "tomorrow 00:00:00" +%s) - $(date +%s) ))' # only for the current day.
