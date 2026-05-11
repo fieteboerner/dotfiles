@@ -144,3 +144,5 @@
 	sslVerify = true
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
+[pull]
+	rebase = true
