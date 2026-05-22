@@ -84,7 +84,7 @@ null_ls.setup({
         --     end,
         -- }),
         diagnostics.yamllint,
-        diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree" } }),
+        diagnostics.trail_space.with({ disabled_filetypes = { "NvimTree", "dbout", "dbui" } }),
         diagnostics.stylelint.with({
             extra_args = {
                 "--quiet-deprecation-warnings",
