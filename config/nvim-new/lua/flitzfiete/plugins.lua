@@ -1,0 +1,671 @@
+local plugins = {
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        init = function()
+            -- vim.cmd("colorscheme tokyonight-moon")
+        end,
+    },
+    {
+        "rose-pine/neovim",
+        lazy = false,
+        name = "rose-pine",
+        config = function()
+            vim.cmd("colorscheme rose-pine")
+        end,
+    },
+    {
+        "thesimonho/kanagawa-paper.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+
+    {
+        "NvChad/nvim-colorizer.lua",
+        init = function()
+            require("flitzfiete.utils").lazy_load("nvim-colorizer.lua")
+        end,
+        opts = {
+            user_default_options = {
+                tailwind = true,
+            },
+        },
+        config = function(_, opts)
+            require("colorizer").setup(opts)
+
+            -- execute colorizer as soon as possible
+            vim.defer_fn(function()
+                require("colorizer").attach_to_buffer(0)
+            end, 0)
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = ":TSUpdate",
+        branch = "main",
+
+        opts = function()
+            return {
+                install_dir = vim.fn.stdpath('data') .. '/site'
+            }
+        end,
+        config = function(_, opts)
+            require("nvim-treesitter").setup(opts)
+            require("nvim-treesitter").install({
+                -- defaults
+                "vim",
+                "lua",
+                -- web dev
+                "html",
+                "css",
+                "javascript",
+                "typescript",
+                "tsx",
+                "vue",
+                "svelte",
+                -- other
+                "go",
+                "php",
+                "php_only", -- used in blade
+                -- config
+                "json",
+                "yaml",
+            })
+        end
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        branch = "main",
+        event = "VeryLazy",
+        init = function()
+            -- Disable entire built-in ftplugin mappings to avoid conflicts.
+            -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+            vim.g.no_plugin_maps = true
+
+            -- Or, disable per filetype (add as you like)
+            -- vim.g.no_python_maps = true
+            -- vim.g.no_ruby_maps = true
+            -- vim.g.no_rust_maps = true
+            -- vim.g.no_go_maps = true
+        end,
+        config = function()
+            require("nvim-treesitter-textobjects").setup({
+                select = {
+                    lookahead = true,
+                    selection_modes = {
+                        ["@function.outer"] = "V",
+                        ["@function.inner"] = "V",
+                        ["@parameter.outer"] = "v",
+                        ["@parameter.inner"] = "v",
+                    },
+                    include_surrounding_whitespace = true,
+                },
+            })
+            vim.keymap.set({ "x", "o" }, "aa", function()
+                require("nvim-treesitter-textobjects.select")
+                    .select_textobject("@parameter.outer", "textobjects", "o")
+            end)
+
+            vim.keymap.set({ "x", "o" }, "ia", function()
+                require("nvim-treesitter-textobjects.select")
+                    .select_textobject("@parameter.inner", "textobjects", "o")
+            end)
+
+            vim.keymap.set({ "x", "o" }, "af", function()
+                require("nvim-treesitter-textobjects.select")
+                    .select_textobject("@function.outer", "textobjects", "o")
+            end)
+
+            vim.keymap.set({ "x", "o" }, "if", function()
+                require("nvim-treesitter-textobjects.select")
+                    .select_textobject("@function.inner", "textobjects", "o")
+            end)
+        end,
+    },
+    {
+        "windwp/nvim-ts-autotag", -- auto close and rename html tags
+        event = { "BufReadPre", "BufNewFile" },
+        opts = {
+            per_filetype = {
+                ["php"] = {
+                    enable_close = false, -- disable to not break the repeat in php files (->foo -foo)
+                },
+            },
+        },
+        config = function(_, opts)
+            require("nvim-ts-autotag").setup(opts)
+        end,
+    },
+    {
+        "bassamsdata/namu.nvim",
+        cmd = "Namu",
+        config = function()
+            require("namu").setup({
+                -- Enable the modules you want
+                namu_symbols = {
+                    enable = true,
+                    options = {
+                        AllowKinds = {
+                            php = { "Function", "Method", "Class" },
+                        }
+                    }, -- here you can configure namu
+                },
+                -- Optional: Enable other modules if needed
+                ui_select = { enable = false }, -- vim.ui.select() wrapper
+            })
+        end,
+    },
+
+    { "mbbill/undotree",          event = "VeryLazy" },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+            },
+            {
+                "nvim-telescope/telescope-live-grep-args.nvim",
+                -- This will not install any breaking changes.
+                -- For major updates, this must be adjusted manually.
+                version = "^1.0.0",
+            },
+        },
+        cmd = "Telescope",
+        opts = function()
+            return require("flitzfiete.plugins.telescope")
+        end,
+        config = function(_, opts)
+            local telescope = require("telescope")
+            telescope.setup(opts)
+            telescope.load_extension("fzf")
+            telescope.load_extension("live_grep_args")
+        end,
+    },
+
+    {
+        "github/copilot.vim",
+        event = "InsertEnter",
+        cmd = { "Copilot" },
+        config = function()
+            vim.keymap.set("i", "<C-e>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+            vim.g.copilot_no_tab_map = true
+        end,
+    },
+
+    {
+        "akinsho/flutter-tools.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+        },
+        lazy = false,
+        opts = {},
+    },
+
+    {
+        "williamboman/mason-lspconfig.nvim",
+        lazy = false,
+        dependencies = {
+            -- LSP Support
+            { "neovim/nvim-lspconfig" },
+            {
+                "williamboman/mason.nvim",
+                build = function()
+                    pcall(vim.cmd, "MasonUpdate")
+                end,
+                opts = function()
+                    return require("flitzfiete.plugins.mason")
+                end,
+                config = function(_, opts)
+                    require("mason").setup(opts)
+                end,
+            },
+            -- Autocompletion
+            {
+                "hrsh7th/nvim-cmp",
+                dependencies = {
+                    {
+                        "windwp/nvim-autopairs",
+                        opts = {
+                            fast_wrap = {},
+                            disable_filetype = { "TelescopePrompt", "vim" },
+                        },
+                        config = function(_, opts)
+                            require("nvim-autopairs").setup(opts)
+
+                            -- setup cmp for autopairs
+                            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+                        end,
+                    },
+                    {
+                        "zbirenbaum/copilot-cmp",
+                        config = function()
+                            require("copilot_cmp").setup()
+                        end,
+                    },
+                },
+            },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+            { "hrsh7th/cmp-nvim-lua" },
+
+            -- Snippets
+            {
+                "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
+                version = "v2.*",
+                build = "make install_jsregexp",
+                config = function()
+                    require("flitzfiete.plugins.luasnip").setup()
+                end,
+            },
+        },
+        config = function(_, opts)
+            require("cmp").setup(require("flitzfiete.plugins.cmp"))
+            require("flitzfiete.lsp.lsp").setup()
+            require("flitzfiete.lsp.languages.vue").setup()
+        end,
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = { hint_enable = false },
+    },
+
+    -- {
+    --     'stevearc/conform.nvim',
+    --     event = "VeryLazy",
+    --     opts = {
+    --         formatters_by_ft = {
+    --             lua = { "stylua" },
+    --             python = { "black" },
+    --             -- go = { "goimports" },
+    --             php = { "php_cs_fixer" },
+
+    --             javascript = { "prettierd", "prettier", stop_after_first = true },
+    --             javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+    --             css = { "prettierd", "prettier", stop_after_first = true },
+    --             html = { "prettierd", "prettier", stop_after_first = true },
+    --             json = { "prettierd", "prettier", stop_after_first = true },
+    --             markdown = { "prettierd", "prettier", stop_after_first = true },
+    --             graphql = { "prettierd", "prettier", stop_after_first = true },
+    --             svelte = { "prettierd", "prettier", stop_after_first = true },
+    --             typescript = { "prettierd", "prettier", stop_after_first = true },
+    --             vue = { "prettierd", "prettier", stop_after_first = true },
+
+    --             yaml = { "yamlfmt" },
+    --         },
+    --     },
+    -- },
+    {
+        "nvimtools/none-ls.nvim",
+        event = "VeryLazy",
+        opts = function()
+            return require("flitzfiete.plugins.null-ls")
+        end,
+    },
+    -- test
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "marilari88/neotest-vitest",
+            "olimorris/neotest-phpunit",
+            "fredrikaverpil/neotest-golang",
+        },
+        opts = function()
+            return require("flitzfiete.plugins.neotest")
+        end,
+        config = function(_, opts)
+            require("neotest").setup(opts)
+            -- require("neotest.logging"):set_level(vim.log.levels.DEBUG)
+        end,
+    },
+
+    -- dap / debugging
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            { "mfussenegger/nvim-dap" },
+            { "nvim-neotest/nvim-nio" },
+            { "theHamsta/nvim-dap-virtual-text" },
+        },
+        event = "VeryLazy",
+        config = function()
+            require("flitzfiete.plugins.dap").setup()
+        end,
+    },
+    {
+        "leoluz/nvim-dap-go",
+        ft = "go",
+        config = function()
+            require("flitzfiete.plugins.dap").setup_go()
+        end,
+    },
+
+    { "tpope/vim-commentary",     event = "VeryLazy" },
+    { "tpope/vim-vinegar",        event = "VeryLazy" },
+    { "tpope/vim-sleuth",         event = "VeryLazy" }, -- autoload .editorconfig settings
+    { "tpope/vim-repeat",         event = "VeryLazy" }, -- allow plugins to enable repeating commands (eg. cs"' for vim-surround)
+    { "farmergreg/vim-lastplace", lazy = false },       -- jump to the last location when opening a file
+    { "sickill/vim-pasta",        event = "VeryLazy" }, -- jump to the last location when opening a filedF
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        opts = {},
+    },
+
+    {
+        "christoomey/vim-tmux-navigator",
+        event = "VeryLazy",
+        init = function()
+            vim.g.tmux_navigator_no_mappings = 1
+        end,
+        config = function()
+            -- use <C-S-h/j/k/l> to navigate in non tmux sessions
+            vim.keymap.set("n", "<C-S-h>", ":<C-U>TmuxNavigateLeft<CR>")
+            vim.keymap.set("n", "<C-S-j>", ":<C-U>TmuxNavigateDown<CR>")
+            vim.keymap.set("n", "<C-S-k>", ":<C-U>TmuxNavigateUp<CR>")
+            vim.keymap.set("n", "<C-S-l>", ":<C-U>TmuxNavigateRight<CR>")
+            vim.keymap.set("t", "<C-S-h>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateLeft")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<C-S-j>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateDown")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<C-S-k>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateUp")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<C-S-l>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateRight")
+            end, { noremap = true, silent = true })
+
+            -- read <M-h/j/k/l> because there is trouble with tmux and <C-S-h/j/k/l>.
+            -- so tmux is mapping <C-S-h/j/k/l> to <M-h/j/k/l> - so it works again
+            vim.keymap.set("n", "<M-h>", ":<C-U>TmuxNavigateLeft<CR>")
+            vim.keymap.set("n", "<M-j>", ":<C-U>TmuxNavigateDown<CR>")
+            vim.keymap.set("n", "<M-k>", ":<C-U>TmuxNavigateUp<CR>")
+            vim.keymap.set("n", "<M-l>", ":<C-U>TmuxNavigateRight<CR>")
+            vim.keymap.set("t", "<M-h>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateLeft")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<M-j>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateDown")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<M-k>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateUp")
+            end, { noremap = true, silent = true })
+            vim.keymap.set("t", "<M-l>", function()
+                vim.cmd("stopinsert")
+                vim.cmd("TmuxNavigateRight")
+            end, { noremap = true, silent = true })
+        end,
+    },
+
+    {
+        "AndrewRadev/splitjoin.vim",
+        event = "VeryLazy",
+        init = function()
+            vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+            vim.g.splitjoin_trailing_comma = 1
+            vim.g.splitjoin_php_method_chain_full = 1
+        end,
+    },
+
+    -- git
+    {
+        "lewis6991/gitsigns.nvim",
+        ft = { "gitcommit", "diff" },
+        init = function()
+            -- load gitsigns only when a git file is opened
+            vim.api.nvim_create_autocmd({ "BufRead" }, {
+                group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
+                callback = function()
+                    vim.fn.system("git -C " .. '"' .. vim.fn.expand("%:p:h") .. '"' .. " rev-parse")
+                    if vim.v.shell_error == 0 then
+                        vim.api.nvim_del_augroup_by_name("GitSignsLazyLoad")
+                        vim.schedule(function()
+                            require("lazy").load({ plugins = { "gitsigns.nvim" } })
+                        end)
+                    end
+                end,
+            })
+        end,
+        opts = require("flitzfiete.plugins.others").gitsigns,
+        config = function(_, opts)
+            require("gitsigns").setup(opts)
+        end,
+    },
+    {
+        "tpope/vim-fugitive",
+        cmd = {
+            "Git",
+            "G",
+            "Gdiffsplit",
+            "Gread",
+            "Gwrite",
+            "Ggrep",
+            "GMove",
+            "GDelete",
+            "GBrowse",
+        },
+    },
+    {
+        "APZelos/blamer.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.g.blamer_enabled = 1
+        end,
+    },
+    {
+        "kdheepak/lazygit.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        cmd = "LazyGit",
+    },
+
+    -- allows to edit html attributes with ax & ix
+    {
+        "whatyouhide/vim-textobj-xmlattr",
+        event = "VeryLazy",
+        dependencies = { "kana/vim-textobj-user" },
+    },
+
+    {
+        "johmsalas/text-case.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("textcase").setup({})
+            require("telescope").load_extension("textcase")
+        end,
+        keys = {
+            "ga", -- Default invocation prefix
+            { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+        },
+        cmd = {
+            -- NOTE: The Subs command name can be customized via the option "substitude_command_name"
+            "Subs",
+            "TextCaseOpenTelescope",
+            "TextCaseOpenTelescopeQuickChange",
+            "TextCaseOpenTelescopeLSPChange",
+            "TextCaseStartReplacingCommand",
+        },
+        -- If you want to use the interactive feature of the `Subs` command right away, text-case.nvim
+        -- has to be loaded on startup. Otherwise, the interactive feature of the `Subs` will only be
+        -- available after the first executing of it or after a keymap of text-case.nvim has been used.
+        lazy = false,
+    },
+
+    {
+        "windwp/nvim-autopairs",
+        event = "BufEnter",
+        config = function()
+            require("nvim-autopairs").setup()
+        end,
+    },
+
+    {
+        "karb94/neoscroll.nvim",
+        event = "VeryLazy",
+        config = function()
+            return require("flitzfiete.plugins.neoscroll")
+        end,
+    },
+
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
+        dependencies = { "kyazdani42/nvim-web-devicons" },
+        opts = function()
+            return require("flitzfiete.plugins.lualine")
+        end,
+    },
+
+    {
+        "airblade/vim-rooter",
+        lazy = false,
+        init = function()
+            vim.g.rooter_patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile" }
+        end,
+    },
+
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        cmd = { "Neotree" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+        },
+        opts = function()
+            return require("flitzfiete.plugins.neo-tree")
+        end,
+    },
+    {
+        "stevearc/oil.nvim",
+        opts = require("flitzfiete.plugins.others").oil,
+        lazy = false,
+    },
+
+    {
+        "RRethy/vim-illuminate",
+        event = "VeryLazy",
+        opts = require("flitzfiete.plugins.others").illuminate,
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+        end,
+    },
+
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "VeryLazy",
+        opts = require("flitzfiete.plugins.others").indentBlankline,
+        config = function(_, opts)
+            require("ibl").setup(opts)
+        end,
+    },
+
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+        opts = function()
+            return require("flitzfiete.plugins.others").dressing
+        end,
+    },
+    {
+        "rcarriga/nvim-notify",
+        lazy = false,
+        config = function()
+            local notify = require("notify")
+            notify.setup({
+                stages = "fade",
+                top_down = false,
+            })
+            local banned_messages = { "No information available" }
+            vim.notify = function(msg, ...)
+                for _, banned in ipairs(banned_messages) do
+                    if msg == banned then
+                        return
+                    end
+                end
+                notify(msg, ...)
+            end
+        end,
+    },
+
+    {
+        "folke/which-key.nvim",
+        -- keys = { "<leader>", '"', "'", "`", "c", "v" },
+        lazy = false,
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup({
+                icons = { mappings = false },
+            })
+        end,
+    },
+
+    {
+        "voldikss/vim-floaterm",
+        cmd = { "FloatermToggle", "FloatermShow" },
+        init = require("flitzfiete.plugins.floaterm").init,
+    },
+
+    {
+        "nvim-pack/nvim-spectre",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        cmd = { "Spectre" },
+        keys = { "<leader>fs", "<leader>fsw" },
+    },
+
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        cmd = { "GoIfErr" },
+        config = function(_, opts)
+            require("gopher").setup(opts)
+        end,
+        build = function()
+            vim.cmd([[silent! GoInstallDeps]])
+        end,
+    },
+
+    {
+        'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+            { 'tpope/vim-dadbod',                     lazy = true },
+            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        init = function()
+            -- Your DBUI configuration
+            vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    },
+}
+
+require("lazy").setup(plugins, require("flitzfiete.plugins.lazy_nvim"))
