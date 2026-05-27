@@ -48,12 +48,12 @@ local plugins = {
 
         opts = function()
             return {
-                install_dir = vim.fn.stdpath('data') .. '/site'
+                install_dir = vim.fn.stdpath("data") .. "/site",
             }
         end,
         config = function(_, opts)
             require("nvim-treesitter").setup(opts)
-            require("nvim-treesitter").install({
+            local parsers = {
                 -- defaults
                 "vim",
                 "lua",
@@ -72,8 +72,20 @@ local plugins = {
                 -- config
                 "json",
                 "yaml",
+            }
+
+            require("nvim-treesitter").install(parsers)
+
+            vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("flitzfiete_treesitter_highlight", { clear = true }),
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                    if lang and vim.tbl_contains(parsers, lang) and vim.treesitter.language.add(lang) then
+                        vim.treesitter.start(args.buf, lang)
+                    end
+                end,
             })
-        end
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
