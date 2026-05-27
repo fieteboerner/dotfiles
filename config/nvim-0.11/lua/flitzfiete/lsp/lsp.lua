@@ -63,7 +63,7 @@ M.setup = function()
             "html",
             "cssls",
             "svelte",
-            "volar@2.2.8",
+            "vue_ls",
             "tailwindcss",
         },
         handlers = {
