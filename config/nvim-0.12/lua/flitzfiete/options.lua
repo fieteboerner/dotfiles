@@ -81,3 +81,37 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.autoindent = true
     end,
 })
+
+local function update_vue_commentstring(bufnr)
+    local node = vim.treesitter.get_node({ bufnr = bufnr, ignore_injections = true })
+    local commentstring = "<!-- %s -->"
+
+    while node do
+        local node_type = node:type()
+        if node_type == "script_element" then
+            commentstring = "// %s"
+            break
+        elseif node_type == "style_element" then
+            commentstring = "/* %s */"
+            break
+        end
+        node = node:parent()
+    end
+
+    vim.bo[bufnr].commentstring = commentstring
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("VueCommentstring", { clear = true }),
+    pattern = "vue",
+    callback = function(args)
+        pcall(update_vue_commentstring, args.buf)
+        vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved", "CursorMovedI" }, {
+            group = "VueCommentstring",
+            buffer = args.buf,
+            callback = function()
+                pcall(update_vue_commentstring, args.buf)
+            end,
+        })
+    end,
+})
