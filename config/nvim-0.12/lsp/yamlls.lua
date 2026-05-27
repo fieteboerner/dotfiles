@@ -9,7 +9,12 @@ return {
                 ["https://json.schemastore.org/github-workflow.json"] = "workflows/*.{yml,yaml}",
                 ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
                 "*gitlab-ci*.{yml,yaml}",
-                -- kubernetes = "*.yaml",
+                kubernetes = {
+                    "k8s/**/*.yaml",
+                    "kubernetes/**/*.yaml",
+                    "deploy/**/*.yaml",
+                    "manifests/**/*.yaml",
+                },
             },
 
             kubernetes = { enabled = true },
