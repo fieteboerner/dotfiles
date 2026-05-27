@@ -3,7 +3,7 @@ local plugins = {
         "folke/tokyonight.nvim",
         lazy = false,
         init = function()
-            -- vim.cmd("colorscheme tokyonight-moon")
+            vim.cmd("colorscheme tokyonight-moon")
         end,
     },
     {
@@ -11,7 +11,7 @@ local plugins = {
         lazy = false,
         name = "rose-pine",
         config = function()
-            vim.cmd("colorscheme rose-pine")
+            -- vim.cmd("colorscheme rose-pine")
         end,
     },
     {
@@ -207,48 +207,38 @@ local plugins = {
     },
 
     {
-        "williamboman/mason-lspconfig.nvim",
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        build = function()
+            pcall(vim.cmd, "MasonUpdate")
+        end,
+        opts = function()
+            return require("flitzfiete.plugins.mason")
+        end,
+    },
+    {
+        "hrsh7th/nvim-cmp",
         lazy = false,
         dependencies = {
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
             {
-                "williamboman/mason.nvim",
-                build = function()
-                    pcall(vim.cmd, "MasonUpdate")
-                end,
-                opts = function()
-                    return require("flitzfiete.plugins.mason")
-                end,
+                "windwp/nvim-autopairs",
+                opts = {
+                    fast_wrap = {},
+                    disable_filetype = { "TelescopePrompt", "vim" },
+                },
                 config = function(_, opts)
-                    require("mason").setup(opts)
+                    require("nvim-autopairs").setup(opts)
+
+                    -- setup cmp for autopairs
+                    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
                 end,
             },
-            -- Autocompletion
             {
-                "hrsh7th/nvim-cmp",
-                dependencies = {
-                    {
-                        "windwp/nvim-autopairs",
-                        opts = {
-                            fast_wrap = {},
-                            disable_filetype = { "TelescopePrompt", "vim" },
-                        },
-                        config = function(_, opts)
-                            require("nvim-autopairs").setup(opts)
-
-                            -- setup cmp for autopairs
-                            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-                            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-                        end,
-                    },
-                    {
-                        "zbirenbaum/copilot-cmp",
-                        config = function()
-                            require("copilot_cmp").setup()
-                        end,
-                    },
-                },
+                "zbirenbaum/copilot-cmp",
+                config = function()
+                    require("copilot_cmp").setup()
+                end,
             },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
@@ -268,10 +258,8 @@ local plugins = {
                 end,
             },
         },
-        config = function(_, opts)
-            require("cmp").setup(require("flitzfiete.plugins.cmp"))
-            require("flitzfiete.lsp.lsp").setup()
-            require("flitzfiete.lsp.languages.vue").setup()
+        opts = function()
+            return require("flitzfiete.plugins.cmp")
         end,
     },
     {
@@ -279,32 +267,6 @@ local plugins = {
         event = "VeryLazy",
         opts = { hint_enable = false },
     },
-
-    -- {
-    --     'stevearc/conform.nvim',
-    --     event = "VeryLazy",
-    --     opts = {
-    --         formatters_by_ft = {
-    --             lua = { "stylua" },
-    --             python = { "black" },
-    --             -- go = { "goimports" },
-    --             php = { "php_cs_fixer" },
-
-    --             javascript = { "prettierd", "prettier", stop_after_first = true },
-    --             javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-    --             css = { "prettierd", "prettier", stop_after_first = true },
-    --             html = { "prettierd", "prettier", stop_after_first = true },
-    --             json = { "prettierd", "prettier", stop_after_first = true },
-    --             markdown = { "prettierd", "prettier", stop_after_first = true },
-    --             graphql = { "prettierd", "prettier", stop_after_first = true },
-    --             svelte = { "prettierd", "prettier", stop_after_first = true },
-    --             typescript = { "prettierd", "prettier", stop_after_first = true },
-    --             vue = { "prettierd", "prettier", stop_after_first = true },
-
-    --             yaml = { "yamlfmt" },
-    --         },
-    --     },
-    -- },
     {
         "nvimtools/none-ls.nvim",
         event = "VeryLazy",
@@ -613,7 +575,6 @@ local plugins = {
 
     {
         "folke/which-key.nvim",
-        -- keys = { "<leader>", '"', "'", "`", "c", "v" },
         lazy = false,
         config = function()
             vim.o.timeout = true

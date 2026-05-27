@@ -3,9 +3,10 @@ local notify = require("flitzfiete.utils").notify
 local M = {}
 
 M.ignored_lsps = {
-    "volar",
+    -- "volar",
+    -- "vue_ls",
     -- "ts_ls",
-    "intelephense",
+    -- "intelephense",
 }
 
 M.format_opts = {
