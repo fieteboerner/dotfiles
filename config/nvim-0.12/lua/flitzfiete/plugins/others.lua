@@ -74,6 +74,7 @@ M.oil = {
         ["~"] = "actions.tcd",
         ["g."] = "actions.toggle_hidden",
         ["g?"] = "actions.show_help",
+        ["gx"] = "actions.open_external",
     },
 
     view_options = { show_hidden = true },

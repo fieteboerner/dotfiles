@@ -39,6 +39,17 @@ M.maps.n["-"] = {
     end,
     desc = "Open Parent Directory",
 }
+M.maps.n["<leader>xx"] = {
+    function()
+        local path = vim.fn.expand("%:p")
+        -- starts with oil://
+        if vim.startswith(path, "oil://") then
+            path = path:sub(7)
+        end
+        vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+    end,
+    desc = "Open current file in system file explorer",
+}
 
 -- Custom
 M.maps.n["<leader>cp"] = { require('flitzfiete.utils.copy').copy_relative_file_path, desc = "Copy relative file path" }
