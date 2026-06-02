@@ -10,10 +10,10 @@ return {
                 ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
                 "*gitlab-ci*.{yml,yaml}",
                 kubernetes = {
-                    "k8s/**/*.yaml",
-                    "kubernetes/**/*.yaml",
-                    "deploy/**/*.yaml",
-                    "manifests/**/*.yaml",
+                    "**/k8s/**/*.yaml",
+                    "**/kubernetes/**/*.yaml",
+                    "**/deploy/**/*.yaml",
+                    "**/manifests/**/*.yaml",
                 },
             },
 
