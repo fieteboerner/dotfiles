@@ -3,8 +3,9 @@ local notify = require("flitzfiete.utils").notify
 local M = {}
 
 M.ignored_lsps = {
+    -- "eslint",
     -- "volar",
-    -- "vue_ls",
+    "vue_ls",
     -- "ts_ls",
     -- "intelephense",
 }
@@ -38,6 +39,18 @@ function M.has_capability(capability, filter)
     return false
 end
 
+function M.eslint_fix_all(client, bufnr)
+    client.request_sync("workspace/executeCommand", {
+        command = "eslint.applyAllFixes",
+        arguments = {
+            {
+                uri = vim.uri_from_bufnr(bufnr),
+                version = vim.lsp.util.buf_versions[bufnr],
+            },
+        },
+    }, nil, bufnr)
+end
+
 local function add_buffer_autocmd(augroup, bufnr, autocmds)
     if not vim.islist(autocmds) then
         autocmds = { autocmds }
@@ -65,6 +78,28 @@ local function del_buffer_autocmd(augroup, bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+    if client.name == "eslint" then
+        vim.api.nvim_buf_create_user_command(bufnr, "LspEslintFixAll", function()
+            M.eslint_fix_all(client, bufnr)
+        end, { desc = "Fix all ESLint problems for this buffer" })
+
+        add_buffer_autocmd("lsp_eslint_fix_all", bufnr, {
+            events = "BufWritePre",
+            desc = "fix ESLint issues on save",
+            callback = function()
+                local autoformat_enabled = vim.b.autoformat_enabled
+                if autoformat_enabled == nil then
+                    autoformat_enabled = true
+                end
+                if autoformat_enabled then
+                    M.eslint_fix_all(client, bufnr)
+                end
+            end,
+        })
+
+        return
+    end
+
     if client:supports_method("textDocument/formatting", bufnr) then
         -- do not format with the following lsps
         if M.should_ignore_lsp_for_formatting(client) then

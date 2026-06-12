@@ -91,6 +91,38 @@ M.setup = function()
             volar = function(server)
                 -- do nothing
             end,
+            eslint = function(server)
+                -- necessary to get eslint lsp to work in projects with eslint@10
+                -- before_init necessary because nvim-lspconfig sets useFlagConfig internally, so the settings are not enough
+                lspconfig.eslint.setup({
+                    capabilities = lsp_capabilities,
+                    settings = {
+                        packageManager = "npm",
+                        workingDirectories = {
+                            { mode = "auto" },
+                        },
+                        useESLintClass = true,
+                        experimental = {
+                            useFlatConfig = false,
+                        },
+                    },
+                    before_init = function(_, config)
+                        local root_dir = config.root_dir
+
+                        if root_dir then
+                            config.settings = config.settings or {}
+                            config.settings.workspaceFolder = {
+                                uri = root_dir,
+                                name = vim.fn.fnamemodify(root_dir, ":t"),
+                            }
+
+                            config.settings.useESLintClass = true
+                            config.settings.experimental = config.settings.experimental or {}
+                            config.settings.experimental.useFlatConfig = false
+                        end
+                    end,
+                })
+            end,
             -- ts_ls = function(server)
             --     require("flitzfiete.lsp.languages.typescript").setup(lspconfig, server, lsp_capabilities)
             -- end,

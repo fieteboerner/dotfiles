@@ -60,6 +60,7 @@ local function setup_servers()
         "svelte",
         "vue_ls",
         "tailwindcss",
+        "eslint",
         "intelephense",
     })
 end
