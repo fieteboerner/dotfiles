@@ -12,8 +12,10 @@ return {
         selection_caret = " ",
         entry_prefix = "  ",
         file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
-        shorten_path = true,
-        path_display = { shorten = 5 },
+        path_display = {
+            -- shorten = 5,
+            filename_first = true
+        },
         previewer = false,
         layout_config = {
             prompt_position = "top",
@@ -45,12 +47,21 @@ return {
             "--column",
             "--smart-case",
             -- "--ignore-case",
-            -- "--sort=path",
+            "--sort=path",
         },
     },
     pickers = {
         find_files = {
             hidden = true,
+            find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--glob",
+                "!{.git,node_modules,vendor}/**",
+                "--sort",
+                "path",
+            }
             -- cache_picker = true,
         },
         lsp_references = {
