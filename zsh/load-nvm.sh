@@ -2,6 +2,10 @@
 
 load-nvm() {
     [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh --no-use # this is really slow
+
+    if [ "$(nvm current)" = "none" ]; then
+        nvm use default >/dev/null
+    fi
 }
 
 nvm() {
