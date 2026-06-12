@@ -27,11 +27,9 @@ local function create_new_mr()
         "Select target branch for new MR",
         function(target_branch)
             print("Selected branch: " .. target_branch)
-            -- Here you would add the logic to create a new MR using the selected branch
-            -- This could involve calling an API or running a command-line tool
-            local result = vim.system({ "glab", "mr", "create", "--web", "--target-branch", target_branch },
+            local result = vim.system({ "glab", "mr", "create", "--web", "--target-branch", target_branch, "--fill" },
                 { text = true }):wait()
-            vim.print(result)
+            -- vim.print(result)
         end
     )
 end
